@@ -2,10 +2,13 @@
 <manifest
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:dist="http://schemas.android.com/apk/distribution"
+        xmlns:tools="http://schemas.android.com/tools"
         package="com.openyogaland.denis.dreamdiary">
-  
-  <dist:module
-          dist:instant="true" />
+
+  <!-- Support API < 15 -->
+  <uses-sdk tools:overrideLibrary="com.jakewharton.threetenabp"/>
+
+  <dist:module dist:instant="true" />
   
   <application
     android:allowBackup="true"
