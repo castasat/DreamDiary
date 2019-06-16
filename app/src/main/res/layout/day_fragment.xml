@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  tools:context=".MainActivity"
+  tools:showIn="@layout/activity_main">
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/captionTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="Страница Записи Дня"
+    android:gravity="center"
+    app:layout_constraintTop_toTopOf="parent"/>
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/dateTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="Дата: 4 Июня 2019 Вторник"
+    app:layout_constraintTop_toBottomOf="@id/captionTextView"/>
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/moonTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="Луна: 2-е лунные сутки"
+    app:layout_constraintTop_toBottomOf="@id/dateTextView" />
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/afterLossTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="День цикла / после потери: 5"
+    app:layout_constraintTop_toBottomOf="@id/moonTextView" />
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/practiceTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="Практика йоги"
+    app:layout_constraintTop_toBottomOf="@id/afterLossTextView" />
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/nutritionTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="Питание"
+    app:layout_constraintTop_toBottomOf="@id/practiceTextView" />
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/eventsTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="События дня"
+    app:layout_constraintTop_toBottomOf="@id/nutritionTextView" />
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/stressLevelTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="Уровень стрессов"
+    app:layout_constraintTop_toBottomOf="@id/eventsTextView" />
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/recordDreamTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="Записать сон"
+    app:layout_constraintTop_toBottomOf="@id/stressLevelTextView" />
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/addReminderTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="Добавить напоминание"
+    app:layout_constraintTop_toBottomOf="@id/recordDreamTextView" />
+  
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/saveDayTextView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:text="Записать день"
+    app:layout_constraintTop_toBottomOf="@id/addReminderTextView" />
+  
+</androidx.constraintlayout.widget.ConstraintLayout>
