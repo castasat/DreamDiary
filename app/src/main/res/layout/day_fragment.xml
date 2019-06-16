@@ -1,160 +1,158 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:layout_margin="8dp"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent"
+  android:layout_gravity="top"
+  android:gravity="top"
+  android:padding="0dp"
+  android:layout_margin="8dp">
+  
+  <androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:gravity="top"
+    android:padding="0dp"
+    android:layout_margin="0dp"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
   
   <!-- Day -->
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/captionTextView"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     app:fontFamily="sans-serif-black"
+    android:gravity="center_horizontal"
     android:textSize="20sp"
     android:padding="20dp"
-    android:text="Страница Записи Дня"
-    android:gravity="center"
-    app:layout_constraintTop_toTopOf="parent"/>
+    android:text="Страница Записи Дня" />
   
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/dateTextView"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_width="0dp"
     android:padding="8dp"
-    android:text="Дата: 4 Июня 2019 Вторник"
-    app:layout_constraintTop_toBottomOf="@id/captionTextView"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    android:text="Дата: 4 Июня 2019 Вторник"/>
   
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/moonTextView"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:padding="8dp"
-    android:text="Луна: 2-е лунные сутки"
-    app:layout_constraintTop_toBottomOf="@id/dateTextView"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    android:text="Луна: 2-е лунные сутки" />
   
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/afterLossTextView"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:padding="8dp"
-    android:text="День цикла / после потери: 5"
-    app:layout_constraintTop_toBottomOf="@id/moonTextView"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    android:text="День цикла / после потери: 5" />
   <!-- / Day -->
   
-  <View
-    android:id="@+id/dividerAfterDay"
-    android:layout_width="match_parent"
-    android:layout_height="2dp"
-    android:background="?android:attr/listDivider"
-    app:layout_constraintTop_toBottomOf="@id/afterLossTextView" />
-  
+  <!-- Practice -->
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/practiceTextView"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_width="match_parent"
     android:padding="8dp"
-    android:text="Практика йоги"
-    app:layout_constraintTop_toBottomOf="@id/dividerAfterDay"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    android:text="Практика йоги" />
   
-  <View
-    android:id="@+id/dividerAfterPractice"
+  <androidx.appcompat.widget.AppCompatEditText
+    android:id="@+id/practiceEditText"
     android:layout_width="match_parent"
-    android:layout_height="2dp"
-    android:background="?android:attr/listDivider"
-    app:layout_constraintTop_toBottomOf="@id/practiceTextView" />
-    
+    android:layout_height="wrap_content"
+    android:hint="Добавить запись"
+    android:inputType="textMultiLine"
+    android:minLines="2"
+    android:lines="2"
+    android:maxLines="6"
+    android:lineHeight="16sp"
+    android:scrollbars="vertical" />
+  <!-- / Practice -->
+  
+  <!-- Nutrition -->
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/nutritionTextView"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_width="match_parent"
     android:padding="8dp"
-    android:text="Питание"
-    app:layout_constraintTop_toBottomOf="@id/dividerAfterPractice"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    android:text="Питание" />
   
-  <View
-    android:id="@+id/dividerAfterNutrition"
+  <androidx.appcompat.widget.AppCompatEditText
+    android:id="@+id/nutritionEditText"
     android:layout_width="match_parent"
-    android:layout_height="2dp"
-    android:background="?android:attr/listDivider"
-    app:layout_constraintTop_toBottomOf="@id/nutritionTextView" />
+    android:layout_height="wrap_content"
+    android:inputType="textMultiLine"
+    android:hint="Добавить запись"
+    android:minLines="2"
+    android:lines="2"
+    android:maxLines="6"
+    android:lineHeight="16sp"
+    android:scrollbars="vertical" />
+  <!-- / Nutrition -->
   
+  <!-- Events -->
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/eventsTextView"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:padding="8dp"
-    android:text="События дня"
-    app:layout_constraintTop_toBottomOf="@id/dividerAfterNutrition"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    android:text="События дня" />
+  
+  <androidx.appcompat.widget.AppCompatEditText
+    android:id="@+id/eventsEditText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textMultiLine"
+    android:hint="Добавить запись"
+    android:minLines="2"
+    android:lines="2"
+    android:maxLines="6"
+    android:lineHeight="16sp"
+    android:scrollbars="vertical" />
   
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/stressLevelTextView"
     android:layout_height="wrap_content"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:padding="8dp"
-    android:text="Уровень стрессов"
-    app:layout_constraintTop_toBottomOf="@id/eventsTextView"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toStartOf="@id/stressLevelSeekBar" />
+    android:text="Уровень стрессов" />
   
   <SeekBar
     android:id="@+id/stressLevelSeekBar"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:min="0"
     android:max="100"
     android:progress="0"
-    android:thumb="@drawable/ic_stress"
-    app:layout_constraintTop_toBottomOf="@id/eventsTextView"
-    app:layout_constraintBottom_toBottomOf="@id/stressLevelTextView"
-    app:layout_constraintStart_toEndOf="@id/stressLevelTextView"
-    app:layout_constraintEnd_toEndOf="parent"/>
+    android:thumb="@drawable/ic_stress" />
+  <!-- / Events -->
   
-  <View
-    android:id="@+id/dividerAfterEvents"
-    android:layout_width="match_parent"
-    android:layout_height="2dp"
-    android:background="?android:attr/listDivider"
-    app:layout_constraintTop_toBottomOf="@id/stressLevelTextView" />
-  
+  <!-- Buttons -->
   <androidx.appcompat.widget.AppCompatButton
     android:id="@+id/recordDreamButton"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:text=" + Записать сон"
-    app:layout_constraintTop_toBottomOf="@id/dividerAfterEvents"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    android:text=" + Записать сон" />
   
   <androidx.appcompat.widget.AppCompatButton
     android:id="@+id/addReminderTextView"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:text=" + Добавить напоминание"
-    app:layout_constraintTop_toBottomOf="@id/recordDreamButton"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    android:text=" + Добавить напоминание" />
   
   <androidx.appcompat.widget.AppCompatButton
     android:id="@+id/saveDayTextView"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:text=" + Записать день"
-    app:layout_constraintTop_toBottomOf="@id/addReminderTextView"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    android:layout_gravity="center_horizontal"
+    
+    android:text="Записать день" />
+   <!--/ Buttons -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.appcompat.widget.LinearLayoutCompat>
+  
+</androidx.core.widget.NestedScrollView>
