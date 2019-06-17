@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +12,7 @@
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true">
-    
+  
     <!-- Caption -->
     <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/captionTextView"
@@ -21,41 +22,31 @@
       android:gravity="center_horizontal"
       android:textSize="20sp"
       android:padding="8dp"
-      android:text="Страница Записи Дня" />
+      android:text="Страница Записи Ночи" />
     <!-- / Caption-->
     
-    <!-- Day -->
+    <!-- Night -->
     <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/dateTextView"
+      android:id="@+id/nightTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:paddingTop="8dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
       android:paddingBottom="0dp"
-      android:text="Дата: 4 Июня 2019 Вторник" />
-    
+      android:text="Ночь с 4 по 5 Июня 2019" />
+  
     <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/moonTextView"
+      android:id="@+id/weekDayTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:paddingTop="8dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
       android:paddingBottom="0dp"
-      android:text="Луна: 2-е лунные сутки" />
-    
-    <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/afterLossTextView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:paddingTop="8dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
-      android:text="День цикла / после потери: 5" />
-    <!-- / Day -->
-    
+      android:text="со Вт по Ср" />
+    <!-- / Night -->
+  
     <!-- Practice -->
     <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/practiceTextView"
@@ -65,12 +56,12 @@
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
       android:paddingBottom="0dp"
-      android:text="Практика йоги" />
-    
+      android:text="Предварительная практика" />
+  
     <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
-      
+    
       <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/practiceEditText"
         android:layout_width="match_parent"
@@ -81,27 +72,72 @@
         android:lines="12"
         android:maxLines="12"
         app:lineHeight="12sp" />
-    
+  
     </androidx.core.widget.NestedScrollView>
     <!-- / Practice -->
-    
-    <!-- Nutrition -->
+  
+    <!-- Dream -->
     <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/nutritionTextView"
+      android:id="@+id/dreamTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:paddingTop="16dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
       android:paddingBottom="0dp"
-      android:text="Питание" />
+      android:text="Сон" />
+  
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/dreamDurationTextView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="16dp"
+      android:paddingStart="8dp"
+      android:paddingEnd="8dp"
+      android:paddingBottom="0dp"
+      android:text="Продолжительность сна: 8 ч 00 м" />
+  
+  <androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+    
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/lucidDreamTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:paddingTop="16dp"
+      android:paddingStart="8dp"
+      android:paddingEnd="8dp"
+      android:paddingBottom="0dp"
+      android:layout_weight="1"
+      android:text="Осознание себя во сне" />
+    
+    <CheckBox
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:checked="true"
+      android:layout_weight="0"/>
+    
+  </androidx.appcompat.widget.LinearLayoutCompat>
+    
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/dreamDescriptionTextView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="16dp"
+      android:paddingStart="8dp"
+      android:paddingEnd="8dp"
+      android:paddingBottom="0dp"
+      android:text="Описание сна" />
     
     <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
-      
+    
       <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/nutritionEditText"
+        android:id="@+id/dreamEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
@@ -110,27 +146,28 @@
         android:lines="12"
         android:maxLines="12"
         app:lineHeight="12sp" />
-    
+  
     </androidx.core.widget.NestedScrollView>
-    <!-- / Nutrition -->
-    
-    <!-- Events -->
+    <!-- / Dream -->
+  
+    <!-- Feelings-->
     <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/eventsTextView"
-      android:layout_height="wrap_content"
+      android:id="@+id/dreamFeelingsTextView"
       android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:paddingTop="16dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
       android:paddingBottom="0dp"
-      android:text="События дня" />
-    
+      android:text="Ощущения, чувства" />
+  
     <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-      
+      android:layout_height="wrap_content"
+      android:paddingBottom="16dp">
+    
       <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/eventsEditText"
+        android:id="@+id/dreamFeelingsEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
@@ -139,63 +176,20 @@
         android:lines="12"
         android:maxLines="12"
         app:lineHeight="12sp" />
-    
+  
     </androidx.core.widget.NestedScrollView>
+    <!-- / Feelings -->
     
-    <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/stressLevelTextView"
-      android:layout_height="wrap_content"
-      android:layout_width="match_parent"
-      android:paddingTop="16dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
-      android:text="Уровень стрессов" />
-    
-    <SeekBar
-      android:id="@+id/stressLevelSeekBar"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:max="100"
-      android:progress="0"
-      android:paddingTop="8dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="8dp"
-      android:thumb="@drawable/ic_stress" />
-    <!-- / Events -->
-    
-    <!-- Buttons -->
-    
-    <androidx.appcompat.widget.LinearLayoutCompat
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      android:layout_gravity="center"
-      android:gravity="center">
-      
-      <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/recordDreamButton"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text=" + Записать сон" />
-      
-      <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/addReminderTextView"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text=" + Добавить напоминание" />
-    
-    </androidx.appcompat.widget.LinearLayoutCompat>
-    
+    <!-- Button -->
+  
     <androidx.appcompat.widget.AppCompatButton
-      android:id="@+id/saveDayTextView"
+      android:id="@+id/saveNightTextView"
       android:layout_height="wrap_content"
       android:layout_width="wrap_content"
       android:layout_gravity="center_horizontal"
-      android:text="Записать день" />
-    <!--/ Buttons -->
-  
+      android:text="Записать ночь" />
+    <!--/ Button -->
+    
   </androidx.appcompat.widget.LinearLayoutCompat>
-
+  
 </androidx.core.widget.NestedScrollView>
