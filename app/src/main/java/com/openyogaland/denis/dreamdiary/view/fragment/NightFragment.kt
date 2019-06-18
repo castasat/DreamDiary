@@ -16,8 +16,11 @@ NightFragment : Fragment()
   {
     val view : View =
       inflater.inflate(R.layout.night_fragment,
-                        container,
+                       container,
                        false)
+    
+    
+    
     return view
   }
 }
