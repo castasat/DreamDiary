@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.openyogaland.denis.dreamdiary.R
+import com.openyogaland.denis.dreamdiary.model.Dream
 
 public class
 DayFragment : Fragment()
@@ -24,7 +24,13 @@ DayFragment : Fragment()
     val navController  =
       Navigation.findNavController(container as View)
     
-    navController.navigate(R.id.nightFragment)
+    val dream = Dream()
+    
+    val dreamBundle =
+      NightFragment.bundleArgs(dream)
+    
+    navController.navigate(R.id.nightFragment,
+                           dreamBundle)
     
     return view
   }

@@ -6,10 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.openyogaland.denis.dreamdiary.R
+import com.openyogaland.denis.dreamdiary.model.Dream
 
 public class
 NightFragment : Fragment()
 {
+  companion object
+  {
+    private const val DREAM = "dream"
+    
+    fun bundleArgs(dream : Dream) : Bundle
+    {
+      return Bundle()
+      .apply{
+        this.putParcelable(DREAM, dream)
+      }
+    }
+  }
+  
   override fun onCreateView(inflater : LayoutInflater,
                             container : ViewGroup?,
                             savedInstanceState : Bundle?) : View?
@@ -18,8 +32,6 @@ NightFragment : Fragment()
       inflater.inflate(R.layout.night_fragment,
                        container,
                        false)
-    
-    
     
     return view
   }
