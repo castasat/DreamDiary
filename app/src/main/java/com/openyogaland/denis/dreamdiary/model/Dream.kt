@@ -26,11 +26,12 @@ Dream() : Parcelable
   
   override fun writeToParcel(p0 : Parcel?, p1 : Int)
   {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    // TODO 
   }
   
   override fun describeContents() : Int
   {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    // TODO
+    return 0
   }
 }
