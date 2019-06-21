@@ -94,7 +94,8 @@ dependencies {
 
     // ReactiveX
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
 
     // JSR-310 compatible Date, Time and Calendar compatible android library
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
