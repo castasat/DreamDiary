@@ -55,12 +55,12 @@ android {
 }
 
 repositories {
+    google()
+    jcenter()
+    mavenCentral()
     maven {
         url uri('mint-plugin-repo-5.2.5')
     }
-    mavenCentral()
-    jcenter()
-    google()
 }
 
 configurations {
@@ -68,7 +68,7 @@ configurations {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // kotlin support
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -98,6 +98,12 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.1.0'
     implementation 'androidx.room:room-rxjava2:2.1.0'
     implementation 'androidx.room:room-guava:2.1.0'
+
+    // Retrofit ReactiveX adapter
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
+
+    // RxJava2 Debug
+    implementation 'com.akaita.java:rxjava2-debug:1.4.0'
 
     // ReactiveX
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
