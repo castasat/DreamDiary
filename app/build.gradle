@@ -11,10 +11,10 @@ android {
     defaultConfig {
         applicationId "com.openyogaland.denis.dreamdiary"
         archivesBaseName = "com.openyogaland.denis.dreamdiary"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0.0"
+        versionName "0.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -22,8 +22,8 @@ android {
         multiDexEnabled = true
     }
     compileOptions {
-        sourceCompatibility 'VERSION_1_8'
-        targetCompatibility 'VERSION_1_8'
+        sourceCompatibility '1.8'
+        targetCompatibility '1.8'
     }
     buildToolsVersion '29.0.0 rc2'
     buildTypes {
@@ -42,6 +42,9 @@ android {
             minifyEnabled false
             shrinkResources false
             applicationIdSuffix ".debug"
+            jniDebuggable = true
+            renderscriptDebuggable = true
+            multiDexEnabled = true
         }
     }
     applicationVariants.all { final variant ->
@@ -52,8 +55,12 @@ android {
 }
 
 repositories {
+    maven {
+        url uri('mint-plugin-repo-5.2.5')
+    }
     mavenCentral()
-    maven { url "https://mint.splunk.com/gradle/" }
+    jcenter()
+    google()
 }
 
 configurations {
@@ -100,6 +107,10 @@ dependencies {
     // JSR-310 compatible Date, Time and Calendar compatible android library
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
 
+    // crash report
+    implementation 'com.splunk:mint-android-sdk:5.2.5'
+    implementation 'com.splunk:mint-android-hook-okhttp:5.2.5'
+
     // additional annotation processors
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0-alpha01'
     annotationProcessor 'androidx.room:room-compiler:2.1.0'
@@ -115,7 +126,4 @@ dependencies {
 
     // leak detection
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
-
-    // crash report (do not upgrade 5.0.0)
-    implementation 'com.splunk.mint:mint:5.0.0'
 }

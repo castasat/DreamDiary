@@ -152,7 +152,7 @@
       android:paddingBottom="0dp"
       android:text="Уровень стрессов" />
     
-    <SeekBar
+    <androidx.appcompat.widget.AppCompatSeekBar
       android:id="@+id/stressLevelSeekBar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

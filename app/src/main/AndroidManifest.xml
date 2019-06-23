@@ -6,20 +6,23 @@
   package="com.openyogaland.denis.dreamdiary"
   android:installLocation="preferExternal">
   
-  <!-- Support API < 15 -->
-  <uses-sdk tools:overrideLibrary="com.jakewharton.threetenabp" />
-  
   <dist:module dist:instant="true" />
   
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.READ_LOGS" />
+  
   <application
+    android:name=".DreamDiary"
     android:allowBackup="true"
+    android:fullBackupContent="@xml/backup_descriptor"
+    android:minSdkVersion="15"
+    android:targetSdkVersion="29"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
-    tools:ignore="GoogleAppIndexingWarning"
-    android:fullBackupContent="@xml/backup_descriptor">
+    tools:ignore="GoogleAppIndexingWarning">
     
     <activity
       android:name=".MainActivity"

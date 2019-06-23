@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.Navigation
 import com.openyogaland.denis.dreamdiary.view.fragment.DayFragment
 import com.openyogaland.denis.dreamdiary.view.fragment.NightFragment
+import com.splunk.mint.Mint
 import kotlinx.android.synthetic.main.activity_main.*
 
 public class
