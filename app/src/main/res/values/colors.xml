@@ -2,6 +2,8 @@
 <resources>
   <color name="colorPrimary">#008577</color>
   <color name="colorPrimaryDark">#00574B</color>
+  <color name="white">#fff</color>
   <color name="colorAccent">#FF5722</color>
-  <color name="stress_thumb_color">@color/colorAccent</color>
+  <color name="stress_color">@color/colorAccent</color>
+  <color name="transparent">#ffff</color>
 </resources>

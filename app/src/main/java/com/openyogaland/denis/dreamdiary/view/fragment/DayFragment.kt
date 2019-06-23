@@ -60,7 +60,7 @@ DayFragment : Fragment()
                           progress : Int,
                           fromUser : Boolean)
         {
-          (seekBar as AppCompatSeekBar).background.alpha = progress
+          // TODO seekBar?.background?.alpha = progress
         }
       }
     

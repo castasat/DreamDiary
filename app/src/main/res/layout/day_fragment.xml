@@ -156,6 +156,7 @@
       android:id="@+id/stressLevelSeekBar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:splitTrack="false"
       android:max="100"
       android:progress="0"
       android:paddingTop="8dp"
