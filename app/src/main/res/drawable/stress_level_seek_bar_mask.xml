@@ -6,9 +6,10 @@
   android:viewportHeight="100"
   android:viewportWidth="2000">
   
-  <path
-    android:name="triangle"
-    android:fillColor="#000"
-    android:pathData="M0,100 H2000 V0 Z"/>
-
+    <path
+      android:name="triangle"
+      android:fillColor="#000"
+      android:pathData="M0,100 H2000 V0 Z">
+    </path>
+  
 </vector>

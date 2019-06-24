@@ -1,6 +1,7 @@
 package com.openyogaland.denis.dreamdiary.view.fragment
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.openyogaland.denis.dreamdiary.R
@@ -66,6 +68,15 @@ DayFragment : Fragment()
     
     stressLevelSeekBar
     .setOnSeekBarChangeListener(onSeekBarChangeListener)
+    
+    if(Build.VERSION.SDK_INT > Build.VERSION_CODES.N) // API 24
+    {
+      stressLevelSeekBar
+      .progressDrawable =
+        ContextCompat
+        .getDrawable(activity as Context,
+                     R.drawable.increase_triangle_drawable)
+    }
     
     val dream = Dream()
     

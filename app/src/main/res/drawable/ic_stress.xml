@@ -8,6 +8,6 @@
   
   <path
     android:fillColor="@color/stress_color"
-    android:pathData="M7,2v11h3v9l7,-12h-4l4,-8z" />
+    android:pathData="M16,2 l-9,12 h4 l-2,9 l7,-11 h-4 z" />
   
 </vector>
