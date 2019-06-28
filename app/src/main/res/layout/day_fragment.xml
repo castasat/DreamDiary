@@ -3,6 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_margin="8dp">
   
   <androidx.appcompat.widget.LinearLayoutCompat
@@ -157,13 +158,18 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:splitTrack="false"
+      android:background="@null"
       android:max="100"
       android:progress="0"
       android:paddingTop="8dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
-      android:paddingBottom="8dp"
-      android:thumb="@drawable/ic_stress" />
+      android:paddingBottom="16dp"
+      android:secondaryProgress="0"
+      android:thumbOffset="10dp"
+      android:progressDrawable="@drawable/stress_seekbar_drawable"
+      android:thumb="@drawable/ic_stress_thumb"
+      tools:progress="50"/>
     <!-- / Events -->
     
     <!-- Buttons -->
