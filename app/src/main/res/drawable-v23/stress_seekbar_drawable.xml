@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools">
+  xmlns:android="http://schemas.android.com/apk/res/android">
   
   <item
     android:layout_height="12dp"
-    tools:height="12dp"
-    app:height="12dp">
+    android:height="12dp">
     
     <shape
       android:shape="rectangle">
       
-      <size app:height="12dp" />
+      <size android:height="12dp" />
       
       <corners android:radius="6dp" />
       

@@ -74,7 +74,7 @@ DayFragment : Fragment()
       .getDrawable(activity as Context,
                    R.drawable.stress_seekbar_drawable)
     
-    val dream = Dream()
+    val dream = Dream("")
     
     val dreamBundle =
       NightFragment

@@ -1,9 +1,9 @@
 <androidx.core.widget.NestedScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  xmlns:tools="http://schemas.android.com/tools"
   android:layout_margin="8dp">
   
   <androidx.appcompat.widget.LinearLayoutCompat
@@ -21,41 +21,100 @@
       app:fontFamily="sans-serif-black"
       android:gravity="center_horizontal"
       android:textSize="20sp"
+      android:layout_marginTop="8dp"
       android:padding="8dp"
       android:text="Страница Записи Дня" />
     <!-- / Caption-->
-    
-    <!-- Day -->
-    <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/dateTextView"
+  
+    <!-- Date -->
+    <androidx.appcompat.widget.LinearLayoutCompat
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:paddingTop="8dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
-      android:text="Дата: 4 Июня 2019 Вторник" />
-    
-    <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/moonTextView"
+      android:orientation="horizontal">
+      
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:paddingTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="0dp"
+        android:text="Дата: " />
+      
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dateChosenTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="0dp"
+        android:text="4 Июня 2019 \nВторник" />
+      
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!-- / Date-->
+  
+    <!-- Moon -->
+    <androidx.appcompat.widget.LinearLayoutCompat
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:paddingTop="8dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
-      android:text="Луна: 2-е лунные сутки" />
+      android:orientation="horizontal">
     
-    <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/afterLossTextView"
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/moonTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:paddingTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="0dp"
+        android:text="Луна: " />
+    
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/moonDayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="0dp"
+        android:text="2-е лунные сутки" />
+  
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!-- / Moon -->
+    
+    <!-- Cycle OR After Loss -->
+    <androidx.appcompat.widget.LinearLayoutCompat
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:paddingTop="8dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
-      android:text="День цикла / после потери: 5" />
-    <!-- / Day -->
+      android:orientation="horizontal">
+      
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/afterLossTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:paddingTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="0dp"
+        android:text="День цикла / После потери: " />
+  
+      <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/afterLossChosenDayEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="0"
+        android:inputType="number"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp"/>
+    
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!-- / Cycle OR After Loss -->
     
     <!-- Practice -->
     <androidx.appcompat.widget.AppCompatTextView
@@ -169,7 +228,7 @@
       android:thumbOffset="10dp"
       android:progressDrawable="@drawable/stress_seekbar_drawable"
       android:thumb="@drawable/ic_stress_thumb"
-      tools:progress="50"/>
+      tools:progress="50" />
     <!-- / Events -->
     
     <!-- Buttons -->
@@ -185,22 +244,17 @@
         android:id="@+id/recordDreamButton"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text=" + Записать сон" />
+        android:text="Записать сон" />
       
       <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/addReminderTextView"
+        android:id="@+id/saveDayTextView"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text=" + Добавить напоминание" />
+        android:layout_gravity="center_horizontal"
+        android:text="Записать день" />
     
     </androidx.appcompat.widget.LinearLayoutCompat>
     
-    <androidx.appcompat.widget.AppCompatButton
-      android:id="@+id/saveDayTextView"
-      android:layout_height="wrap_content"
-      android:layout_width="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:text="Записать день" />
     <!--/ Buttons -->
   
   </androidx.appcompat.widget.LinearLayoutCompat>

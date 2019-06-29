@@ -67,6 +67,10 @@ configurations {
     cleanedAnnotations
 }
 
+androidExtensions {
+    experimental = true // to use @Parcelize
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
