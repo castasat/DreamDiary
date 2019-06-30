@@ -72,7 +72,7 @@ DayFragment : Fragment()
     .progressDrawable =
       ContextCompat
       .getDrawable(activity as Context,
-                   R.drawable.stress_seekbar_drawable)
+                   R.drawable.stress_seekbar)
     
     val dream = Dream("")
     

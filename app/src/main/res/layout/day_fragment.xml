@@ -43,15 +43,33 @@
         android:paddingBottom="0dp"
         android:text="Дата: " />
       
+      <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:background="#bbb"
+        app:srcCompat="@drawable/arrow_left"
+        android:layout_gravity="center_vertical"
+        app:tint="@color/colorPrimary"/>
+      
       <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/dateChosenTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#ddd"
+        android:gravity="center"
         android:paddingTop="8dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:paddingBottom="0dp"
         android:text="4 Июня 2019 \nВторник" />
+  
+      <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:background="#bbb"
+        app:srcCompat="@drawable/arrow_right"
+        android:layout_gravity="center_vertical"
+        app:tint="@color/colorPrimary" />
       
     </androidx.appcompat.widget.LinearLayoutCompat>
     <!-- / Date-->
@@ -209,8 +227,38 @@
       android:paddingTop="16dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
-      android:text="Уровень стрессов" />
+      android:paddingBottom="8dp"
+      android:text="Уровень стресса: 50%" />
+    
+    <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+  
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/stressZeroPercentTextView"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="start"
+        android:paddingRight="8dp"
+        android:paddingEnd="8dp"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:paddingBottom="0dp"
+        android:text="0" />
+  
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/stress100PercentTextView"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="end"
+        android:paddingRight="8dp"
+        android:paddingEnd="8dp"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:paddingBottom="0dp"
+        android:text="100" />
+      
+    </FrameLayout>
     
     <androidx.appcompat.widget.AppCompatSeekBar
       android:id="@+id/stressLevelSeekBar"
@@ -220,19 +268,17 @@
       android:background="@null"
       android:max="100"
       android:progress="0"
-      android:paddingTop="8dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
       android:paddingBottom="16dp"
       android:secondaryProgress="0"
       android:thumbOffset="10dp"
-      android:progressDrawable="@drawable/stress_seekbar_drawable"
-      android:thumb="@drawable/ic_stress_thumb"
+      android:progressDrawable="@drawable/stress_seekbar"
+      android:thumb="@drawable/stress_thumb"
       tools:progress="50" />
     <!-- / Events -->
     
     <!-- Buttons -->
-    
     <androidx.appcompat.widget.LinearLayoutCompat
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
