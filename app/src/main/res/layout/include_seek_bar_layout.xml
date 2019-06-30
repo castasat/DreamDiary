@@ -1,0 +1,24 @@
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+  
+  <androidx.appcompat.widget.AppCompatSeekBar
+    android:id="@+id/stressLevelSeekBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:splitTrack="false"
+    android:background="@null"
+    android:max="100"
+    android:progress="0"
+    android:maxHeight="12dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="16dp"
+    android:secondaryProgress="0"
+    android:thumbOffset="10dp"
+    android:progressDrawable="@drawable/stress_seekbar"
+    android:thumb="@drawable/stress_thumb"
+    tools:progress="50" />
+
+</merge>

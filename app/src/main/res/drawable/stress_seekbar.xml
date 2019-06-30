@@ -12,7 +12,8 @@
     <shape
       android:shape="rectangle">
       
-      <size app:height="12dp" />
+      <size app:height="12dp"
+            app:width="12dp"/>
       
       <corners android:radius="6dp" />
       

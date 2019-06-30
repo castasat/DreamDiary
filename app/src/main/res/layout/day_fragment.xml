@@ -1,7 +1,6 @@
 <androidx.core.widget.NestedScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:layout_margin="8dp">
@@ -21,7 +20,6 @@
       app:fontFamily="sans-serif-black"
       android:gravity="center_horizontal"
       android:textSize="20sp"
-      android:layout_marginTop="8dp"
       android:padding="8dp"
       android:text="Страница Записи Дня" />
     <!-- / Caption-->
@@ -43,6 +41,7 @@
         android:paddingBottom="0dp"
         android:text="Дата: " />
       
+      <!-- Date Controls -->
       <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="44dp"
@@ -70,6 +69,7 @@
         app:srcCompat="@drawable/arrow_right"
         android:layout_gravity="center_vertical"
         app:tint="@color/colorPrimary" />
+      <!-- Date Controls -->
       
     </androidx.appcompat.widget.LinearLayoutCompat>
     <!-- / Date-->
@@ -260,22 +260,10 @@
       
     </FrameLayout>
     
-    <androidx.appcompat.widget.AppCompatSeekBar
-      android:id="@+id/stressLevelSeekBar"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:splitTrack="false"
-      android:background="@null"
-      android:max="100"
-      android:progress="0"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="16dp"
-      android:secondaryProgress="0"
-      android:thumbOffset="10dp"
-      android:progressDrawable="@drawable/stress_seekbar"
-      android:thumb="@drawable/stress_thumb"
-      tools:progress="50" />
+    <!-- Stress Level -->
+    <include layout="@layout/include_seek_bar_layout" />
+    <!-- / Stress Level -->
+    
     <!-- / Events -->
     
     <!-- Buttons -->
