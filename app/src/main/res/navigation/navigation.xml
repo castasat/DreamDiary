@@ -2,16 +2,15 @@
 <navigation
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/navigation"
   app:startDestination="@+id/dayFragment">
   
   <fragment
-    android:id="@+id/nightFragment"
-    android:name="com.openyogaland.denis.dreamdiary.view.fragment.NightFragment"
-    android:label="NightFragment" />
-  <fragment
     android:id="@+id/dayFragment"
     android:name="com.openyogaland.denis.dreamdiary.view.fragment.DayFragment"
     android:label="DayFragment" />
+  <fragment
+    android:id="@+id/nightFragment"
+    android:name="com.openyogaland.denis.dreamdiary.view.fragment.NightFragment"
+    android:label="NightFragment" />
 </navigation>

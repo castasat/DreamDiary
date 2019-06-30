@@ -21,22 +21,22 @@
       android:gravity="center_horizontal"
       android:textSize="20sp"
       android:paddingBottom="8dp"
+      android:layout_margin="8dp"
       android:text="Страница Записи Дня" />
     <!-- / Caption-->
   
+    <!-- Date -->
     <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_gravity="center">
-      
-      <!-- Date -->
+  
+      <!-- Date Controls -->
       <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
-    
-        <!-- Date Controls -->
     
         <androidx.appcompat.widget.AppCompatImageView
           android:layout_width="wrap_content"
@@ -112,13 +112,12 @@
           app:srcCompat="@drawable/arrow_right"
           android:layout_gravity="center_vertical"
           app:tint="@color/white" />
-        <!-- Date Controls -->
   
       </androidx.appcompat.widget.LinearLayoutCompat>
-      <!-- / Date-->
+      <!-- Date Controls -->
       
     </FrameLayout>
-
+    <!-- / Date-->
     
     <!-- Cycle OR After Loss -->
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -156,6 +155,7 @@
       android:id="@+id/practiceTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:textStyle="bold"
       android:paddingTop="16dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
@@ -185,6 +185,7 @@
       android:id="@+id/nutritionTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:textStyle="bold"
       android:paddingTop="16dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
@@ -214,6 +215,7 @@
       android:id="@+id/eventsTextView"
       android:layout_height="wrap_content"
       android:layout_width="match_parent"
+      android:textStyle="bold"
       android:paddingTop="16dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
@@ -241,6 +243,7 @@
       android:id="@+id/stressLevelTextView"
       android:layout_height="wrap_content"
       android:layout_width="match_parent"
+      android:textStyle="bold"
       android:paddingTop="16dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
@@ -289,7 +292,7 @@
       android:layout_height="wrap_content"
       android:layout_width="wrap_content"
       android:layout_gravity="center_horizontal"
-      android:text="Записать день" />
+      android:text="Сохранить день" />
     <!-- / Save Day -->
   
   </androidx.appcompat.widget.LinearLayoutCompat>

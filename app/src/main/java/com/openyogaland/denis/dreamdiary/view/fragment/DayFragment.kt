@@ -61,7 +61,7 @@ DayFragment : Fragment()
                           progress : Int,
                           fromUser : Boolean)
         {
-          // TODO seekBar?.background?.alpha = progress
+          // TODO 
         }
       }
     
@@ -80,9 +80,9 @@ DayFragment : Fragment()
       NightFragment
       .bundleArgs(dream)
     
-    /*navController
+    navController
     .navigate(R.id.nightFragment,
-              dreamBundle)*/
+              dreamBundle)
     
     return view
   }
