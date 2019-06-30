@@ -24,91 +24,108 @@
       android:text="Страница Записи Дня" />
     <!-- / Caption-->
   
-    <!-- Date -->
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="horizontal">
+      android:layout_gravity="center">
       
-      <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/dateTextView"
-        android:layout_width="wrap_content"
+      <!-- Date -->
+      <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAllCaps="true"
-        android:paddingTop="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="0dp"
-        android:text="Дата: " />
-      
-      <!-- Date Controls -->
-      <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:background="@color/colorPrimary"
-        app:srcCompat="@drawable/arrow_left"
-        android:layout_gravity="center_vertical"
-        app:tint="@color/white"/>
-      
-      <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/dateChosenTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#ddd"
-        android:gravity="center"
-        android:paddingTop="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="0dp"
-        android:text="4 Июня 2019 \nВторник" />
-  
-      <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:background="@color/colorPrimary"
-        app:srcCompat="@drawable/arrow_right"
-        android:layout_gravity="center_vertical"
-        app:tint="@color/white" />
-      <!-- Date Controls -->
-      
-    </androidx.appcompat.widget.LinearLayoutCompat>
-    <!-- / Date-->
-  
-    <!-- Moon -->
-    <androidx.appcompat.widget.LinearLayoutCompat
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
     
-      <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/moonTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="true"
-        android:paddingTop="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="0dp"
-        android:text="Луна: " />
+        <!-- Date Controls -->
     
-      <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/moonDayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="0dp"
-        android:text="2-е лунные сутки" />
+        <androidx.appcompat.widget.AppCompatImageView
+          android:layout_width="wrap_content"
+          android:layout_height="58dp"
+          android:background="@color/colorPrimary"
+          app:srcCompat="@drawable/arrow_left"
+          android:layout_gravity="center_vertical"
+          app:tint="@color/white" />
+    
+        <androidx.appcompat.widget.LinearLayoutCompat
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:paddingTop="0dp"
+          android:orientation="vertical"
+          android:gravity="center">
   
-    </androidx.appcompat.widget.LinearLayoutCompat>
-    <!-- / Moon -->
+          <!-- Week Day -->
+          <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/weekDayTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingLeft="8dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:paddingHorizontal="8dp"
+            android:background="#ddd"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text=" Вторник " />
+          <!-- / Week Day -->
+      
+          <!-- Date -->
+          <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dateChosenTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingStart="8dp"
+            android:paddingLeft="8dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:paddingHorizontal="8dp"
+            android:background="#ddd"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text=" 4 Июня 2019 " />
+          <!-- / Date -->
+  
+          <!-- Moon -->
+          <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/moonDateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingLeft="8dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:paddingHorizontal="8dp"
+            android:background="#ddd"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text=" 2-е лунные сутки " />
+          <!-- / Moon -->
+    
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    
+        <androidx.appcompat.widget.AppCompatImageView
+          android:layout_width="wrap_content"
+          android:layout_height="58dp"
+          android:background="@color/colorPrimary"
+          app:srcCompat="@drawable/arrow_right"
+          android:layout_gravity="center_vertical"
+          app:tint="@color/white" />
+        <!-- Date Controls -->
+  
+      </androidx.appcompat.widget.LinearLayoutCompat>
+      <!-- / Date-->
+      
+    </FrameLayout>
+
     
     <!-- Cycle OR After Loss -->
     <androidx.appcompat.widget.LinearLayoutCompat
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="horizontal">
+      android:orientation="horizontal"
+      android:gravity="center">
       
       <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/afterLossTextView"
@@ -266,30 +283,14 @@
     
     <!-- / Events -->
     
-    <!-- Buttons -->
-    <androidx.appcompat.widget.LinearLayoutCompat
-      android:layout_width="match_parent"
+    <!-- Save Day -->
+    <androidx.appcompat.widget.AppCompatButton
+      android:id="@+id/saveDayTextView"
       android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      android:layout_gravity="center"
-      android:gravity="center">
-      
-      <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/recordDreamButton"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Записать сон" />
-      
-      <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/saveDayTextView"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Записать день" />
-    
-    </androidx.appcompat.widget.LinearLayoutCompat>
-    
-    <!--/ Buttons -->
+      android:layout_width="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:text="Записать день" />
+    <!-- / Save Day -->
   
   </androidx.appcompat.widget.LinearLayoutCompat>
 
