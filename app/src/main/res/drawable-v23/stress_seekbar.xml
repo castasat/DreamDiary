@@ -9,8 +9,7 @@
     <shape
       android:shape="rectangle">
       
-      <size android:height="12dp"
-            android:width="12dp"/>
+      <size android:height="12dp" android:width="12dp"/>
       
       <corners android:radius="6dp" />
       

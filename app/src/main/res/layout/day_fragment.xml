@@ -20,7 +20,7 @@
       app:fontFamily="sans-serif-black"
       android:gravity="center_horizontal"
       android:textSize="20sp"
-      android:padding="8dp"
+      android:paddingBottom="8dp"
       android:text="Страница Записи Дня" />
     <!-- / Caption-->
   
@@ -45,10 +45,10 @@
       <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:background="#bbb"
+        android:background="@color/colorPrimary"
         app:srcCompat="@drawable/arrow_left"
         android:layout_gravity="center_vertical"
-        app:tint="@color/colorPrimary"/>
+        app:tint="@color/white"/>
       
       <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/dateChosenTextView"
@@ -65,10 +65,10 @@
       <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:background="#bbb"
+        android:background="@color/colorPrimary"
         app:srcCompat="@drawable/arrow_right"
         android:layout_gravity="center_vertical"
-        app:tint="@color/colorPrimary" />
+        app:tint="@color/white" />
       <!-- Date Controls -->
       
     </androidx.appcompat.widget.LinearLayoutCompat>
