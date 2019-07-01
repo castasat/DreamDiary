@@ -12,6 +12,8 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.model.Dream
 
@@ -27,10 +29,6 @@ DayFragment : Fragment()
       .inflate(R.layout.day_fragment,
                container,
                false)
-    
-    val navController =
-      Navigation
-      .findNavController(container as View)
     
     val stressLevelSeekBar =
       view
@@ -80,11 +78,26 @@ DayFragment : Fragment()
       NightFragment
       .bundleArgs(dream)
     
-    navController
-    .navigate(R.id.nightFragment,
-              dreamBundle)
-    
     return view
+  }
+  
+  override fun
+  onViewCreated(view : View,
+                savedInstanceState : Bundle?)
+  {
+    super
+    .onViewCreated(view,
+                   savedInstanceState)
+    
+    val navigationController =
+      Navigation
+      .findNavController(requireActivity(),
+                         R.id.navigationHost)
+    
+    val bottomNavigation =
+      view.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+    
+    bottomNavigation?.setupWithNavController(navigationController)
   }
 }
 

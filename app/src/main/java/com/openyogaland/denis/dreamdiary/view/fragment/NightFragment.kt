@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.ui.setupWithNavController
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.model.Dream
+import kotlinx.android.synthetic.main.activity_main.*
 
 public class
 NightFragment : Fragment()
@@ -34,5 +37,22 @@ NightFragment : Fragment()
                        false)
     
     return view
+  }
+
+  override fun
+  onViewCreated(view : View,
+                savedInstanceState : Bundle?)
+  {
+    super
+    .onViewCreated(view,
+                   savedInstanceState)
+  
+    val navigationController =
+      Navigation
+      .findNavController(requireActivity(),
+                         R.id.navigationHost)
+  
+    bottomNavigation
+    .setupWithNavController(navigationController)
   }
 }

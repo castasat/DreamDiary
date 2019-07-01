@@ -375,7 +375,6 @@
     <!-- / Feelings -->
     
     <!-- Button -->
-    
     <androidx.appcompat.widget.AppCompatButton
       android:id="@+id/saveNightTextView"
       android:layout_height="wrap_content"

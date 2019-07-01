@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  
+  <item
+    android:id="@+id/dayFragment"
+    android:icon="@drawable/day"
+    android:title="Записать День" />
+  
+  <item
+    android:id="@+id/nightFragment"
+    android:icon="@drawable/night"
+    android:title="Записать Сон" />
+  
+</menu>
