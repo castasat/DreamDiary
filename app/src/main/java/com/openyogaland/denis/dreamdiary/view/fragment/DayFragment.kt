@@ -14,10 +14,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.openyogaland.denis.dreamdiary.DreamDiary
+import com.openyogaland.denis.dreamdiary.DreamDiary.DreamDiary.checkNN
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.model.Dream
 
-public class
+class
 DayFragment : Fragment()
 {
   override fun onCreateView(inflater : LayoutInflater,
@@ -95,9 +97,16 @@ DayFragment : Fragment()
                          R.id.navigationHost)
     
     val bottomNavigation =
-      view.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+      view
+      .findViewById<BottomNavigationView>(R.id.bottomNavigation)
     
-    bottomNavigation?.setupWithNavController(navigationController)
+    if(checkNN(bottomNavigation,
+               "bottomNavigation in " +
+               "DayFragment.onViewCreated"))
+    {
+      bottomNavigation
+      ?.setupWithNavController(navigationController)
+    }
   }
 }
 
