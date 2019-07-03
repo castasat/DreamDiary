@@ -11,9 +11,6 @@ import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.model.Dream
 
@@ -25,14 +22,10 @@ DayFragment : Fragment()
                             savedInstanceState : Bundle?) : View?
   {
     val view : View =
-      inflater
-      .inflate(R.layout.day_fragment,
-               container,
-               false)
+      inflater.inflate(R.layout.day_fragment, container, false)
     
     val stressLevelSeekBar =
-      view
-      .findViewById<AppCompatSeekBar>(R.id.stressLevelSeekBar)
+      view.findViewById<AppCompatSeekBar>(R.id.stressLevelSeekBar)
     
     val onSeekBarChangeListener =
       object : SeekBar.OnSeekBarChangeListener
@@ -68,9 +61,7 @@ DayFragment : Fragment()
     
     stressLevelSeekBar
     .progressDrawable =
-      ContextCompat
-      .getDrawable(activity as Context,
-                   R.drawable.stress_seekbar)
+      ContextCompat.getDrawable(activity as Context, R.drawable.stress_seekbar)
     
     val dream = Dream("")
     
@@ -81,23 +72,9 @@ DayFragment : Fragment()
     return view
   }
   
-  override fun
-  onViewCreated(view : View,
-                savedInstanceState : Bundle?)
+  override fun onActivityCreated(savedInstanceState : Bundle?)
   {
-    super
-    .onViewCreated(view,
-                   savedInstanceState)
-    
-    val navigationController =
-      Navigation
-      .findNavController(requireActivity(),
-                         R.id.navigationHost)
-    
-    val bottomNavigation =
-      view.findViewById<BottomNavigationView>(R.id.bottomNavigation)
-    
-    bottomNavigation?.setupWithNavController(navigationController)
+    super.onActivityCreated(savedInstanceState)
   }
 }
 

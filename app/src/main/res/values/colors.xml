@@ -6,4 +6,5 @@
   <color name="colorAccent">#FF5722</color>
   <color name="stress_color">@color/colorAccent</color>
   <color name="transparent">#ffff</color>
+  <color name="black">#000</color>
 </resources>
