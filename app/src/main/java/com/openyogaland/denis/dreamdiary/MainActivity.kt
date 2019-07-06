@@ -52,7 +52,7 @@ MainActivity : AppCompatActivity()
   private fun
   collapsingToolbarLayoutDynamicColor()
   {
-   /* val bitmap = BitmapFactory
+   val bitmap = BitmapFactory
     .decodeResource(resources, R.drawable.night_collapsing_toolbar_background)
     
     Palette
@@ -72,7 +72,7 @@ MainActivity : AppCompatActivity()
                                                .getColor(R.color
                                                          .colorPrimaryDark)))
       }
-    }*/
+    }
   }
   
   override fun
