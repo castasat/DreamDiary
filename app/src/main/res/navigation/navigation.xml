@@ -10,12 +10,12 @@
     android:id="@+id/dayFragment"
     android:name="com.openyogaland.denis.dreamdiary.view.fragment.DayFragment"
     tools:layout="@layout/day_fragment"
-    android:label="День" />
+    android:label="@string/day_caption" />
   
   <fragment
     android:id="@+id/nightFragment"
     android:name="com.openyogaland.denis.dreamdiary.view.fragment.NightFragment"
     tools:layout="@layout/night_fragment"
-    android:label="Сон" />
+    android:label="@string/dream_caption" />
   
 </navigation>

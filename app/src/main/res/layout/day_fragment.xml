@@ -22,7 +22,7 @@
       android:textSize="20sp"
       android:paddingBottom="8dp"
       android:layout_margin="8dp"
-      android:text="Страница Записи Дня" />
+      android:text="@string/day_caption" />
     <!-- / Caption-->
   
     <!-- Date -->

@@ -36,7 +36,7 @@ MainActivity : AppCompatActivity()
       findViewById(id.collapsingToolbarLayout)
   
     toolbar =
-      findViewById(id.toolbar)
+      findViewById(id.captionToolbar)
     
     val appBarConfiguration =
       AppBarConfiguration(navController.graph)
