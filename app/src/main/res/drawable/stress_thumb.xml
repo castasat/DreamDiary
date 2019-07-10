@@ -2,13 +2,38 @@
 <layer-list
   xmlns:android="http://schemas.android.com/apk/res/android">
   
-  <item>
-    <shape android:shape="oval">
-      <solid android:color="@color/stress_color" />
-      <!--<stroke android:width="0.5dp" android:color="@color/white" />-->
+  <!-- Shadow -->
+  <item android:top="6dp">
+    
+    <shape
+      android:shape="oval"
+      android:dither="true">
+      
+      <gradient
+        android:angle="270"
+        android:endColor="#330d3aa6"
+        android:startColor="#00000000" />
+    
     </shape>
   </item>
+  <!-- / Shadow -->
   
+  <!-- Thumb Background -->
   <item
-    android:drawable="@drawable/ic_stress_sign" />
+    android:layout_height="20dp"
+    android:layout_width="20dp">
+    
+    <shape android:shape="oval">
+      <solid android:color="@color/white" />
+    </shape>
+    
+  </item>
+  <!-- / Thumb Background -->
+  
+  <!-- Arrow Icon -->
+  <item
+    android:drawable="@drawable/arrow_right">
+  </item>
+  <!-- / Arrow Icon -->
+  
 </layer-list>

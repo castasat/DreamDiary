@@ -9,4 +9,8 @@
   <color name="white">#fff</color>
   <color name="black">#000</color>
   <color name="transparent">#ff999999</color>
+  <color name="gradient_start">#78f2f1</color>
+  <color name="gradient_center">#1092fc</color>
+  <color name="gradient_end">#0c2895</color>
+  <color name="stress_icon">#69e5f3</color>
 </resources>
