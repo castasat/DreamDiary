@@ -19,7 +19,14 @@
         android:layout_height="match_parent"
         app:layout_collapseMode="pin"
         app:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"/>
+        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light">
+        
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"/>
+        
+      </androidx.appcompat.widget.Toolbar>
   
   </com.google.android.material.appbar.AppBarLayout>
   

@@ -29,6 +29,8 @@ MainActivity : AppCompatActivity()
     val appBarConfiguration : AppBarConfiguration =
       AppBarConfiguration(setOf(id.dayFragment, id.nightFragment))
   
+    toolbar.title
+    
     toolbar
     .setupWithNavController(navController,
                             appBarConfiguration)
