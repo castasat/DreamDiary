@@ -23,7 +23,7 @@
       android:textSize="20sp"
       android:paddingBottom="8dp"
       android:layout_margin="8dp"
-      android:text="@string/dream_caption" />
+      android:text="@string/dream_title" />
     <!-- / Caption-->
     
     <!-- Night -->

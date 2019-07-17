@@ -29,7 +29,7 @@ NightFragment : Fragment()
                             savedInstanceState : Bundle?) : View?
   {
     val view : View =
-      inflater.inflate(R.layout.night_fragment, container, false)
+      inflater.inflate(R.layout.dream_fragment, container, false)
     
     return view
   }

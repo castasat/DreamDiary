@@ -21,10 +21,12 @@
         app:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light">
         
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
+          android:id="@+id/titleTextView"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_gravity="center"/>
+          android:layout_gravity="center"
+          tools:text="@string/day_title"/>
         
       </androidx.appcompat.widget.Toolbar>
   
@@ -61,7 +63,7 @@
     app:itemTextColor="@android:color/black"
     app:menu="@menu/bottom_menu"
     android:layout_gravity="bottom"
-    app:labelVisibilityMode="auto" />
-  <!-- app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior" -->
+    app:labelVisibilityMode="auto"
+    app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

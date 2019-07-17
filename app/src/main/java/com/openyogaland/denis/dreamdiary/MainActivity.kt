@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.navigateUp
 import com.openyogaland.denis.dreamdiary.R.id
+import com.openyogaland.denis.dreamdiary.R.string
+import com.openyogaland.denis.dreamdiary.listener.TitleNavigationListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 public class
@@ -21,19 +23,43 @@ MainActivity : AppCompatActivity()
   {
     super
     .onCreate(savedInstanceState)
+    
     setContentView(R.layout.activity_main)
     
-    navController = findNavController(this, id.navigationHostFragment)
-    setupWithNavController(bottomNavigationView, navController)
+    navController = findNavController(this,
+                                      id.navigationHostFragment)
     
-    val appBarConfiguration : AppBarConfiguration =
-      AppBarConfiguration(setOf(id.dayFragment, id.nightFragment))
-  
-    toolbar.title
+    navController
+    .addOnDestinationChangedListener {_,
+                                      destination,
+                                      _ ->
+      when(destination.id)
+      {
+        id.dayFragment   ->
+        {
+          titleTextView
+          .text = getString(string.day_title)
+        }
+        id.dreamFragment ->
+        {
+          titleTextView
+          .text = getString(string.dream_title)
+        }
+      }
+    }
+    
+    val appBarConfiguration =
+      AppBarConfiguration(navController.graph)
     
     toolbar
-    .setupWithNavController(navController,
-                            appBarConfiguration)
+    .setNavigationOnClickListener{navigateUp(navController,appBarConfiguration)}
+  
+    navController
+    .addOnDestinationChangedListener(TitleNavigationListener(titleTextView,
+                                                             toolbar))
+    NavigationUI
+    .setupWithNavController(bottomNavigationView,
+                            navController)
   }
   
   override fun

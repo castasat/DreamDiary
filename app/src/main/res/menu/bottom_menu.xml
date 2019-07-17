@@ -5,11 +5,11 @@
   <item
     android:id="@+id/dayFragment"
     android:icon="@drawable/day"
-    android:title="@string/day_caption" />
+    android:title="@string/day_title" />
   
   <item
-    android:id="@+id/nightFragment"
+    android:id="@+id/dreamFragment"
     android:icon="@drawable/night"
-    android:title="@string/dream_caption" />
+    android:title="@string/dream_title" />
   
 </menu>
