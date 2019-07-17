@@ -11,22 +11,32 @@
   <com.google.android.material.appbar.AppBarLayout
     android:id="@+id/appBarLayout"
     android:layout_width="match_parent"
-    android:layout_height="88dp">
+    android:layout_height="64dp">
   
       <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        android:paddingLeft="0dp"
+        android:paddingStart="0dp"
+        android:paddingRight="48dp"
+        android:paddingEnd="48dp"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_collapseMode="pin"
         app:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light">
         
         <androidx.appcompat.widget.AppCompatTextView
           android:id="@+id/titleTextView"
-          android:layout_width="wrap_content"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          tools:text="@string/day_title"/>
+          app:fontFamily="sans-serif-black"
+          android:textSize="20sp"
+          app:drawableLeftCompat="@drawable/arrow_left"
+          app:drawableStartCompat="@drawable/arrow_left"
+          android:drawablePadding="8dp"
+          android:gravity="center"
+          tools:text="@string/day_title"
+          tools:textColor="@color/white" />
         
       </androidx.appcompat.widget.Toolbar>
   

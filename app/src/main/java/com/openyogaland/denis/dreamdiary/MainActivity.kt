@@ -2,6 +2,7 @@ package com.openyogaland.denis.dreamdiary
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
@@ -51,8 +52,11 @@ MainActivity : AppCompatActivity()
     val appBarConfiguration =
       AppBarConfiguration(navController.graph)
     
-    toolbar
-    .setNavigationOnClickListener{navigateUp(navController,appBarConfiguration)}
+    titleTextView
+    .setOnClickListener{_ : View ->
+      navigateUp(navController,
+                 appBarConfiguration)
+    }
   
     navController
     .addOnDestinationChangedListener(TitleNavigationListener(titleTextView,
