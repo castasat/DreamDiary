@@ -12,8 +12,9 @@
   <color name="gradient_start">#78f2f1</color>
   <color name="gradient_center">#1092fc</color>
   <color name="gradient_end">#0c2895</color>
+  <color name="dark_moon">#0e173a</color> 
   <color name="stress_icon">#69e5f3</color>
   <color name="nav_icon_background">#9fafc8</color>
   <color name="moon_phase_gray">#c4c4c4</color>
-  <color name="date_toolbar_gray">#EBEFF5</color>
+  <color name="date_moon_gray">#EBEFF5</color>
 </resources>

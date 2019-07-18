@@ -78,7 +78,7 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // support material design
-    implementation 'com.google.android.material:material:1.1.0-alpha07'
+    implementation 'com.google.android.material:material:1.1.0-alpha08'
 
     // androidx support library
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -100,16 +100,16 @@ dependencies {
     //implementation 'androidx.exifinterface:exifinterface:1.1.0-alpha01'
 
     // navigation library
-    implementation "androidx.navigation:navigation-fragment-ktx:2.1.0-alpha06"
-    implementation "androidx.navigation:navigation-ui-ktx:2.1.0-alpha06"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0-beta01'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0-beta01'
 
     // google architecture components
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha02'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0-alpha02'
     implementation 'androidx.lifecycle:lifecycle-reactivestreams:2.2.0-alpha02'
-    implementation 'androidx.room:room-runtime:2.1.0'
-    implementation 'androidx.room:room-rxjava2:2.1.0'
-    implementation 'androidx.room:room-guava:2.1.0'
+    implementation 'androidx.room:room-runtime:2.2.0-alpha01'
+    implementation 'androidx.room:room-rxjava2:2.2.0-alpha01'
+    implementation 'androidx.room:room-guava:2.2.0-alpha01'
     
     // Retrofit ReactiveX adapter
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
@@ -128,7 +128,7 @@ dependencies {
 
     // additional annotation processors
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0-alpha02'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0'
+    annotationProcessor 'androidx.room:room-compiler:2.2.0-alpha01'
 
     // unit test libraries
     //testImplementation 'junit:junit:4.13-beta-3'

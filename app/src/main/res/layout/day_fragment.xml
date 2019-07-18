@@ -2,36 +2,83 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:layout_margin="8dp">
+  android:layout_height="match_parent">
   
-  <androidx.appcompat.widget.LinearLayoutCompat
+  <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:focusable="true"
-    android:focusableInTouchMode="true">
-    
-    <!-- Caption -->
-    <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/captionTextView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:fontFamily="sans-serif-black"
-      android:gravity="center_horizontal"
-      android:textSize="20sp"
-      android:paddingBottom="8dp"
-      android:layout_margin="8dp"
-      android:text="@string/day_title" />
-    <!-- / Caption-->
+    android:focusableInTouchMode="true"
+    android:padding="0dp"
+    android:layout_margin="0dp">
   
-    <!-- Date -->
-    <FrameLayout
+    <!-- Date Moon -->
+    <LinearLayout
+      android:id="@+id/dateMoon"
+      android:layout_width="match_parent"
+      android:layout_height="44dp"
+      android:orientation="horizontal"
+      android:background="@color/date_moon_gray"
+      android:gravity="center_vertical"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+      
+      <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:gravity="center_vertical|start"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        app:fontFamily="sans-serif"
+        android:text="25 ноября, "/>
+  
+      <TextView
+        android:id="@+id/weekDay"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|start"
+        android:layout_weight="1"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="normal"
+        app:fontFamily="sans-serif"
+        android:text="четверг " />
+      
+      <ImageView
+        android:id="@+id/moonPhase"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_weight="0"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:src="@drawable/dark_circle"
+        android:gravity="center_vertical|end"/>
+      
+    </LinearLayout>
+    <!-- / Date Moon-->
+    
+   <!-- <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_gravity="center">
   
-      <!-- Date Controls -->
+      &lt;!&ndash; Date Controls &ndash;&gt;
       <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +100,7 @@
           android:orientation="vertical"
           android:gravity="center">
   
-          <!-- Week Day -->
+          &lt;!&ndash; Week Day &ndash;&gt;
           <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/weekDayTextView"
             android:layout_width="match_parent"
@@ -67,9 +114,9 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text=" Вторник " />
-          <!-- / Week Day -->
+          &lt;!&ndash; / Week Day &ndash;&gt;
       
-          <!-- Date -->
+          &lt;!&ndash; Date &ndash;&gt;
           <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/dateChosenTextView"
             android:layout_width="match_parent"
@@ -85,9 +132,9 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text=" 4 Июня 2019 " />
-          <!-- / Date -->
+          &lt;!&ndash; / Date &ndash;&gt;
   
-          <!-- Moon -->
+          &lt;!&ndash; Moon &ndash;&gt;
           <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/moonDateTextView"
             android:layout_width="match_parent"
@@ -101,7 +148,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text=" 2-е лунные сутки " />
-          <!-- / Moon -->
+          &lt;!&ndash; / Moon &ndash;&gt;
     
         </androidx.appcompat.widget.LinearLayoutCompat>
     
@@ -114,13 +161,12 @@
           app:tint="@color/white" />
   
       </androidx.appcompat.widget.LinearLayoutCompat>
-      <!-- Date Controls -->
+      &lt;!&ndash; Date Controls &ndash;&gt;
       
-    </FrameLayout>
-    <!-- / Date-->
+    </FrameLayout>-->
     
     <!-- Cycle OR After Loss -->
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <!--<androidx.appcompat.widget.LinearLayoutCompat
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
@@ -147,11 +193,11 @@
         android:paddingEnd="8dp"
         android:paddingBottom="8dp"/>
     
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>-->
     <!-- / Cycle OR After Loss -->
     
     <!-- Practice -->
-    <androidx.appcompat.widget.AppCompatTextView
+   <!-- <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/practiceTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -177,11 +223,11 @@
         android:maxLines="12"
         app:lineHeight="12sp" />
     
-    </androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>-->
     <!-- / Practice -->
     
     <!-- Nutrition -->
-    <androidx.appcompat.widget.AppCompatTextView
+    <!--<androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/nutritionTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -207,11 +253,11 @@
         android:maxLines="12"
         app:lineHeight="12sp" />
     
-    </androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>-->
     <!-- / Nutrition -->
     
     <!-- Events -->
-    <androidx.appcompat.widget.AppCompatTextView
+    <!--<androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/eventsTextView"
       android:layout_height="wrap_content"
       android:layout_width="match_parent"
@@ -278,23 +324,23 @@
         android:paddingBottom="0dp"
         android:text="100" />
       
-    </FrameLayout>
+    </FrameLayout>-->
     
     <!-- Stress Level -->
-    <include layout="@layout/include_seek_bar_layout" />
+    <!--<include layout="@layout/include_seek_bar_layout" />-->
     <!-- / Stress Level -->
     
     <!-- / Events -->
     
     <!-- Save Day -->
-    <androidx.appcompat.widget.AppCompatButton
+    <!--<androidx.appcompat.widget.AppCompatButton
       android:id="@+id/saveDayTextView"
       android:layout_height="wrap_content"
       android:layout_width="wrap_content"
       android:layout_gravity="center_horizontal"
-      android:text="Сохранить день" />
+      android:text="Сохранить день" />-->
     <!-- / Save Day -->
   
-  </androidx.appcompat.widget.LinearLayoutCompat>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
