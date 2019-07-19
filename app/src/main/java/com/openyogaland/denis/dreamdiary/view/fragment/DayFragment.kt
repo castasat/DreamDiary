@@ -24,7 +24,8 @@ DayFragment : Fragment()
     val view : View =
       inflater.inflate(R.layout.day_fragment, container, false)
     
-    val stressLevelSeekBar =
+   /* TODO
+   val stressLevelSeekBar =
       view.findViewById<AppCompatSeekBar>(R.id.stressLevelSeekBar)
     
     val onSeekBarChangeListener =
@@ -35,16 +36,16 @@ DayFragment : Fragment()
         {
           if(context != null)
           {
-            /*context?
-            .toast("Пользователь коснулся")*/
+            *//*context?
+            .toast("Пользователь коснулся")*//*
           }
         }
         
         override fun
         onStopTrackingTouch(seekBar : SeekBar?)
         {
-          /*context?
-          .toast("Пользователь перестал касаться")*/
+          *//*context?
+          .toast("Пользователь перестал касаться")*//*
         }
         
         override fun
@@ -67,7 +68,7 @@ DayFragment : Fragment()
     
     val dreamBundle =
       NightFragment
-      .bundleArgs(dream)
+      .bundleArgs(dream)*/
     
     return view
   }

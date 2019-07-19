@@ -1,4 +1,4 @@
-package com.openyogaland.denis.dreamdiary
+package com.openyogaland.denis.dreamdiary.view.activity
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -10,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.navigateUp
 import com.openyogaland.denis.dreamdiary.R.id
+import com.openyogaland.denis.dreamdiary.R.layout
 import com.openyogaland.denis.dreamdiary.R.string
 import com.openyogaland.denis.dreamdiary.listener.TitleNavigationListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,7 +26,7 @@ MainActivity : AppCompatActivity()
     super
     .onCreate(savedInstanceState)
     
-    setContentView(R.layout.activity_main)
+    setContentView(layout.activity_main)
     
     navController = findNavController(this,
                                       id.navigationHostFragment)
