@@ -41,7 +41,7 @@ DreamDiary : MultiDexApplication()
     mintDisposable =
       Completable
       .fromAction {
-        initAndStartSession(this, "cb4c0bda")
+        initAndStartSession(this,"060d5e82")
       }
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.io())
