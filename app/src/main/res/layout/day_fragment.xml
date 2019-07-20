@@ -92,7 +92,7 @@
       tools:layout_editor_absoluteY="44dp" />
     <!-- / Date Moon Barrier -->
     
-    <!-- Menstruation Cycle OR After Loss Count -->
+    <!-- Cycle OR After Loss Count -->
     <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/afterLossTextView"
       android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
       app:layout_constraintBaseline_toBaselineOf="@id/daysAfterLossCountEditText"
       app:layout_constraintHorizontal_chainStyle="packed"
       android:text="День цикла:" />
-  
+    
     <androidx.appcompat.widget.AppCompatEditText
       android:id="@+id/daysAfterLossCountEditText"
       android:layout_width="wrap_content"
@@ -123,37 +123,65 @@
       app:layout_constraintStart_toEndOf="@+id/afterLossTextView"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="@id/dateMoonBarrier"
-      android:hint="0"/>
-    <!-- / Menstruation Cycle OR After Loss Count -->
+      android:hint="0" />
+    <!-- / Cycle OR After Loss Count -->
+    
+    <!-- Cycle OR After Loss Barrier -->
+    <androidx.constraintlayout.widget.Barrier
+      android:id="@+id/cycleBarrier"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:barrierDirection="bottom"
+      app:constraint_referenced_ids="afterLossTextView, daysAfterLossCountEditText" />
+    <!-- / Cycle OR After Loss Barrier -->
     
     <!-- Practice -->
-    <!-- <androidx.appcompat.widget.AppCompatTextView
-       android:id="@+id/practiceTextView"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:textStyle="bold"
-       android:paddingTop="16dp"
-       android:paddingStart="8dp"
-       android:paddingEnd="8dp"
-       android:paddingBottom="0dp"
-       android:text="Практика йоги" />
-     
-     <androidx.core.widget.NestedScrollView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-       
-       <androidx.appcompat.widget.AppCompatEditText
-         android:id="@+id/practiceEditText"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:hint="Добавить запись"
-         android:inputType="textMultiLine"
-         android:minLines="1"
-         android:lines="12"
-         android:maxLines="12"
-         app:lineHeight="12sp" />
-     
-     </androidx.core.widget.NestedScrollView>-->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/practiceTextView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textColor="@color/colorPrimary"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/cycleBarrier"
+      android:text="Практика йоги" />
+  
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/practiceAdd"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:focusable="true"
+      android:focusableInTouchMode="true"
+      android:clickable="true"
+      android:longClickable="true"
+      android:textColor="@color/grayed_text_gray"
+      android:paddingTop="18dp"
+      android:paddingBottom="18dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/practiceTextView"
+      android:text=" + Добавить практику" />
+    
+    <View
+      android:layout_width="match_parent"
+      android:layout_marginStart="10dp"
+      android:layout_marginEnd="10dp"
+      android:layout_height="1dp"
+      android:background="@color/divider_gray"
+      app:layout_constraintTop_toBottomOf="@id/practiceAdd"/>
+    
     <!-- / Practice -->
     
     <!-- Nutrition -->

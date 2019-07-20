@@ -17,4 +17,6 @@
   <color name="nav_icon_background">#9fafc8</color>
   <color name="moon_phase_gray">#c4c4c4</color>
   <color name="date_moon_gray">#EBEFF5</color>
+  <color name="divider_gray">#EBEFF5</color>
+  <color name="grayed_text_gray">#c3c7ce</color>
 </resources>
