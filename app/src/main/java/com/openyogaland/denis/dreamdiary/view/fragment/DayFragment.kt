@@ -5,38 +5,39 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SeekBar
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
-import androidx.appcompat.widget.AppCompatSeekBar
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.openyogaland.denis.dreamdiary.R
-import com.openyogaland.denis.dreamdiary.model.Dream
 
+@Suppress("NAME_SHADOWING")
 public class
 DayFragment : Fragment()
 {
-  override fun onCreateView(inflater : LayoutInflater,
-                            container : ViewGroup?,
-                            savedInstanceState : Bundle?) : View?
+  override fun
+  onCreateView(inflater : LayoutInflater,
+               container : ViewGroup?,
+               savedInstanceState : Bundle?) : View?
   {
     val view : View =
-      inflater.inflate(R.layout.day_fragment, container, false)
+      inflater
+      .inflate(R.layout.day_fragment,
+               container,
+               false)
     
-   /* TODO
-   val stressLevelSeekBar =
-      view.findViewById<AppCompatSeekBar>(R.id.stressLevelSeekBar)
-    
-    val onSeekBarChangeListener =
-      object : SeekBar.OnSeekBarChangeListener
-      {
-        override fun
-        onStartTrackingTouch(seekBar : SeekBar?)
-        {
-          if(context != null)
-          {
-            *//*context?
+    /* TODO
+    val stressLevelSeekBar =
+       view.findViewById<AppCompatSeekBar>(R.id.stressLevelSeekBar)
+     
+     val onSeekBarChangeListener =
+       object : SeekBar.OnSeekBarChangeListener
+       {
+         override fun
+         onStartTrackingTouch(seekBar : SeekBar?)
+         {
+           if(context != null)
+           {
+             *//*context?
             .toast("Пользователь коснулся")*//*
           }
         }
@@ -75,7 +76,8 @@ DayFragment : Fragment()
   
   override fun onActivityCreated(savedInstanceState : Bundle?)
   {
-    super.onActivityCreated(savedInstanceState)
+    super
+    .onActivityCreated(savedInstanceState)
   }
 }
 

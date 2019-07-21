@@ -3,4 +3,13 @@
   <string name="app_name">Dream Diary</string>
   <string name="day_title">Day record</string>
   <string name="dream_title">Dream record</string>
+  <string-array
+    name="yoga_types">
+    <item>Not chosen</item>
+    <item>Hatha</item>
+    <item>Kriya</item>
+    <item>Mantra</item>
+    <item>Pranayama</item>
+    <item> + Add practice</item>
+  </string-array>
 </resources>

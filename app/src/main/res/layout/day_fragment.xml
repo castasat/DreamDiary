@@ -88,8 +88,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:barrierDirection="bottom"
-      app:constraint_referenced_ids="dateMoon"
-      tools:layout_editor_absoluteY="44dp" />
+      app:constraint_referenced_ids="dateMoon" />
     <!-- / Date Moon Barrier -->
     
     <!-- Cycle OR After Loss Count -->
@@ -101,14 +100,19 @@
       app:fontFamily="sans-serif"
       android:textStyle="normal"
       android:textSize="14sp"
-      android:layout_margin="18dp"
+      android:layout_marginTop="18dp"
+      android:layout_marginBottom="18dp"
+      android:layout_marginStart="18dp"
+      android:layout_marginLeft="18dp"
+      android:layout_marginEnd="0dp"
+      android:layout_marginRight="0dp"
       android:textColor="@color/colorPrimary"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toStartOf="@+id/daysAfterLossCountEditText"
       app:layout_constraintTop_toTopOf="@id/dateMoonBarrier"
       app:layout_constraintBaseline_toBaselineOf="@id/daysAfterLossCountEditText"
       app:layout_constraintHorizontal_chainStyle="packed"
-      android:text="День цикла:" />
+      android:text="День цикла: " />
     
     <androidx.appcompat.widget.AppCompatEditText
       android:id="@+id/daysAfterLossCountEditText"
@@ -118,6 +122,7 @@
       app:fontFamily="sans-serif"
       android:textStyle="normal"
       android:textSize="14sp"
+      android:gravity="center_horizontal"
       android:textColorHint="@color/colorPrimary"
       android:textColor="@color/colorPrimary"
       app:layout_constraintStart_toEndOf="@+id/afterLossTextView"
@@ -132,10 +137,12 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:barrierDirection="bottom"
-      app:constraint_referenced_ids="afterLossTextView, daysAfterLossCountEditText" />
+      app:constraint_referenced_ids="afterLossTextView,daysAfterLossCountEditText" />
     <!-- / Cycle OR After Loss Barrier -->
     
     <!-- Practice -->
+    
+    <!-- Practice Label -->
     <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/practiceTextView"
       android:layout_width="match_parent"
@@ -151,16 +158,145 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@id/cycleBarrier"
+      app:layout_constraintBottom_toTopOf="@id/practiceSpinner"
       android:text="Практика йоги" />
-  
-    <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/practiceAdd"
+    <!-- / Practice Label -->
+    
+    <!-- TODO Added Practices RecycleView -->
+    <!-- / Added Practices RecycleView -->
+    
+    <!-- Add Practice Item -->
+    
+    <!-- Spinner Practice Chooser -->
+    <androidx.appcompat.widget.AppCompatSpinner
+      android:id="@+id/practiceSpinner"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:entries="@array/yoga_types"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:gravity="start"
       android:focusable="true"
       android:focusableInTouchMode="true"
       android:clickable="true"
       android:longClickable="true"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/practiceTextView"
+      app:layout_constraintBottom_toTopOf="@id/afterPracticeSpinnerChooserDivider"/>
+    <!-- / Spinner Practice Chooser -->
+    
+    <!-- After Practice Spinner Chooser Divider -->
+    <View
+      android:id="@+id/afterPracticeSpinnerChooserDivider"
+      android:layout_width="match_parent"
+      android:layout_marginStart="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_height="1dp"
+      android:background="@color/divider_gray"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/practiceSpinner"
+      app:layout_constraintBottom_toTopOf="@id/practiceSpinnerBarrier"/>
+    <!-- / After Practice Spinner Chooser Divider -->
+  
+    <!-- Practice Spinner Barrier -->
+    <androidx.constraintlayout.widget.Barrier
+      android:id="@+id/practiceSpinnerBarrier"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:barrierDirection="bottom"
+      app:constraint_referenced_ids="practiceSpinner,afterPracticeSpinnerChooserDivider"
+      tools:layout_editor_absoluteY="128dp" />
+    <!-- / Practice Spinner Barrier -->
+    
+    <!-- Time -->
+    <LinearLayout
+      android:id="@+id/timeLinearLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:gravity="start|center_vertical"
+
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/practiceSpinnerBarrier"
+      app:layout_constraintBottom_toTopOf="@id/addPracticeItemDivider">
+      
+      <!-- Time Label -->
+      <TextView
+        android:id="@+id/timeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|start"
+        android:layout_margin="0dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="normal"
+        app:fontFamily="sans-serif"
+        android:text="Время: " />
+      <!-- / Time Label -->
+      
+      <!-- Time Edit Text -->
+      <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/practiceMinutesEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:gravity="center_horizontal"
+        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorPrimary"
+        android:hint="0" />
+      <!-- / Time Edit Text -->
+      
+      <!-- Minutes Label -->
+      <TextView
+        android:id="@+id/minutesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|start"
+        android:layout_margin="0dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="normal"
+        app:fontFamily="sans-serif"
+        android:text=" мин" />
+      <!-- / Minutes Label -->
+      
+    </LinearLayout>
+    <!-- / Time -->
+  
+    <!-- / Add Practice Item -->
+  
+    <!-- Before Practice Add Divider -->
+    <View
+      android:id="@+id/addPracticeItemDivider"
+      android:layout_width="match_parent"
+      android:layout_marginStart="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_height="1dp"
+      android:background="@color/divider_gray"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/timeLinearLayout"
+      app:layout_constraintBottom_toTopOf="@id/practiceAdd"/>
+    <!-- / Before Practice Add Divider -->
+    
+    <!-- Add Practice Link -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/practiceAdd"
+      android:visibility="gone"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:textColor="@color/grayed_text_gray"
       android:paddingTop="18dp"
       android:paddingBottom="18dp"
@@ -169,18 +305,29 @@
       android:layout_marginEnd="22dp"
       android:layout_marginRight="22dp"
       android:gravity="start"
+      android:focusable="true"
+      android:focusableInTouchMode="true"
+      android:clickable="true"
+      android:longClickable="true"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/practiceTextView"
+      app:layout_constraintTop_toBottomOf="@id/addPracticeItemDivider"
+      app:layout_constraintBottom_toTopOf="@id/afterPracticeAddDivider"
       android:text=" + Добавить практику" />
+    <!-- / Add Practice Link -->
     
+    <!-- After Practice Add Divider -->
     <View
+      android:id="@+id/afterPracticeAddDivider"
       android:layout_width="match_parent"
-      android:layout_marginStart="10dp"
-      android:layout_marginEnd="10dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginEnd="22dp"
       android:layout_height="1dp"
       android:background="@color/divider_gray"
-      app:layout_constraintTop_toBottomOf="@id/practiceAdd"/>
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/practiceAdd" />
+    <!-- / After Practice Add Divider  -->
     
     <!-- / Practice -->
     

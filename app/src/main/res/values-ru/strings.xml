@@ -3,4 +3,13 @@
   <string name="app_name">Дневник Сновидений</string>
   <string name="day_title">Запись дня</string>
   <string name="dream_title">Запись сна</string>
+  <string-array
+    name="yoga_types">
+    <item>Не выбрано</item>
+    <item>Хатха</item>
+    <item>Крия</item>
+    <item>Мантра</item>
+    <item>Пранаяма</item>
+    <item> + Добавить практику</item>
+  </string-array>
 </resources>
