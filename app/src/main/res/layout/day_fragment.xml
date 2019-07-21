@@ -1,7 +1,6 @@
 <androidx.core.widget.NestedScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
   
@@ -92,6 +91,7 @@
     <!-- / Date Moon Barrier -->
     
     <!-- Cycle OR After Loss Count -->
+    <!-- Cycle Label -->
     <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/afterLossTextView"
       android:layout_width="wrap_content"
@@ -113,7 +113,9 @@
       app:layout_constraintBaseline_toBaselineOf="@id/daysAfterLossCountEditText"
       app:layout_constraintHorizontal_chainStyle="packed"
       android:text="День цикла: " />
+    <!-- / Cycle Label -->
     
+    <!-- Cycle count -->
     <androidx.appcompat.widget.AppCompatEditText
       android:id="@+id/daysAfterLossCountEditText"
       android:layout_width="wrap_content"
@@ -122,6 +124,10 @@
       app:fontFamily="sans-serif"
       android:textStyle="normal"
       android:textSize="14sp"
+      android:layout_marginEnd="18dp"
+      android:layout_marginRight="18dp"
+      android:layout_marginStart="0dp"
+      android:layout_marginLeft="0dp"
       android:gravity="center_horizontal"
       android:textColorHint="@color/colorPrimary"
       android:textColor="@color/colorPrimary"
@@ -129,6 +135,7 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="@id/dateMoonBarrier"
       android:hint="0" />
+    <!-- / Cycle count -->
     <!-- / Cycle OR After Loss Count -->
     
     <!-- Cycle OR After Loss Barrier -->
@@ -141,7 +148,6 @@
     <!-- / Cycle OR After Loss Barrier -->
     
     <!-- Practice -->
-    
     <!-- Practice Label -->
     <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/practiceTextView"
@@ -162,12 +168,7 @@
       android:text="Практика йоги" />
     <!-- / Practice Label -->
     
-    <!-- TODO Added Practices RecycleView -->
-    <!-- / Added Practices RecycleView -->
-    
-    <!-- Add Practice Item -->
-    
-    <!-- Spinner Practice Chooser -->
+    <!-- Practice Spinner -->
     <androidx.appcompat.widget.AppCompatSpinner
       android:id="@+id/practiceSpinner"
       android:layout_width="match_parent"
@@ -185,12 +186,12 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@id/practiceTextView"
-      app:layout_constraintBottom_toTopOf="@id/afterPracticeSpinnerChooserDivider"/>
-    <!-- / Spinner Practice Chooser -->
+      app:layout_constraintBottom_toTopOf="@id/afterPracticeSpinnerDivider" />
+    <!-- / Practice Spinner -->
     
-    <!-- After Practice Spinner Chooser Divider -->
+    <!-- After Practice Spinner Divider -->
     <View
-      android:id="@+id/afterPracticeSpinnerChooserDivider"
+      android:id="@+id/afterPracticeSpinnerDivider"
       android:layout_width="match_parent"
       android:layout_marginStart="22dp"
       android:layout_marginEnd="22dp"
@@ -199,18 +200,8 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@id/practiceSpinner"
-      app:layout_constraintBottom_toTopOf="@id/practiceSpinnerBarrier"/>
-    <!-- / After Practice Spinner Chooser Divider -->
-  
-    <!-- Practice Spinner Barrier -->
-    <androidx.constraintlayout.widget.Barrier
-      android:id="@+id/practiceSpinnerBarrier"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:barrierDirection="bottom"
-      app:constraint_referenced_ids="practiceSpinner,afterPracticeSpinnerChooserDivider"
-      tools:layout_editor_absoluteY="128dp" />
-    <!-- / Practice Spinner Barrier -->
+      app:layout_constraintBottom_toTopOf="@+id/timeLinearLayout" />
+    <!-- / After Practice Spinner Divider -->
     
     <!-- Time -->
     <LinearLayout
@@ -219,15 +210,15 @@
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:gravity="start|center_vertical"
-
+      
       android:layout_marginStart="22dp"
       android:layout_marginLeft="22dp"
       android:layout_marginEnd="22dp"
       android:layout_marginRight="22dp"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/practiceSpinnerBarrier"
-      app:layout_constraintBottom_toTopOf="@id/addPracticeItemDivider">
+      app:layout_constraintTop_toBottomOf="@+id/afterPracticeSpinnerDivider"
+      app:layout_constraintBottom_toTopOf="@+id/nutritionTextView">
       
       <!-- Time Label -->
       <TextView
@@ -271,179 +262,171 @@
         app:fontFamily="sans-serif"
         android:text=" мин" />
       <!-- / Minutes Label -->
-      
     </LinearLayout>
     <!-- / Time -->
-  
-    <!-- / Add Practice Item -->
-  
-    <!-- Before Practice Add Divider -->
-    <View
-      android:id="@+id/addPracticeItemDivider"
-      android:layout_width="match_parent"
-      android:layout_marginStart="22dp"
-      android:layout_marginEnd="22dp"
-      android:layout_height="1dp"
-      android:background="@color/divider_gray"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/timeLinearLayout"
-      app:layout_constraintBottom_toTopOf="@id/practiceAdd"/>
-    <!-- / Before Practice Add Divider -->
+    <!-- / Practice -->
     
-    <!-- Add Practice Link -->
+    <!-- Nutrition -->
+    <!-- Nutrition Label -->
     <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/practiceAdd"
-      android:visibility="gone"
+      android:id="@+id/nutritionTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:textColor="@color/grayed_text_gray"
-      android:paddingTop="18dp"
-      android:paddingBottom="18dp"
+      android:textColor="@color/colorPrimary"
+      android:textSize="14sp"
+      app:fontFamily="sans-serif"
+      android:textStyle="normal"
+      android:paddingTop="17dp"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
       android:layout_marginStart="22dp"
       android:layout_marginLeft="22dp"
       android:layout_marginEnd="22dp"
       android:layout_marginRight="22dp"
       android:gravity="start"
-      android:focusable="true"
-      android:focusableInTouchMode="true"
-      android:clickable="true"
-      android:longClickable="true"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/addPracticeItemDivider"
-      app:layout_constraintBottom_toTopOf="@id/afterPracticeAddDivider"
-      android:text=" + Добавить практику" />
-    <!-- / Add Practice Link -->
+      app:layout_constraintTop_toBottomOf="@+id/timeLinearLayout"
+      app:layout_constraintBottom_toTopOf="@id/nutritionEditText"
+      android:text="Питание" />
+    <!-- / Nutrition Label -->
     
-    <!-- After Practice Add Divider -->
-    <View
-      android:id="@+id/afterPracticeAddDivider"
-      android:layout_width="match_parent"
-      android:layout_marginStart="22dp"
-      android:layout_marginEnd="22dp"
-      android:layout_height="1dp"
-      android:background="@color/divider_gray"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/practiceAdd" />
-    <!-- / After Practice Add Divider  -->
-    
-    <!-- / Practice -->
-    
-    <!-- Nutrition -->
-    <!--<androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/nutritionTextView"
+    <!-- Add Nutrition Record -->
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/nutritionEditText"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:textStyle="bold"
-      android:paddingTop="16dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
-      android:text="Питание" />
-    
-    <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-      
-      <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/nutritionEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:hint="Добавить запись"
-        android:minLines="1"
-        android:lines="12"
-        android:maxLines="12"
-        app:lineHeight="12sp" />
-    
-    </androidx.core.widget.NestedScrollView>-->
+      android:inputType="textMultiLine"
+      android:hint="Добавить запись"
+      android:minLines="1"
+      android:lines="12"
+      android:maxLines="12"
+      app:lineHeight="14sp"
+      app:backgroundTint="@color/grayed_text_gray"
+      app:fontFamily="sans-serif"
+      android:textSize="14sp"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="18dp"
+      android:layout_marginLeft="18dp"
+      android:layout_marginEnd="18dp"
+      android:layout_marginRight="18dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/nutritionTextView"
+      app:layout_constraintBottom_toTopOf="@id/eventsTextView" />
+    <!-- / Add Nutrition Record -->
     <!-- / Nutrition -->
     
     <!-- Events -->
-    <!--<androidx.appcompat.widget.AppCompatTextView
+    <!-- Events Label -->
+    <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/eventsTextView"
       android:layout_height="wrap_content"
       android:layout_width="match_parent"
-      android:textStyle="bold"
-      android:paddingTop="16dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
+      android:textColor="@color/colorPrimary"
+      android:textSize="14sp"
+      app:fontFamily="sans-serif"
+      android:textStyle="normal"
+      android:paddingTop="17dp"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/nutritionEditText"
+      app:layout_constraintBottom_toTopOf="@id/eventsEditText"
       android:text="События дня" />
+    <!-- / Events Label -->
     
-    <androidx.core.widget.NestedScrollView
+    <!-- Add Events Record -->
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/eventsEditText"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-      
-      <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/eventsEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:hint="Добавить запись"
-        android:minLines="1"
-        android:lines="12"
-        android:maxLines="12"
-        app:lineHeight="12sp" />
+      android:layout_height="wrap_content"
+      android:inputType="textMultiLine"
+      android:hint="Добавить запись"
+      android:minLines="1"
+      android:lines="12"
+      android:maxLines="12"
+      app:lineHeight="12sp"
+      app:backgroundTint="@color/grayed_text_gray"
+      app:fontFamily="sans-serif"
+      android:textSize="14sp"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="18dp"
+      android:layout_marginLeft="18dp"
+      android:layout_marginEnd="18dp"
+      android:layout_marginRight="18dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/eventsTextView"
+      app:layout_constraintBottom_toTopOf="@+id/stressLevelTextView" />
+    <!-- / Add Events Record -->
+    <!-- / Events -->
     
-    </androidx.core.widget.NestedScrollView>
-    
+    <!-- Stress Level -->
+    <!-- Stress Level Label -->
     <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/stressLevelTextView"
       android:layout_height="wrap_content"
       android:layout_width="match_parent"
-      android:textStyle="bold"
-      android:paddingTop="16dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="8dp"
-      android:text="Уровень стресса: 50%" />
+      android:textColor="@color/colorPrimary"
+      android:textSize="14sp"
+      app:fontFamily="sans-serif"
+      android:textStyle="normal"
+      android:layout_marginTop="30dp"
+      android:layout_marginBottom="18dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/eventsEditText"
+      app:layout_constraintBottom_toTopOf="@+id/stressLevelSeekBar"
+      android:text="Уровень стресса: 100%" />
+    <!-- / Stress Level Label -->
     
-    <FrameLayout
+    <include
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-  
-      <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/stressZeroPercentTextView"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="start"
-        android:paddingRight="8dp"
-        android:paddingEnd="8dp"
-        android:paddingLeft="8dp"
-        android:paddingStart="8dp"
-        android:paddingBottom="0dp"
-        android:text="0" />
-  
-      <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/stress100PercentTextView"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="end"
-        android:paddingRight="8dp"
-        android:paddingEnd="8dp"
-        android:paddingLeft="8dp"
-        android:paddingStart="8dp"
-        android:paddingBottom="0dp"
-        android:text="100" />
-      
-    </FrameLayout>-->
-    
-    <!-- Stress Level -->
-    <!--<include layout="@layout/include_seek_bar_layout" />-->
+      android:layout_height="wrap_content"
+      layout="@layout/include_seek_bar_layout" />
     <!-- / Stress Level -->
     
-    <!-- / Events -->
-    
     <!-- Save Day -->
-    <!--<androidx.appcompat.widget.AppCompatButton
-      android:id="@+id/saveDayTextView"
+    <androidx.appcompat.widget.AppCompatButton
+      android:id="@+id/saveDayButton"
       android:layout_height="wrap_content"
       android:layout_width="wrap_content"
       android:layout_gravity="center_horizontal"
-      android:text="Сохранить день" />-->
+      app:backgroundTint="@color/colorAccent"
+      style="@style/Widget.MaterialComponents.Button"
+      android:layout_margin="0dp"
+      app:fontFamily="sans-serif"
+      android:textStyle="normal"
+      android:textSize="12sp"
+      android:textAllCaps="true"
+      android:textColor="@color/white"
+      android:gravity="center"
+      android:paddingTop="12dp"
+      android:paddingBottom="12dp"
+      android:paddingStart="20dp"
+      android:paddingEnd="20dp"
+      android:layout_marginBottom="50dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/stressLevelSeekBar"
+      app:layout_constraintBottom_toBottomOf="parent"
+      android:text="Записать день" />
     <!-- / Save Day -->
   
   </androidx.constraintlayout.widget.ConstraintLayout>

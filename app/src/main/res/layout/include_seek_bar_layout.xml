@@ -12,13 +12,24 @@
     android:max="100"
     android:progress="0"
     android:maxHeight="12dp"
-    android:paddingStart="8dp"
-    android:paddingEnd="8dp"
-    android:paddingBottom="16dp"
+    android:paddingTop="0dp"
+    android:layout_marginStart="6dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginEnd="6dp"
+    android:layout_marginRight="6dp"
+    android:paddingBottom="18dp"
+    android:gravity="center"
     android:secondaryProgress="0"
+    app:layout_anchorGravity="center_vertical"
+    android:foregroundGravity="center_vertical"
+    android:layout_gravity="center_vertical"
     android:thumbOffset="10dp"
     android:progressDrawable="@drawable/stress_seekbar"
     android:thumb="@drawable/stress_thumb"
-    tools:progress="50" />
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/stressLevelTextView"
+    app:layout_constraintBottom_toTopOf="@+id/saveDayButton"
+    tools:progress="50"/>
 
 </merge>
