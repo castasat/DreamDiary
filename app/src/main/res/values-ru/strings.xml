@@ -4,7 +4,7 @@
   <string name="day_title">Запись дня</string>
   <string name="dream_title">Запись сна</string>
   <string-array
-    name="yoga_types">
+    name="practice_types">
     <item>Не выбрано</item>
     <item>Хатха</item>
     <item>Крия</item>
