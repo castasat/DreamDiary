@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,72 +14,10 @@
     android:layout_margin="0dp">
     
     <!-- Date Moon -->
-    <LinearLayout
-      android:id="@+id/dateMoon"
+    <include
       android:layout_width="match_parent"
       android:layout_height="44dp"
-      android:orientation="horizontal"
-      android:background="@color/date_moon_gray"
-      android:gravity="center_vertical"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toTopOf="@id/dateMoonBarrier">
-      
-      <!-- Date -->
-      <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="0"
-        android:gravity="center_vertical|start"
-        android:layout_marginStart="22dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:textSize="14sp"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        app:fontFamily="sans-serif"
-        android:text="25 ноября, " />
-      <!-- / Date -->
-      
-      <!-- Weekday -->
-      <TextView
-        android:id="@+id/weekDay"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical|start"
-        android:layout_weight="1"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:textSize="14sp"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="normal"
-        app:fontFamily="sans-serif"
-        android:text="четверг " />
-      <!-- / Weekday -->
-      
-      <!-- Moon Phase -->
-      <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/moonPhase"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:layout_weight="0"
-        android:layout_marginTop="11dp"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginLeft="22dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/moon_phase_1"
-        android:gravity="center_vertical|end" />
-      <!-- /Moon Phase -->
-    
-    </LinearLayout>
+      layout="@layout/date_moon_layout" />
     <!-- / Date Moon-->
     
     <!-- Date Moon Barrier -->
@@ -397,10 +336,12 @@
       android:text="Уровень стресса: 100%" />
     <!-- / Stress Level Label -->
     
+    <!-- Stress Level Seek Bar -->
     <include
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       layout="@layout/include_seek_bar_layout" />
+    <!-- / Stress Level Seek Bar -->
     <!-- / Stress Level -->
     
     <!-- Save Day -->
@@ -410,7 +351,6 @@
       android:layout_width="wrap_content"
       android:layout_gravity="center_horizontal"
       app:backgroundTint="@color/colorAccent"
-      style="@style/Widget.MaterialComponents.Button"
       android:layout_margin="0dp"
       app:fontFamily="sans-serif"
       android:textStyle="normal"

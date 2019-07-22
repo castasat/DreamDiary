@@ -6,383 +6,405 @@
   android:layout_height="match_parent"
   android:layout_margin="8dp">
   
-  <androidx.appcompat.widget.LinearLayoutCompat
+  <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:padding="0dp"
+    android:layout_margin="0dp">
     
-    <!-- Caption -->
-    <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/captionTextView"
+    <!-- Date Moon -->
+    <include
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:fontFamily="sans-serif-black"
-      android:gravity="center_horizontal"
-      android:textSize="20sp"
-      android:paddingBottom="8dp"
-      android:layout_margin="8dp"
-      android:text="@string/dream_title" />
-    <!-- / Caption-->
+      android:layout_height="44dp"
+      layout="@layout/date_moon_layout" />
+    <!-- / Date Moon-->
     
-    <!-- Night -->
-    <FrameLayout
-      android:layout_width="match_parent"
+    <!-- Date Moon Barrier -->
+    <androidx.constraintlayout.widget.Barrier
+      android:id="@+id/dateMoonBarrier"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_gravity="center">
-      
-      <!-- Night Controls -->
-      <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        
-        <!-- Left Control -->
-        <androidx.appcompat.widget.AppCompatImageView
-          android:layout_width="wrap_content"
-          android:layout_height="42dp"
-          android:background="@color/colorPrimary"
-          app:srcCompat="@drawable/arrow_left"
-          android:layout_gravity="center_vertical"
-          app:tint="@color/white" />
-        <!-- Left Control -->
-        
-        <androidx.appcompat.widget.LinearLayoutCompat
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:paddingTop="0dp"
-          android:orientation="vertical"
-          android:gravity="center">
-          
-          <!-- Night Week Days -->
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/weekDayTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="8dp"
-            android:paddingLeft="8dp"
-            android:paddingEnd="8dp"
-            android:paddingRight="8dp"
-            android:paddingHorizontal="8dp"
-            android:background="#ddd"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:text=" Ворник - Среда " />
-          <!-- / Night Week Days -->
-          
-          <!-- Night Dates -->
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/nightTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:paddingStart="8dp"
-            android:paddingLeft="8dp"
-            android:paddingEnd="8dp"
-            android:paddingRight="8dp"
-            android:paddingHorizontal="8dp"
-            android:background="#ddd"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:text=" с 4 по 5 Июня 2019 " />
-          <!-- / Night Dates -->
-        
-        </androidx.appcompat.widget.LinearLayoutCompat>
-        
-        <!-- Right Control -->
-        <androidx.appcompat.widget.AppCompatImageView
-          android:layout_width="wrap_content"
-          android:layout_height="42dp"
-          android:background="@color/colorPrimary"
-          app:srcCompat="@drawable/arrow_right"
-          android:layout_gravity="center_vertical"
-          app:tint="@color/white" />
-        <!-- / Right Control -->
-      
-      </androidx.appcompat.widget.LinearLayoutCompat>
-      <!-- / Night Controls -->
-    
-    </FrameLayout>
-    <!-- / Night -->
+      app:barrierDirection="bottom"
+      app:constraint_referenced_ids="dateMoon" />
+    <!-- / Date Moon Barrier -->
     
     <!-- Practice -->
+    <!-- Practice Label -->
     <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/practiceTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:textColor="@color/colorPrimary"
+      android:textSize="14sp"
+      app:fontFamily="sans-serif"
+      android:textStyle="normal"
+      android:paddingTop="16dp"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/dateMoonBarrier"
+      app:layout_constraintBottom_toTopOf="@+id/practiceEditText"
+      android:text="Предварительная практика" />
+    <!-- / Practice Label -->
+    
+    <!-- Add Practice Record -->
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/practiceEditText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Добавить запись"
+      android:inputType="textMultiLine"
+      android:minLines="1"
+      android:lines="12"
+      android:maxLines="12"
+      app:lineHeight="14sp"
+      app:backgroundTint="@color/grayed_text_gray"
+      app:fontFamily="sans-serif"
+      android:textSize="14sp"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="18dp"
+      android:layout_marginLeft="18dp"
+      android:layout_marginEnd="18dp"
+      android:layout_marginRight="18dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/practiceTextView"
+      app:layout_constraintBottom_toTopOf="@+id/dreamDescriptionTextView" />
+    <!-- / Add Practice Record -->
+    <!-- / Practice -->
+    
+    <!-- Dream -->
+    <!-- Dream Description Label -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/dreamDescriptionTextView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textColor="@color/colorPrimary"
+      android:textSize="14sp"
+      app:fontFamily="sans-serif"
       android:textStyle="bold"
       android:paddingTop="16dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
-      android:text="Предварительная практика" />
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:gravity="start"
+      android:text="Описание сна"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/practiceEditText"
+      app:layout_constraintBottom_toTopOf="@+id/addDreamRecordLayout"/>
+    <!-- / Dream Description Label -->
     
-    <androidx.core.widget.NestedScrollView
+    <!-- Add Dream Record Layout -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:id="@+id/addDreamRecordLayout"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-      
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="18dp"
+      android:layout_marginLeft="18dp"
+      android:layout_marginEnd="18dp"
+      android:layout_marginRight="18dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/dreamDescriptionTextView"
+      app:layout_constraintBottom_toTopOf="@+id/anchorTextView">
+  
       <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/practiceEditText"
-        android:layout_width="match_parent"
+        android:id="@+id/dreamEditText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Добавить запись"
+        android:layout_weight="1"
         android:inputType="textMultiLine"
         android:minLines="1"
         android:lines="12"
         android:maxLines="12"
-        app:lineHeight="12sp" />
-    
-    </androidx.core.widget.NestedScrollView>
-    <!-- / Practice -->
-    
-    <!-- Dream -->
-    <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/dreamTextView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:textStyle="bold"
-      android:paddingTop="8dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
-      android:text="Сон" />
-    
-    <!-- Dream Duration -->
-    <androidx.appcompat.widget.LinearLayoutCompat
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginRight="4dp"
-      android:layout_marginEnd="4dp"
-      android:orientation="horizontal">
-      
-      <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/dreamDurationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingTop="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="0dp"
-        android:text="Длительность сна: " />
-      
-      <!-- Hours -->
-      <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:orientation="vertical"
-        android:gravity="center">
-        
-        <!-- Hours Arrow Up -->
-        <androidx.appcompat.widget.AppCompatImageView
-          android:layout_width="24dp"
-          android:layout_height="16dp"
-          android:background="@color/colorPrimary"
-          app:srcCompat="@drawable/arrow_up"
-          android:layout_gravity="center_horizontal"
-          app:tint="@color/white" />
-        <!-- / Hours Arrow Up -->
-  
-        <!-- Hours Number -->
-        <androidx.appcompat.widget.AppCompatTextView
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:background="#ddd"
-          android:textSize="18sp"
-          android:textStyle="bold"
-          android:layout_gravity="center"
-          android:gravity="center"
-          android:text="08" />
-        <!-- / Hours Number -->
-        
-        <!-- Hours Arrow Down -->
-        <androidx.appcompat.widget.AppCompatImageView
-          android:layout_width="24dp"
-          android:layout_height="16dp"
-          android:background="@color/colorPrimary"
-          app:srcCompat="@drawable/arrow_down"
-          android:layout_gravity="center_horizontal"
-          app:tint="@color/white" />
-        <!-- / Hours Arrow Down -->
-        
-      </androidx.appcompat.widget.LinearLayoutCompat>
-      <!-- / Hours -->
-      
-      <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text=":"/>
-      
-      <!-- Minutes -->
-      <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:orientation="vertical"
-        android:gravity="center">
-  
-        <!-- Minutes Arrow Up -->
-        <androidx.appcompat.widget.AppCompatImageView
-          android:layout_width="24dp"
-          android:layout_height="16dp"
-          android:background="@color/colorPrimary"
-          app:srcCompat="@drawable/arrow_up"
-          android:layout_gravity="center_horizontal"
-          app:tint="@color/white" />
-        <!-- / Minutes Arrow Up -->
-  
-        <!-- Minutes Number -->
-        <androidx.appcompat.widget.AppCompatTextView
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:background="#ddd"
-          android:textSize="18sp"
-          android:textStyle="bold"
-          android:layout_gravity="center"
-          android:gravity="center"
-          android:text="00" />
-        <!-- / Minutes Number -->
-        
-        <!-- Minutes Arrow Down -->
-        <androidx.appcompat.widget.AppCompatImageView
-          android:layout_width="24dp"
-          android:layout_height="16dp"
-          android:background="@color/colorPrimary"
-          app:srcCompat="@drawable/arrow_down"
-          android:layout_gravity="center_horizontal"
-          app:tint="@color/white" />
-        <!-- / Minutes Arrow Down -->
-        
-      </androidx.appcompat.widget.LinearLayoutCompat>
-      <!-- / Minutes -->
-    
-    </androidx.appcompat.widget.LinearLayoutCompat>
-    <!-- / Dream Duration -->
-    
-    <!-- Dream Description -->
-    <androidx.appcompat.widget.LinearLayoutCompat
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="32dp"
-      android:orientation="horizontal">
-      
-      <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/dreamDescriptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:gravity="start|center_vertical"
-        android:layout_weight="1"
-        android:text="Описание сна" />
+        app:lineHeight="14sp"
+        app:backgroundTint="@color/grayed_text_gray"
+        app:fontFamily="sans-serif"
+        android:textSize="14sp"
+        android:gravity="center_vertical|start"/>
       
       <!-- Microphone -->
       <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:gravity="end|center_vertical"
-        app:srcCompat="@drawable/microphone"
-        app:tint="@color/colorAccent" />
+        android:padding="2dp"
+        android:layout_margin="2dp"
+        android:layout_gravity="end|center_vertical"
+        app:srcCompat="@drawable/ic_microphone"
+        app:tint="@color/colorPrimary" />
       <!-- / Microphone -->
     
     </androidx.appcompat.widget.LinearLayoutCompat>
-    
-    <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-      
-      <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/dreamEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:hint="Добавить запись"
-        android:minLines="1"
-        android:lines="12"
-        android:maxLines="12"
-        app:lineHeight="12sp" />
-    
-    </androidx.core.widget.NestedScrollView>
-    <!-- / Dream Description -->
+    <!-- / Add Dream Record Layout -->
     <!-- / Dream -->
     
-    <!-- Lucid Dream -->
+    <!-- Anchor -->
+    <!-- Anchor Label -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/anchorTextView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textColor="@color/colorPrimary"
+      android:textSize="14sp"
+      app:fontFamily="sans-serif"
+      android:textStyle="normal"
+      android:paddingTop="16dp"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/addDreamRecordLayout"
+      app:layout_constraintBottom_toTopOf="@+id/anchorLinkLayout"
+      android:text="Маячок" />
+    <!-- / Anchor Label -->
+  
+    <!-- Anchor Link Layout -->
     <androidx.appcompat.widget.LinearLayoutCompat
+      android:id="@+id/anchorLinkLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
-      android:gravity="center_vertical">
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="18dp"
+      android:layout_marginLeft="18dp"
+      android:layout_marginEnd="18dp"
+      android:layout_marginRight="18dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/anchorTextView"
+      app:layout_constraintBottom_toTopOf="@+id/dreamDurationTextView">
+    
+      <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/anchorEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Цветы"
+        android:textColorHint="@color/black"
+        android:layout_weight="1"
+        android:inputType="textMultiLine"
+        android:minLines="1"
+        android:lines="12"
+        android:maxLines="12"
+        app:lineHeight="14sp"
+        app:backgroundTint="@color/grayed_text_gray"
+        app:fontFamily="sans-serif"
+        android:textSize="14sp"
+        android:gravity="center_vertical|start" />
+    
+      <!-- Dream Book -->
+      <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="8dp"
+        android:layout_gravity="end|center_vertical"
+        app:srcCompat="@drawable/ic_dream_book"
+        app:tint="@color/colorPrimary" />
+      <!-- / Dream Book -->
+  
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!-- / Anchor Link Layout -->
+    <!-- / Anchor -->
+  
+    <!-- Dream Duration -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/dreamDurationTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/colorPrimary"
+      android:textSize="14sp"
+      app:fontFamily="sans-serif"
+      android:textStyle="normal"
+      android:paddingTop="20dp"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:gravity="center"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/anchorLinkLayout"
+      android:text="Длительность сна  " />
+  
+    <!-- Dream Start - End Time -->
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/dreamDurationTime"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:hint="00:00 - 00:00 "
+      android:textColorHint="@color/colorPrimary"
+      app:backgroundTint="@color/colorPrimary"
+      android:inputType="time"
+      android:maxLines="1"
+      app:lineHeight="14sp"
+      android:textSize="14sp"
+      app:fontFamily="sans-serif"
+      android:paddingTop="8dp"
+      android:paddingBottom="8dp"
+      android:paddingStart="4dp"
+      android:paddingLeft="4dp"
+      android:paddingEnd="4dp"
+      android:paddingRight="4dp"
+      android:layout_marginTop="12dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="18dp"
+      android:layout_marginRight="18dp"
+      android:gravity="center"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/anchorLinkLayout" />
+    <!-- / Dream Start - End Time -->
+    <!-- /  Dream Duration -->
+  
+    <!-- Dream Duration Barrier -->
+    <androidx.constraintlayout.widget.Barrier
+      android:id="@+id/dreamDurationBarrier"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:barrierDirection="bottom"
+      app:constraint_referenced_ids="dreamDurationTextView, dreamDurationTime" />
+    <!-- Dream Duration Barrier -->
+    
+    <!-- Lucid Dream -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:id="@+id/lucidDreamLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:gravity="center_vertical"
+      android:layout_marginTop="0dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/dreamDurationBarrier">
       
       <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lucidDreamTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingTop="16dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="0dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        app:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:padding="0dp"
         android:layout_weight="1"
         android:text="Осознание себя во сне" />
       
       <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:gravity="center_vertical|end"
+        android:buttonTint="@color/colorPrimary"
         android:checked="true"
         android:layout_weight="0" />
     
     </androidx.appcompat.widget.LinearLayoutCompat>
     <!-- Lucid Dream -->
-    
-    <!-- Feelings-->
+  
+    <!-- Feelings Emotions -->
+    <!-- Feelings Emotions Label -->
     <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/dreamFeelingsTextView"
+      android:id="@+id/feelingsTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:textColor="@color/colorPrimary"
+      android:textSize="14sp"
+      app:fontFamily="sans-serif"
+      android:textStyle="normal"
       android:paddingTop="16dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="0dp"
-      android:text="Ощущения, чувства" />
-    
-    <androidx.core.widget.NestedScrollView
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/lucidDreamLayout"
+      app:layout_constraintBottom_toTopOf="@+id/feelingsEditText"
+      android:text="Ощущения, чувства " />
+    <!-- / Feelings Emotions -->
+  
+    <!-- Add Feelings Emotions Record -->
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/feelingsEditText"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-      
-      <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/dreamFeelingsEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:hint="Добавить запись"
-        android:minLines="1"
-        android:lines="12"
-        android:maxLines="12"
-        app:lineHeight="12sp" />
-    
-    </androidx.core.widget.NestedScrollView>
-    <!-- / Feelings -->
-    
-    <!-- Button -->
+      android:layout_height="wrap_content"
+      android:hint="Добавить запись"
+      android:inputType="textMultiLine"
+      android:minLines="1"
+      android:lines="12"
+      android:maxLines="12"
+      app:lineHeight="14sp"
+      app:backgroundTint="@color/grayed_text_gray"
+      app:fontFamily="sans-serif"
+      android:textSize="14sp"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginStart="18dp"
+      android:layout_marginLeft="18dp"
+      android:layout_marginEnd="18dp"
+      android:layout_marginRight="18dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/feelingsTextView"
+      app:layout_constraintBottom_toTopOf="@+id/saveDreamButton"/>
+    <!-- / Add Feelings Emotions Record -->
+    <!-- / Feelings Emotions -->
+  
+    <!-- Save Dream -->
     <androidx.appcompat.widget.AppCompatButton
-      android:id="@+id/saveNightTextView"
+      android:id="@+id/saveDreamButton"
       android:layout_height="wrap_content"
       android:layout_width="wrap_content"
       android:layout_gravity="center_horizontal"
+      app:backgroundTint="@color/colorAccent"
+      android:layout_margin="0dp"
+      app:fontFamily="sans-serif"
+      android:textStyle="normal"
+      android:textSize="12sp"
+      android:textAllCaps="true"
+      android:textColor="@color/white"
+      android:gravity="center"
+      android:paddingTop="12dp"
+      android:paddingBottom="12dp"
+      android:paddingStart="20dp"
+      android:paddingEnd="20dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginBottom="50dp"
+      app:layout_constraintBottom_toBottomOf="parent"
       android:text="Сохранить сон" />
-    <!--/ Button -->
+    <!-- / Save Dream -->
   
-  </androidx.appcompat.widget.LinearLayoutCompat>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
