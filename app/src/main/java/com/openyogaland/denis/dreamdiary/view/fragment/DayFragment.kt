@@ -9,11 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.openyogaland.denis.dreamdiary.R
+import com.openyogaland.denis.dreamdiary.model.Dream
 import kotlinx.android.synthetic.main.day_fragment.*
 
 @Suppress("NAME_SHADOWING")
@@ -74,10 +78,12 @@ DayFragment : Fragment()
     practiceSpinner
     ?.adapter = arrayAdapter
     
-    /* TODO
     val stressLevelSeekBar =
        view.findViewById<AppCompatSeekBar>(R.id.stressLevelSeekBar)
-     
+    
+    val stressLevelTextView =
+      view.findViewById<TextView>(R.id.stressLevelTextView)
+    
      val onSeekBarChangeListener =
        object : SeekBar.OnSeekBarChangeListener
        {
@@ -86,16 +92,14 @@ DayFragment : Fragment()
          {
            if(context != null)
            {
-             *//*context?
-            .toast("Пользователь коснулся")*//*
+             // context?.toast("Пользователь коснулся")
           }
         }
         
         override fun
         onStopTrackingTouch(seekBar : SeekBar?)
         {
-          *//*context?
-          .toast("Пользователь перестал касаться")*//*
+          // context?.toast("Пользователь перестал касаться")
         }
         
         override fun
@@ -103,7 +107,8 @@ DayFragment : Fragment()
                           progress : Int,
                           fromUser : Boolean)
         {
-          // TODO 
+          stressLevelTextView.text =
+            "Уровень стресса: $progress%"
         }
       }
     
@@ -112,13 +117,14 @@ DayFragment : Fragment()
     
     stressLevelSeekBar
     .progressDrawable =
-      ContextCompat.getDrawable(activity as Context, R.drawable.stress_seekbar)
+      ContextCompat
+      .getDrawable(activity as Context, R.drawable.stress_seekbar)
     
     val dream = Dream("")
     
     val dreamBundle =
       NightFragment
-      .bundleArgs(dream)*/
+      .bundleArgs(dream)
     
     return view
   }
