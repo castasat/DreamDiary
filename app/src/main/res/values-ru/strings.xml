@@ -3,8 +3,9 @@
   <string name="app_name">Дневник Сновидений</string>
   <string name="day_title">Запись дня</string>
   <string name="dream_title">Запись сна</string>
+  <string name="ok">ОК</string>
   <string-array
-    name="practice_types">
+    name="practice_types"> 
     <item>Не выбрано</item>
     <item>Хатха</item>
     <item>Крия</item>

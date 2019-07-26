@@ -3,6 +3,7 @@
   <string name="app_name">Dream Diary</string>
   <string name="day_title">Day record</string>
   <string name="dream_title">Dream record</string>
+  <string name="ok">OK</string>
   <string-array
     name="practice_types">
     <item>Not chosen</item>
