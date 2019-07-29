@@ -9,7 +9,7 @@ import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.model.Dream
 
 public class
-NightFragment : Fragment()
+DreamFragment : Fragment()
 {
   companion object
   {

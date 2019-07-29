@@ -14,7 +14,7 @@
   
   <fragment
     android:id="@+id/dreamFragment"
-    android:name="com.openyogaland.denis.dreamdiary.view.fragment.NightFragment"
+    android:name="com.openyogaland.denis.dreamdiary.view.fragment.DreamFragment"
     tools:layout="@layout/dream_fragment"
     android:label="@string/dream_title" />
   
