@@ -81,7 +81,7 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // support material design
-    implementation 'com.google.android.material:material:1.1.0-alpha08'
+    implementation 'com.google.android.material:material:1.1.0-alpha09'
 
     // androidx support library
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -100,11 +100,11 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.palette:palette:1.0.0'
-    //implementation 'androidx.exifinterface:exifinterface:1.1.0-alpha01'
+    implementation 'androidx.exifinterface:exifinterface:1.1.0-beta01'
 
     // navigation library
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0-beta01'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0-beta01'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0-beta02'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0-beta02'
 
     // google architecture components
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha02'
@@ -121,6 +121,9 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0-beta.1'
+
+    // input mask text formatting library
+    implementation 'com.redmadrobot:input-mask-android:4.3.1'
 
     // JSR-310 compatible Date, Time and Calendar compatible android library
     //implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'

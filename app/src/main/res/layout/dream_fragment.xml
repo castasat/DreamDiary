@@ -240,16 +240,17 @@
   
     <!-- Dream Start - End Time -->
     <androidx.appcompat.widget.AppCompatEditText
-      android:id="@+id/dreamDurationTime"
+      android:id="@+id/dreamDurationTimeEditText"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:hint="00:00 - 00:00 "
+      android:inputType="time"
+      android:digits="0123456789 -:"
       android:imeOptions="actionDone"
       android:maxLines="1"
       android:imeActionLabel="@string/ok"
       android:textColorHint="@color/colorPrimary"
       app:backgroundTint="@color/colorPrimary"
-      android:inputType="time"
       android:textSize="14sp"
       app:fontFamily="sans-serif"
       android:paddingTop="8dp"
