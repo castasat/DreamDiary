@@ -4,12 +4,22 @@
   
   <item
     android:id="@+id/dayFragment"
-    android:icon="@drawable/day"
+    android:icon="@drawable/ic_calendar"
     android:title="@string/day_title" />
   
   <item
     android:id="@+id/dreamFragment"
-    android:icon="@drawable/night"
+    android:icon="@drawable/ic_moon"
     android:title="@string/dream_title" />
+  
+  <item
+    android:id="@+id/reportsFragment"
+    android:icon="@drawable/ic_reports"
+    android:title="" />
+  
+  <item
+    android:id="@+id/settingsFragment"
+    android:icon="@drawable/ic_settings"
+    android:title="" />
   
 </menu>
