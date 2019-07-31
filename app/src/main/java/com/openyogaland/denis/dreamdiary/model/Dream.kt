@@ -4,5 +4,5 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-public data class
+data class
 Dream(var dreamText : CharSequence?) : Parcelable

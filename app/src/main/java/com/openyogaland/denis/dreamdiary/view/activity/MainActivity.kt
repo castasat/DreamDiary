@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,12 +14,15 @@ import com.openyogaland.denis.dreamdiary.R.id
 import com.openyogaland.denis.dreamdiary.R.layout
 import com.openyogaland.denis.dreamdiary.R.string
 import com.openyogaland.denis.dreamdiary.listener.TitleNavigationListener
+import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 public class
 MainActivity : AppCompatActivity()
 {
   private lateinit var navController : NavController
+  
+  private lateinit var activityViewModel : ActivityViewModel
   
   override fun
   onCreate(savedInstanceState : Bundle?)
@@ -28,8 +32,14 @@ MainActivity : AppCompatActivity()
     
     setContentView(layout.activity_main)
     
-    navController = findNavController(this,
-                                      id.navigationHostFragment)
+    activityViewModel =
+    ViewModelProviders
+    .of(this)
+    .get(ActivityViewModel::class.java)
+    
+    navController =
+      findNavController(this,
+                        id.navigationHostFragment)
     
     navController
     .addOnDestinationChangedListener {_,

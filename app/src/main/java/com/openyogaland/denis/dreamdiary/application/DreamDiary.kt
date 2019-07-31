@@ -1,9 +1,10 @@
-package com.openyogaland.denis.dreamdiary
+package com.openyogaland.denis.dreamdiary.application
 
 import android.provider.UserDictionary.Words.APP_ID
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDexApplication
+import com.openyogaland.denis.dreamdiary.BuildConfig
 import com.splunk.mint.Mint
 import com.splunk.mint.Mint.appEnvironmentDevelopment
 import com.splunk.mint.Mint.disableNetworkMonitoring

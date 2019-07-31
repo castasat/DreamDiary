@@ -29,10 +29,9 @@ DreamFragment : Fragment()
   setInputMaskToEditText(format : String, editText : EditText)
   {
     val maskedTextChangedListener = MaskedTextChangedListener(format, editText)
-    editText
-    .addTextChangedListener(maskedTextChangedListener)
-    editText
-    .onFocusChangeListener = maskedTextChangedListener
+    editText.addTextChangedListener(maskedTextChangedListener)
+    editText.onFocusChangeListener = maskedTextChangedListener
+    editText.hint = maskedTextChangedListener.placeholder()
   }
   
   override fun
@@ -41,6 +40,7 @@ DreamFragment : Fragment()
     super
     .onActivityCreated(savedInstanceState)
     
-    setInputMaskToEditText("[00]:[00] - [00]:[00]", dreamDurationTimeEditText)
+    setInputMaskToEditText("[00]{:}[00]{ - }[00]{:}[00]",
+                           dreamDurationTimeEditText)
   }
 }
