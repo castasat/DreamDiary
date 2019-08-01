@@ -5,15 +5,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.openyogaland.denis.dreamdiary.database.dao.DayDao
+import com.openyogaland.denis.dreamdiary.database.dao.DreamDao
 import com.openyogaland.denis.dreamdiary.model.Day
+import com.openyogaland.denis.dreamdiary.model.Dream
 
-@Database(entities = [Day::class],
+@Database(entities =
+          [Day::class, Dream::class],
           version = 1,
           exportSchema = true)
 abstract class
 DreamDiaryRoomDatabase : RoomDatabase()
 {
   abstract fun dayDao() : DayDao
+  abstract fun dreamDao() : DreamDao
   
   companion object
   {
@@ -26,11 +30,12 @@ DreamDiaryRoomDatabase : RoomDatabase()
       {
         synchronized(DreamDiaryRoomDatabase::class) {
           INSTANCE =
-            Room.databaseBuilder(context.applicationContext,
-                                 DreamDiaryRoomDatabase::class.java,
-                                 "dream_diary_database"
-          )
-          .build()
+            Room
+            .databaseBuilder(context.applicationContext,
+                             DreamDiaryRoomDatabase::class.java,
+                             "dream_diary_database"
+            )
+            .build()
         }
       }
       return INSTANCE

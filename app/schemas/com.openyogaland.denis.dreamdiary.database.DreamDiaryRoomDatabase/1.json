@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "adcecd8fd4240a2b1000dadc1c9af685",
+    "identityHash": "a049ed5919cc8f45c2ff8e0c270ed320",
     "entities": [
       {
         "tableName": "day_table",
@@ -65,12 +65,80 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "dream_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dream_id` INTEGER NOT NULL, `date` TEXT NOT NULL, `moon_phase_day` INTEGER NOT NULL, `practice` TEXT NOT NULL, `dream_description` TEXT NOT NULL, `anchor` TEXT NOT NULL, `dream_duration` TEXT NOT NULL, `lucid_dream` INTEGER NOT NULL, `emotiona` TEXT NOT NULL, PRIMARY KEY(`dream_id`))",
+        "fields": [
+          {
+            "fieldPath": "dreamId",
+            "columnName": "dream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "moonPhaseDay",
+            "columnName": "moon_phase_day",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "practice",
+            "columnName": "practice",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dreamDescription",
+            "columnName": "dream_description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "anchor",
+            "columnName": "anchor",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dreamDuration",
+            "columnName": "dream_duration",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lucidDream",
+            "columnName": "lucid_dream",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "emotions",
+            "columnName": "emotiona",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "dream_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'adcecd8fd4240a2b1000dadc1c9af685')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a049ed5919cc8f45c2ff8e0c270ed320')"
     ]
   }
 }
