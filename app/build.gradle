@@ -171,8 +171,8 @@ dependencies {
     // additional annotation processors
     kapt 'androidx.lifecycle:lifecycle-compiler:2.2.0-alpha02'
     kapt 'androidx.room:room-compiler:2.2.0-alpha01'
-    //annotationProcessor 'com.google.dagger:dagger-compiler:2.22.1'
-    //annotationProcessor 'com.google.dagger:dagger-android-processor:2.22.1'
+    //kapt 'com.google.dagger:dagger-compiler:2.22.1'
+    //kapt 'com.google.dagger:dagger-android-processor:2.22.1'
 
     // unit test libraries
     //testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.5.0'
