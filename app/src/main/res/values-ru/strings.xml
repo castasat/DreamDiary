@@ -4,13 +4,4 @@
   <string name="day_title">Запись дня</string>
   <string name="dream_title">Запись сна</string>
   <string name="ok">ОК</string>
-  <string-array
-    name="practice_types"> 
-    <item>Не выбрано</item>
-    <item>Хатха</item>
-    <item>Крия</item>
-    <item>Мантра</item>
-    <item>Пранаяма</item>
-    <item> + Добавить практику</item>
-  </string-array>
 </resources>

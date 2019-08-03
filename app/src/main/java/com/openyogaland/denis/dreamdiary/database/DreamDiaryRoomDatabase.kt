@@ -6,16 +6,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.openyogaland.denis.dreamdiary.database.dao.DayDao
 import com.openyogaland.denis.dreamdiary.database.dao.DreamDao
+import com.openyogaland.denis.dreamdiary.database.dao.PracticeDao
 import com.openyogaland.denis.dreamdiary.model.Day
 import com.openyogaland.denis.dreamdiary.model.Dream
+import com.openyogaland.denis.dreamdiary.model.Practice
 
 @Database(entities =
-          [Day::class, Dream::class],
+          [Practice::class, Day::class, Dream::class],
           version = 1,
           exportSchema = true)
 abstract class
 DreamDiaryRoomDatabase : RoomDatabase()
 {
+  abstract fun practiceDao() : PracticeDao
   abstract fun dayDao() : DayDao
   abstract fun dreamDao() : DreamDao
   

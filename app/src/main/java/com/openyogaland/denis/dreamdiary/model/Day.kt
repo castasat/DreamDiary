@@ -35,13 +35,3 @@ data class Day(
   @ColumnInfo(name = "stress_level")
   var stressLevel : Int
 ) : Parcelable
-{
-  constructor() : this(0,
-                       "",
-                       1,
-                       "",
-                       0,
-                       "",
-                       "",
-                       0)
-}

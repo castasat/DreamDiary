@@ -1,26 +1,36 @@
 package com.openyogaland.denis.dreamdiary.view.fragment
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.openyogaland.denis.dreamdiary.R
-import kotlinx.android.synthetic.main.day_fragment.*
+import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 
 @Suppress("NAME_SHADOWING")
 public class
 DayFragment : Fragment()
 {
+  // view fields
+  private lateinit var practiceChooserTextView : AppCompatTextView
+  private lateinit var practiceRecycleView : RecyclerView
+  private lateinit var addPracticeTypeTextView : AppCompatTextView
+  
+  // drawable fields
+  private var arrowUpDrawable : Drawable? = null
+  private var arrowDownDrawable : Drawable? = null
+  
   override fun
   onCreateView(inflater : LayoutInflater,
                container : ViewGroup?,
@@ -32,103 +42,55 @@ DayFragment : Fragment()
                container,
                false)
     
-    val arrayAdapter =
-      ArrayAdapter
-      .createFromResource(requireActivity(),
-                          R.array.practice_types,
-                          android.R.layout.simple_spinner_item)
-    arrayAdapter
-    .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    practiceChooserTextView = view.findViewById(R.id.practiceChooserTextView)
+    practiceRecycleView = view.findViewById(R.id.practiceRecyclerView)
+    addPracticeTypeTextView = view.findViewById(R.id.addPracticeTypeTextView)
     
-    practiceSpinner
-    ?.onItemSelectedListener =
-      object : AdapterView.OnItemSelectedListener
-      {
-        override fun
-        onItemSelected(parent : AdapterView<*>?,
-                       itemSelected : View?,
-                       selectedItemPosition : Int,
-                       selectedId : Long)
-        {
-          parent
-          ?.let {parent : AdapterView<*> ->
-            parent
-            .getChildAt(0)
-            ?.let {view : View ->
-              if(view is TextView)
-              {
-                context
-                ?.let {context : Context ->
-                  view
-                  .setTextColor(getColor(context, R.color.grayed_text_gray))
-                }
-                view
-                .textSize = 12.0f
-                view
-                .setPadding(0, 0, 0, 0)
-              }
-            }
-          }
-        }
-        
-        override fun
-        onNothingSelected(parent : AdapterView<*>?)
-        {
-          // TODO
-        }
+    practiceChooserTextView.setOnClickListener {view : View ->
+      (view as AppCompatTextView)
+      .let {practiceChooserTextView : AppCompatTextView ->
+ 
+        practiceRecycleView.visibility = VISIBLE
+        addPracticeTypeTextView.visibility = VISIBLE
       }
-    
-    practiceSpinner
-    ?.adapter = arrayAdapter
-    
-    val stressLevelSeekBar : AppCompatSeekBar =
-      view
-      .findViewById<AppCompatSeekBar>(R.id.stressLevelSeekBar)
-    
-    val stressLevelTextView =
-      view
-      .findViewById<TextView>(R.id.stressLevelTextView)
-    
-    val onSeekBarChangeListener =
-      object : SeekBar.OnSeekBarChangeListener
+    }
+  
+  val stressLevelSeekBar : AppCompatSeekBar =
+    view.findViewById(R.id.stressLevelSeekBar)
+  
+  val stressLevelTextView : TextView =
+    view.findViewById(R.id.stressLevelTextView)
+  
+  val onSeekBarChangeListener =
+    object : SeekBar.OnSeekBarChangeListener
+    {
+      override fun onStartTrackingTouch(seekBar : SeekBar?)
       {
-        override fun
-        onStartTrackingTouch(seekBar : SeekBar?)
-        {
-          if(context != null)
-          {
-            // context?.toast("Пользователь коснулся")
-          }
-        }
-        
-        override fun
-        onStopTrackingTouch(seekBar : SeekBar?)
-        {
-          // context?.toast("Пользователь перестал касаться")
-        }
-        
-        override fun
-        onProgressChanged(seekBar : SeekBar?,
-                          progress : Int,
-                          fromUser : Boolean)
-        {
-          stressLevelTextView
-          .text = "Уровень стресса: $progress%"
-        }
       }
-    
-    stressLevelSeekBar
-    .setOnSeekBarChangeListener(onSeekBarChangeListener)
-    
-    stressLevelSeekBar
-    .progressDrawable =
-      ContextCompat
-      .getDrawable(activity as Context, R.drawable.stress_seekbar)
-    
-    return view
+      
+      override fun onStopTrackingTouch(seekBar : SeekBar?)
+      {
+      }
+      
+      override fun
+      onProgressChanged(seekBar : SeekBar?,
+                        progress : Int,
+                        fromUser : Boolean)
+      {
+        stressLevelTextView.text = "Уровень стресса: $progress%"
+      }
+    }
+  
+  stressLevelSeekBar.setOnSeekBarChangeListener(onSeekBarChangeListener)
+  
+  stressLevelSeekBar.progressDrawable =
+  ContextCompat.getDrawable(activity as Context, R.drawable.stress_seekbar)
+  
+  return view
   }
   
-  override fun onActivityCreated(savedInstanceState : Bundle?)
+  override fun
+  onActivityCreated(savedInstanceState : Bundle?)
   {
     super
     .onActivityCreated(savedInstanceState)

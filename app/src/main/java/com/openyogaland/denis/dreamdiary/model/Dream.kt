@@ -13,19 +13,19 @@ data class Dream(
   @PrimaryKey
   @ColumnInfo(name = "dream_id")
   var dreamId : Long,
-
+  
   @ColumnInfo(name = "date")
   var date : String,
-
+  
   @ColumnInfo(name = "moon_phase_day")
   var moonPhaseDay : Int,
-
+  
   @ColumnInfo(name = "practice")
   var practice : String,
   
   @ColumnInfo(name = "dream_description")
   var dreamDescription : String,
-
+  
   @ColumnInfo(name = "anchor")
   var anchor : String,
   
@@ -38,14 +38,3 @@ data class Dream(
   @ColumnInfo(name = "emotiona")
   var emotions : String
 ) : Parcelable
-{
-  constructor() : this(0,
-                       "",
-                       1,
-                       "",
-                       "",
-                       "",
-                       "",
-                       false,
-                       "")
-}

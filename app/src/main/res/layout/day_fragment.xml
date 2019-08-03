@@ -107,35 +107,82 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@id/cycleBarrier"
-      app:layout_constraintBottom_toTopOf="@id/practiceSpinner"
+      app:layout_constraintBottom_toTopOf="@id/practiceChooserTextView"
       android:text="Практика йоги" />
     <!-- / Practice Label -->
     
-    <!-- Practice Spinner -->
-    <androidx.appcompat.widget.AppCompatSpinner
-      android:id="@+id/practiceSpinner"
+    <!-- Practice Chooser -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/practiceChooserTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:entries="@array/practice_types"
-      android:textAlignment="gravity"
       android:layout_marginStart="22dp"
       android:layout_marginLeft="22dp"
       android:layout_marginEnd="22dp"
       android:layout_marginRight="22dp"
+      android:paddingTop="8dp"
+      android:textSize="14sp"
+      android:textColor="@color/transparent"
+      android:textStyle="normal"
+      app:fontFamily="sans-serif"
+      android:layout_gravity="center"
       android:gravity="start"
-      android:focusable="true"
-      android:focusableInTouchMode="true"
-      android:clickable="true"
-      android:longClickable="true"
+      android:singleLine="true"
+      android:drawablePadding="5dp"
+      android:drawableRight="@drawable/arrow_down"
+      android:drawableEnd="@drawable/arrow_down"
+      android:text="Не выбрано"
+      android:visibility="visible"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@id/practiceTextView"
-      app:layout_constraintBottom_toTopOf="@id/afterPracticeSpinnerDivider" />
-    <!-- / Practice Spinner -->
+      app:layout_constraintBottom_toTopOf="@id/practiceRecyclerView"/>
     
-    <!-- After Practice Spinner Divider -->
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/practiceRecyclerView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:textSize="14sp"
+      android:textColor="@color/colorPrimary"
+      android:textStyle="normal"
+      app:fontFamily="sans-serif"
+      android:layout_gravity="center"
+      android:visibility="gone"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/practiceChooserTextView"
+      app:layout_constraintBottom_toTopOf="@id/addPracticeTypeTextView"/>
+  
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/addPracticeTypeTextView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="22dp"
+      android:layout_marginLeft="22dp"
+      android:layout_marginEnd="22dp"
+      android:layout_marginRight="22dp"
+      android:textSize="14sp"
+      android:textColor="@color/transparent"
+      android:textStyle="normal"
+      app:fontFamily="sans-serif"
+      android:layout_gravity="center"
+      android:gravity="start"
+      android:singleLine="true"
+      android:text=" + Добавить практику"
+      android:visibility="gone"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/practiceRecyclerView"
+      app:layout_constraintBottom_toTopOf="@id/afterPracticeDivider" />
+    <!-- / Practice Chooser -->
+    
+    <!-- After Practice Divider -->
     <View
-      android:id="@+id/afterPracticeSpinnerDivider"
+      android:id="@+id/afterPracticeDivider"
       android:layout_width="match_parent"
       android:layout_marginStart="22dp"
       android:layout_marginEnd="22dp"
@@ -143,8 +190,8 @@
       android:background="@color/divider_gray"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/practiceSpinner"
-      app:layout_constraintBottom_toTopOf="@+id/timeLinearLayout" />
+      app:layout_constraintTop_toBottomOf="@id/practiceChooserTextView"
+      app:layout_constraintBottom_toTopOf="@+id/timeLinearLayout"/>
     <!-- / After Practice Spinner Divider -->
     
     <!-- Time -->
@@ -154,14 +201,13 @@
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:gravity="start|center_vertical"
-      
       android:layout_marginStart="22dp"
       android:layout_marginLeft="22dp"
       android:layout_marginEnd="22dp"
       android:layout_marginRight="22dp"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/afterPracticeSpinnerDivider"
+      app:layout_constraintTop_toBottomOf="@+id/afterPracticeDivider"
       app:layout_constraintBottom_toTopOf="@+id/nutritionTextView">
       
       <!-- Time Label -->
