@@ -2,6 +2,8 @@ package com.openyogaland.denis.dreamdiary.view.dialog
 
 import android.app.Dialog
 import android.content.DialogInterface
+import android.graphics.Color.TRANSPARENT
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -51,6 +53,8 @@ AddPracticeTypeDialog : AppCompatDialogFragment()
       
       dialog.window
       ?.let {window : Window ->
+        
+        window.setBackgroundDrawable(ColorDrawable(TRANSPARENT))
         
         window.attributes
         ?.let {layoutParams : LayoutParams ->
