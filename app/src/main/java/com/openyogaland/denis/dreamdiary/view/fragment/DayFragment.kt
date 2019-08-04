@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.adapter.PracticeTypeAdapter
+import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.listener.OnCancelListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeAddedListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeItemClickListener
@@ -160,7 +161,9 @@ DayFragment : Fragment()
           override fun
           onCancel()
           {
-            // TODO
+            // TODO do something on dialog cancel
+            log("DayFragment.showAddPracticeTypeDialog(): " +
+                "canceled")
           }
         }
       
@@ -170,7 +173,9 @@ DayFragment : Fragment()
           override fun
           onPracticeTypeAdded(practiceType : String)
           {
-            // TODO
+            //TODO do something on practice type added
+            log("DayFragment.showAddPracticeTypeDialog(): " +
+                "practiceType = $practiceType")
           }
         }
       
