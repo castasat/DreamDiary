@@ -1,22 +1,24 @@
 package com.openyogaland.denis.dreamdiary.view.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.openyogaland.denis.dreamdiary.R
-import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
+import com.openyogaland.denis.dreamdiary.adapter.PracticeTypeAdapter
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeItemClickListener
 
 @Suppress("NAME_SHADOWING")
 public class
@@ -27,9 +29,8 @@ DayFragment : Fragment()
   private lateinit var practiceRecycleView : RecyclerView
   private lateinit var addPracticeTypeTextView : AppCompatTextView
   
-  // drawable fields
-  private var arrowUpDrawable : Drawable? = null
-  private var arrowDownDrawable : Drawable? = null
+  // practice fields
+  private val practiceTypes = listOf("Хатха", "Крия", "Мантра", "Пранаяма")
   
   override fun
   onCreateView(inflater : LayoutInflater,
@@ -46,47 +47,75 @@ DayFragment : Fragment()
     practiceRecycleView = view.findViewById(R.id.practiceRecyclerView)
     addPracticeTypeTextView = view.findViewById(R.id.addPracticeTypeTextView)
     
-    practiceChooserTextView.setOnClickListener {view : View ->
+    practiceRecycleView.layoutManager = LinearLayoutManager(context)
+    practiceRecycleView.adapter =
+      PracticeTypeAdapter(practiceTypes,
+                          object : OnPracticeTypeItemClickListener
+                          {
+                            override fun
+                            onPracticeTypeItemClick(practiceType : String)
+                            {
+                              practiceChooserTextView.text = practiceType
+                              practiceChooserTextView
+                              .setTextColor(ContextCompat
+                                            .getColor(requireActivity(),
+                                                      R.color.colorPrimary))
+
+                              practiceRecycleView.visibility = GONE
+                              addPracticeTypeTextView.visibility = GONE
+                            }
+                          })
+    
+    practiceChooserTextView
+    .setOnClickListener {view : View ->
       (view as AppCompatTextView)
       .let {practiceChooserTextView : AppCompatTextView ->
- 
+        
+        // TODO change compoundDrawable of practiceChooserTextView
+        practiceChooserTextView.text = "Не выбрано"
+        practiceChooserTextView
+        .setTextColor(ContextCompat
+                      .getColor(requireActivity(),
+                                R.color.transparent))
+        
         practiceRecycleView.visibility = VISIBLE
         addPracticeTypeTextView.visibility = VISIBLE
       }
     }
-  
-  val stressLevelSeekBar : AppCompatSeekBar =
-    view.findViewById(R.id.stressLevelSeekBar)
-  
-  val stressLevelTextView : TextView =
-    view.findViewById(R.id.stressLevelTextView)
-  
-  val onSeekBarChangeListener =
-    object : SeekBar.OnSeekBarChangeListener
-    {
-      override fun onStartTrackingTouch(seekBar : SeekBar?)
+    
+    val stressLevelSeekBar : AppCompatSeekBar =
+      view.findViewById(R.id.stressLevelSeekBar)
+    
+    val stressLevelTextView : TextView =
+      view.findViewById(R.id.stressLevelTextView)
+    
+    val onSeekBarChangeListener =
+      object : SeekBar.OnSeekBarChangeListener
       {
+        override fun onStartTrackingTouch(seekBar : SeekBar?)
+        {
+        }
+        
+        override fun onStopTrackingTouch(seekBar : SeekBar?)
+        {
+        }
+        
+        @SuppressLint("SetTextI18n")
+        override fun
+        onProgressChanged(seekBar : SeekBar?,
+                          progress : Int,
+                          fromUser : Boolean)
+        {
+          stressLevelTextView.text = "Уровень стресса: $progress%"
+        }
       }
-      
-      override fun onStopTrackingTouch(seekBar : SeekBar?)
-      {
-      }
-      
-      override fun
-      onProgressChanged(seekBar : SeekBar?,
-                        progress : Int,
-                        fromUser : Boolean)
-      {
-        stressLevelTextView.text = "Уровень стресса: $progress%"
-      }
-    }
-  
-  stressLevelSeekBar.setOnSeekBarChangeListener(onSeekBarChangeListener)
-  
-  stressLevelSeekBar.progressDrawable =
-  ContextCompat.getDrawable(activity as Context, R.drawable.stress_seekbar)
-  
-  return view
+    
+    stressLevelSeekBar.setOnSeekBarChangeListener(onSeekBarChangeListener)
+    
+    stressLevelSeekBar.progressDrawable =
+      ContextCompat.getDrawable(activity as Context, R.drawable.stress_seekbar)
+    
+    return view
   }
   
   override fun

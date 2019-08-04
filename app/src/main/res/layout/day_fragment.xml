@@ -165,6 +165,7 @@
       android:layout_marginLeft="22dp"
       android:layout_marginEnd="22dp"
       android:layout_marginRight="22dp"
+      android:paddingTop="8dp"
       android:textSize="14sp"
       android:textColor="@color/transparent"
       android:textStyle="normal"
