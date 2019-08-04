@@ -18,7 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.adapter.PracticeTypeAdapter
+import com.openyogaland.denis.dreamdiary.listener.OnCancelListener
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeAddedListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeItemClickListener
+import com.openyogaland.denis.dreamdiary.view.dialog.AddPracticeTypeDialog
 
 @Suppress("NAME_SHADOWING")
 public class
@@ -28,6 +31,9 @@ DayFragment : Fragment()
   private lateinit var practiceChooserTextView : AppCompatTextView
   private lateinit var practiceRecycleView : RecyclerView
   private lateinit var addPracticeTypeTextView : AppCompatTextView
+  
+  // dialog fields
+  private var addPracticeTypeDialog : AddPracticeTypeDialog? = null
   
   // practice fields
   private val practiceTypes = listOf("Хатха", "Крия", "Мантра", "Пранаяма")
@@ -46,25 +52,6 @@ DayFragment : Fragment()
     practiceChooserTextView = view.findViewById(R.id.practiceChooserTextView)
     practiceRecycleView = view.findViewById(R.id.practiceRecyclerView)
     addPracticeTypeTextView = view.findViewById(R.id.addPracticeTypeTextView)
-    
-    practiceRecycleView.layoutManager = LinearLayoutManager(context)
-    // list is shown, click on list item
-    practiceRecycleView.adapter =
-      PracticeTypeAdapter(practiceTypes,
-                          object : OnPracticeTypeItemClickListener
-                          {
-                            override fun
-                            onPracticeTypeItemClick(practiceType : String)
-                            {
-                              practiceChooserTextView
-                              .setTextColor(ContextCompat
-                                            .getColor(requireActivity(),
-                                                      R.color.colorPrimary))
-                              practiceChooserTextView.text = practiceType
-                              practiceRecycleView.visibility = GONE
-                              addPracticeTypeTextView.visibility = GONE
-                            }
-                          })
     
     practiceChooserTextView
     .setOnClickListener {view : View ->
@@ -90,6 +77,33 @@ DayFragment : Fragment()
             // TODO change compoundDrawable of practiceChooserTextView to arrayDown
           }
         }
+      }
+    }
+    
+    practiceRecycleView.layoutManager = LinearLayoutManager(context)
+    // list is shown, click on list item
+    practiceRecycleView.adapter =
+      PracticeTypeAdapter(practiceTypes,
+                          object : OnPracticeTypeItemClickListener
+                          {
+                            override fun
+                            onPracticeTypeItemClick(practiceType : String)
+                            {
+                              practiceChooserTextView
+                              .setTextColor(ContextCompat
+                                            .getColor(requireActivity(),
+                                                      R.color.colorPrimary))
+                              practiceChooserTextView.text = practiceType
+                              practiceRecycleView.visibility = GONE
+                              addPracticeTypeTextView.visibility = GONE
+                            }
+                          })
+    
+    addPracticeTypeTextView
+    .setOnClickListener {view : View ->
+      (view as AppCompatTextView)
+      .let {_ : AppCompatTextView ->
+        showAddPracticeTypeDialog()
       }
     }
     
@@ -128,10 +142,52 @@ DayFragment : Fragment()
     return view
   }
   
+  private fun
+  showAddPracticeTypeDialog()
+  {
+    addPracticeTypeDialog =
+      addPracticeTypeDialog
+      ?: AddPracticeTypeDialog()
+    
+    addPracticeTypeDialog
+    ?.let {addPracticeTypeDialog : AddPracticeTypeDialog ->
+      
+      addPracticeTypeDialog.isCancelable = true
+      
+      addPracticeTypeDialog.onCancelListener =
+        object : OnCancelListener
+        {
+          override fun
+          onCancel()
+          {
+            // TODO
+          }
+        }
+      
+      addPracticeTypeDialog.onPracticeTypeAddedListener =
+        object : OnPracticeTypeAddedListener
+        {
+          override fun
+          onPracticeTypeAdded(practiceType : String)
+          {
+            // TODO
+          }
+        }
+      
+      addPracticeTypeDialog.show(childFragmentManager,
+                                 ADD_PRACTICE_DIALOG)
+    }
+  }
+  
   override fun
   onActivityCreated(savedInstanceState : Bundle?)
   {
     super
     .onActivityCreated(savedInstanceState)
+  }
+  
+  companion object
+  {
+    const val ADD_PRACTICE_DIALOG = "add_practice_dialog"
   }
 }
