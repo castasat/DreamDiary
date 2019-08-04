@@ -48,6 +48,7 @@ DayFragment : Fragment()
     addPracticeTypeTextView = view.findViewById(R.id.addPracticeTypeTextView)
     
     practiceRecycleView.layoutManager = LinearLayoutManager(context)
+    // list is shown, click on list item
     practiceRecycleView.adapter =
       PracticeTypeAdapter(practiceTypes,
                           object : OnPracticeTypeItemClickListener
@@ -55,12 +56,11 @@ DayFragment : Fragment()
                             override fun
                             onPracticeTypeItemClick(practiceType : String)
                             {
-                              practiceChooserTextView.text = practiceType
                               practiceChooserTextView
                               .setTextColor(ContextCompat
                                             .getColor(requireActivity(),
                                                       R.color.colorPrimary))
-
+                              practiceChooserTextView.text = practiceType
                               practiceRecycleView.visibility = GONE
                               addPracticeTypeTextView.visibility = GONE
                             }
@@ -70,16 +70,26 @@ DayFragment : Fragment()
     .setOnClickListener {view : View ->
       (view as AppCompatTextView)
       .let {practiceChooserTextView : AppCompatTextView ->
-        
-        // TODO change compoundDrawable of practiceChooserTextView
-        practiceChooserTextView.text = "Не выбрано"
         practiceChooserTextView
         .setTextColor(ContextCompat
                       .getColor(requireActivity(),
                                 R.color.transparent))
-        
-        practiceRecycleView.visibility = VISIBLE
-        addPracticeTypeTextView.visibility = VISIBLE
+        practiceChooserTextView.text = "Не выбрано"
+        when(practiceRecycleView.visibility)
+        {
+          GONE    ->
+          {
+            practiceRecycleView.visibility = VISIBLE
+            addPracticeTypeTextView.visibility = VISIBLE
+            // TODO change compoundDrawable of practiceChooserTextView to arrayUp
+          }
+          VISIBLE ->
+          {
+            practiceRecycleView.visibility = GONE
+            addPracticeTypeTextView.visibility = GONE
+            // TODO change compoundDrawable of practiceChooserTextView to arrayDown
+          }
+        }
       }
     }
     
