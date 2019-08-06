@@ -2,19 +2,21 @@ package com.openyogaland.denis.dreamdiary.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil.calculateDiff
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.openyogaland.denis.dreamdiary.R
+import com.openyogaland.denis.dreamdiary.diffutil.PracticeTypeDiffCallback
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeItemClickListener
 import com.openyogaland.denis.dreamdiary.view.viewholder.PracticeTypeViewHolder
 
 class
-PracticeTypeAdapter(private var practiceTypes : List<String>,
+PracticeTypeAdapter(private var practiceTypes : MutableList<String>,
                     private var onPracticeTypeItemClickListener
                     : OnPracticeTypeItemClickListener)
   : Adapter<PracticeTypeViewHolder>()
 {
   // fields
-  val itemViewType : Int = 0
+  private val itemViewType : Int = 0
   
   fun
   addPracticeType(practiceType : String)
@@ -78,5 +80,19 @@ PracticeTypeAdapter(private var practiceTypes : List<String>,
   getItemCount() : Int
   {
     return practiceTypes.size
+  }
+  
+  fun
+  updatePracticeTypeListItems(practiceTypes : List<String>)
+  {
+    val practiceTypesDiffCallback =
+      PracticeTypeDiffCallback(this.practiceTypes,
+                               practiceTypes)
+    
+    val diffResult = calculateDiff(practiceTypesDiffCallback)
+    
+    this.practiceTypes.clear()
+    this.practiceTypes.addAll(practiceTypes)
+    diffResult.dispatchUpdatesTo(this)
   }
 }

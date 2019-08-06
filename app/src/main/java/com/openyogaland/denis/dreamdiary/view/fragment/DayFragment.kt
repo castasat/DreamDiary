@@ -14,20 +14,30 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.adapter.PracticeTypeAdapter
 import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.listener.OnCancelListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeAddedListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeItemClickListener
+import com.openyogaland.denis.dreamdiary.model.Practice
 import com.openyogaland.denis.dreamdiary.view.dialog.AddPracticeTypeDialog
+import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
+import com.openyogaland.denis.dreamdiary.viewmodel.DayViewModel
 
 @Suppress("NAME_SHADOWING")
 public class
 DayFragment : Fragment()
 {
+  // architecture fields
+  private lateinit var activityViewModel : ActivityViewModel
+  private lateinit var dayViewModel : DayViewModel
+  
   // view fields
   private lateinit var practiceChooserTextView : AppCompatTextView
   private lateinit var practiceRecycleView : RecyclerView
@@ -37,7 +47,9 @@ DayFragment : Fragment()
   private var addPracticeTypeDialog : AddPracticeTypeDialog? = null
   
   // practice fields
-  private val practiceTypes = listOf("Хатха", "Крия", "Мантра", "Пранаяма")
+  private val practiceTypes =
+    listOf("Хатха", "Крия", "Мантра", "Пранаяма")
+    .toMutableList()
   
   override fun
   onCreateView(inflater : LayoutInflater,
@@ -49,6 +61,16 @@ DayFragment : Fragment()
       .inflate(R.layout.day_fragment,
                container,
                false)
+    
+    activityViewModel =
+      ViewModelProviders
+      .of(requireActivity())
+      .get(ActivityViewModel::class.java)
+    
+    dayViewModel =
+      ViewModelProviders
+      .of(this)
+      .get(DayViewModel::class.java)
     
     practiceChooserTextView = view.findViewById(R.id.practiceChooserTextView)
     practiceRecycleView = view.findViewById(R.id.practiceRecyclerView)
@@ -82,7 +104,7 @@ DayFragment : Fragment()
     }
     
     practiceRecycleView.layoutManager = LinearLayoutManager(context)
-    // list is shown, click on list item
+    
     practiceRecycleView.adapter =
       PracticeTypeAdapter(practiceTypes,
                           object : OnPracticeTypeItemClickListener
@@ -107,6 +129,26 @@ DayFragment : Fragment()
         showAddPracticeTypeDialog()
       }
     }
+    
+    dayViewModel
+    .loadPracticeTypes()
+    .observe(this,
+             Observer<List<Practice>>
+             {practices : List<Practice> ->
+               practices
+               .map {practice : Practice ->
+                 practice.practiceType
+               }
+               .let {practiceTypes : List<String> ->
+                 practiceRecycleView
+                 .adapter
+                 ?.let {adapter: RecyclerView.Adapter<ViewHolder> ->
+                   
+                   (adapter as PracticeTypeAdapter)
+                   .updatePracticeTypeListItems(practiceTypes)
+                 }
+               }
+             })
     
     val stressLevelSeekBar : AppCompatSeekBar =
       view.findViewById(R.id.stressLevelSeekBar)
@@ -161,7 +203,6 @@ DayFragment : Fragment()
           override fun
           onCancel()
           {
-            // TODO do something on dialog cancel
             log("DayFragment.showAddPracticeTypeDialog(): " +
                 "canceled")
           }
@@ -173,9 +214,9 @@ DayFragment : Fragment()
           override fun
           onPracticeTypeAdded(practiceType : String)
           {
-            //TODO do something on practice type added
             log("DayFragment.showAddPracticeTypeDialog(): " +
                 "practiceType = $practiceType")
+            dayViewModel.addPracticeType(practiceType)
           }
         }
       

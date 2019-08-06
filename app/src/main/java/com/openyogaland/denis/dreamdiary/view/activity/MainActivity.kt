@@ -21,15 +21,12 @@ public class
 MainActivity : AppCompatActivity()
 {
   private lateinit var navController : NavController
-  
   private lateinit var activityViewModel : ActivityViewModel
   
   override fun
   onCreate(savedInstanceState : Bundle?)
   {
-    super
-    .onCreate(savedInstanceState)
-    
+    super.onCreate(savedInstanceState)
     setContentView(layout.activity_main)
     
     activityViewModel =
