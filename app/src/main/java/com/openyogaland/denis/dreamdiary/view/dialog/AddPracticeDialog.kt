@@ -53,6 +53,7 @@ AddPracticeDialog : AppCompatDialogFragment()
     .setOnEditorActionListener {_ : TextView,
                                 actionId : Int,
                                 keyEvent : KeyEvent? ->
+      
       if(actionId == IME_ACTION_DONE ||
          keyEvent?.action == ACTION_DOWN &&
          keyEvent.keyCode == KEYCODE_ENTER)

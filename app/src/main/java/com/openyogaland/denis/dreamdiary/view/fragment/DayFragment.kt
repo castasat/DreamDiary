@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,8 +28,7 @@ import com.openyogaland.denis.dreamdiary.model.Practice
 import com.openyogaland.denis.dreamdiary.view.dialog.AddPracticeDialog
 import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
 import com.openyogaland.denis.dreamdiary.viewmodel.DayViewModel
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.day_fragment.*
 
 @Suppress("NAME_SHADOWING")
 public class
@@ -45,9 +45,6 @@ DayFragment : Fragment()
   // architecture fields
   private lateinit var activityViewModel : ActivityViewModel
   private lateinit var dayViewModel : DayViewModel
-  
-  // reactive fields
-  private val compositeDisposable = CompositeDisposable()
   
   override fun
   onCreateView(inflater : LayoutInflater,
@@ -133,8 +130,14 @@ DayFragment : Fragment()
     .downloadAllPractices()
     .observe(this,
              Observer<List<Practice>>
-             {
-             
+             {practices : List<Practice> ->
+               (practiceRecyclerView.adapter as PracticeAdapter)
+               .let {practiceAdapter : PracticeAdapter ->
+                 
+                 practiceAdapter.practices.clear()
+                 practiceAdapter.addPractices(practices)
+                 practiceAdapter.notifyDataSetChanged()
+               }
              })
     
     val stressLevelSeekBar : AppCompatSeekBar =
@@ -217,12 +220,6 @@ DayFragment : Fragment()
   {
     super
     .onActivityCreated(savedInstanceState)
-  }
-  
-  private fun
-  utilizeDisposable(disposableToUtilize : Disposable)
-  {
-    compositeDisposable.add(disposableToUtilize)
   }
   
   companion object

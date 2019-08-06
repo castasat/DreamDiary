@@ -9,18 +9,19 @@ import com.openyogaland.denis.dreamdiary.model.Practice
 import com.openyogaland.denis.dreamdiary.view.viewholder.PracticeViewHolder
 
 class
-PracticeAdapter(private var practices : ArrayList<Practice>,
+PracticeAdapter(var practices : ArrayList<Practice>,
                 private var onPracticeItemClickListener
-                    : OnPracticeItemClickListener)
+                : OnPracticeItemClickListener)
   : Adapter<PracticeViewHolder>()
 {
   // fields
   private val itemViewType : Int = 0
   
   fun
-  addPractice(practice : Practice)
+  addPractices(practices : List<Practice>)
   {
-    practices.add(practice)
+    this.practices
+    .addAll(practices)
   }
   
   private fun

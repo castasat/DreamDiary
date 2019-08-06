@@ -7,7 +7,6 @@ import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.database.dao.DayDao
 import com.openyogaland.denis.dreamdiary.database.dao.PracticeDao
 import com.openyogaland.denis.dreamdiary.model.Practice
-import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -22,7 +21,7 @@ DayViewModel(application : Application)
   private lateinit var dayDao : DayDao
   
   // live data fields
-  var allPracticesLiveData = MutableLiveData<List<Practice>>()
+  private var allPracticesLiveData = MutableLiveData<List<Practice>>()
   
   // reactive fields
   private val compositeDisposable = CompositeDisposable()
@@ -46,22 +45,27 @@ DayViewModel(application : Application)
   fun
   addPractice(practice : Practice)
   {
-    utilizeDisposable(Completable
-                      .fromAction {
+    utilizeDisposable(Flowable
+                      .fromCallable {
                         practiceDao.insert(practice)
+                        practiceDao.getAll()
                       }
                       .subscribeOn(Schedulers.io())
                       .observeOn(Schedulers.io())
-                      .subscribe(
-                        {
-                          log("DayViewModel.addPractice(): " +
-                              "completed")
-                        },
-                        {throwable : Throwable ->
-                          log("DayViewModel.addPractice(): " +
-                              "throwable = $throwable")
-                          throwable.printStackTrace()
-                        }
+                      .subscribe({practices : List<Practice> ->
+                                   allPracticesLiveData
+                                   .postValue(practices)
+                                 },
+                                 {throwable : Throwable ->
+                                   log("DayViewModel" +
+                                       ".addPractice(): " +
+                                       "throwable = $throwable")
+                                   throwable.printStackTrace()
+                                 },
+                                 {
+                                   log("DayViewModel.addPractice(): " +
+                                       "completed")
+                                 }
                       ))
   }
   
