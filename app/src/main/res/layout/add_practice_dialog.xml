@@ -8,7 +8,7 @@
   android:layout_height="match_parent">
   
   <androidx.appcompat.widget.AppCompatEditText
-    android:id="@+id/addPracticeTypeEditText"
+    android:id="@+id/addPracticeEditText"
     android:layout_width="245dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
@@ -28,7 +28,7 @@
     android:gravity="start"/>
   
   <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/addPracticeTypeButton"
+    android:id="@+id/addPracticeButton"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingTop="16dp"

@@ -4,15 +4,12 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "dream_table")
 @Parcelize
 data class Dream(
-  
-  @PrimaryKey
-  @ColumnInfo(name = "dream_id")
-  var dreamId : Long,
   
   @ColumnInfo(name = "date")
   var date : String,
@@ -35,6 +32,12 @@ data class Dream(
   @ColumnInfo(name = "lucid_dream")
   var lucidDream : Boolean,
   
-  @ColumnInfo(name = "emotiona")
+  @ColumnInfo(name = "emotions")
   var emotions : String
 ) : Parcelable
+{
+  @IgnoredOnParcel
+  @PrimaryKey(autoGenerate = true)
+  @ColumnInfo(name = "dream_id")
+  var dreamId : Long = 0
+}
