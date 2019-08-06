@@ -21,8 +21,8 @@ DayViewModel(application : Application)
   private lateinit var practiceDao : PracticeDao
   private lateinit var dayDao : DayDao
   
-  // liveData database fields
-  var practicesLiveData = MutableLiveData<List<Practice>>()
+  // live data fields
+  var allPracticesLiveData = MutableLiveData<List<Practice>>()
   
   // reactive fields
   private val compositeDisposable = CompositeDisposable()
@@ -36,32 +36,37 @@ DayViewModel(application : Application)
   override fun
   initializeRoomDatabase()
   {
-    super.initializeRoomDatabase()
+    super
+    .initializeRoomDatabase()
     
     practiceDao = dreamDiaryRoomDatabase.practiceDao()
     dayDao = dreamDiaryRoomDatabase.dayDao()
   }
   
   fun
-  addPracticeType(practiceType : String)
+  addPractice(practice : Practice)
   {
     utilizeDisposable(Completable
                       .fromAction {
-                        practiceDao.insert(Practice(0, practiceType))
+                        practiceDao.insert(practice)
                       }
                       .subscribeOn(Schedulers.io())
                       .observeOn(Schedulers.io())
-                      .subscribe({
-                                   log("DayViewModel.addPracticeType(): completed")
-                                 },
-                                 {throwable : Throwable ->
-                                   log("DayViewModel.addPracticeType(): $throwable")
-                                   throwable.printStackTrace()
-                                 }))
+                      .subscribe(
+                        {
+                          log("DayViewModel.addPractice(): " +
+                              "completed")
+                        },
+                        {throwable : Throwable ->
+                          log("DayViewModel.addPractice(): " +
+                              "throwable = $throwable")
+                          throwable.printStackTrace()
+                        }
+                      ))
   }
   
   fun
-  loadPracticeTypes() : LiveData<List<Practice>>
+  downloadAllPractices() : LiveData<List<Practice>>
   {
     utilizeDisposable(Flowable
                       .fromCallable {
@@ -70,17 +75,18 @@ DayViewModel(application : Application)
                       .subscribeOn(Schedulers.io())
                       .observeOn(Schedulers.io())
                       .subscribe({practices : List<Practice> ->
-                                   practicesLiveData
-                                   .postValue(practices)
+                                   allPracticesLiveData.postValue(practices)
                                  },
                                  {throwable : Throwable ->
-                                   log("DayViewModel.loadPracticeTypes(): $throwable")
+                                   log("DayViewModel.downloadAllPractices(): " +
+                                       "throwable = $throwable")
                                    throwable.printStackTrace()
                                  },
                                  {
-                                   log("DayViewModel.loadPracticeTypes(): completed")
+                                   log("DayViewModel.downloadAllPractices(): " +
+                                       "completed")
                                  }))
-    return practicesLiveData
+    return allPracticesLiveData
   }
   
   private fun

@@ -14,42 +14,40 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.openyogaland.denis.dreamdiary.R
-import com.openyogaland.denis.dreamdiary.adapter.PracticeTypeAdapter
+import com.openyogaland.denis.dreamdiary.adapter.PracticeAdapter
 import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.listener.OnCancelListener
-import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeAddedListener
-import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeItemClickListener
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeAddedListener
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemClickListener
 import com.openyogaland.denis.dreamdiary.model.Practice
-import com.openyogaland.denis.dreamdiary.view.dialog.AddPracticeTypeDialog
+import com.openyogaland.denis.dreamdiary.view.dialog.AddPracticeDialog
 import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
 import com.openyogaland.denis.dreamdiary.viewmodel.DayViewModel
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 @Suppress("NAME_SHADOWING")
 public class
 DayFragment : Fragment()
 {
-  // architecture fields
-  private lateinit var activityViewModel : ActivityViewModel
-  private lateinit var dayViewModel : DayViewModel
-  
   // view fields
   private lateinit var practiceChooserTextView : AppCompatTextView
   private lateinit var practiceRecycleView : RecyclerView
   private lateinit var addPracticeTypeTextView : AppCompatTextView
   
   // dialog fields
-  private var addPracticeTypeDialog : AddPracticeTypeDialog? = null
+  private var addPracticeDialog : AddPracticeDialog? = null
   
-  // practice fields
-  private val practiceTypes =
-    listOf("Хатха", "Крия", "Мантра", "Пранаяма")
-    .toMutableList()
+  // architecture fields
+  private lateinit var activityViewModel : ActivityViewModel
+  private lateinit var dayViewModel : DayViewModel
+  
+  // reactive fields
+  private val compositeDisposable = CompositeDisposable()
   
   override fun
   onCreateView(inflater : LayoutInflater,
@@ -103,51 +101,40 @@ DayFragment : Fragment()
       }
     }
     
-    practiceRecycleView.layoutManager = LinearLayoutManager(context)
-    
+    practiceRecycleView.layoutManager =
+      LinearLayoutManager(context)
+    // list is shown, click on list item
     practiceRecycleView.adapter =
-      PracticeTypeAdapter(practiceTypes,
-                          object : OnPracticeTypeItemClickListener
-                          {
-                            override fun
-                            onPracticeTypeItemClick(practiceType : String)
-                            {
-                              practiceChooserTextView
-                              .setTextColor(ContextCompat
-                                            .getColor(requireActivity(),
-                                                      R.color.colorPrimary))
-                              practiceChooserTextView.text = practiceType
-                              practiceRecycleView.visibility = GONE
-                              addPracticeTypeTextView.visibility = GONE
-                            }
-                          })
+      PracticeAdapter(ArrayList<Practice>(PRACTICE_TYPES_INITIAL_CAPACITY),
+                      object : OnPracticeItemClickListener
+                      {
+                        override fun
+                        onPracticeItemClick(practice : Practice)
+                        {
+                          practiceChooserTextView
+                          .setTextColor(ContextCompat
+                                        .getColor(requireActivity(),
+                                                  R.color.colorPrimary))
+                          practiceChooserTextView.text = practice.practiceType
+                          practiceRecycleView.visibility = GONE
+                          addPracticeTypeTextView.visibility = GONE
+                        }
+                      })
     
     addPracticeTypeTextView
     .setOnClickListener {view : View ->
       (view as AppCompatTextView)
       .let {_ : AppCompatTextView ->
-        showAddPracticeTypeDialog()
+        showAddPracticeDialog()
       }
     }
     
     dayViewModel
-    .loadPracticeTypes()
+    .downloadAllPractices()
     .observe(this,
              Observer<List<Practice>>
-             {practices : List<Practice> ->
-               practices
-               .map {practice : Practice ->
-                 practice.practiceType
-               }
-               .let {practiceTypes : List<String> ->
-                 practiceRecycleView
-                 .adapter
-                 ?.let {adapter: RecyclerView.Adapter<ViewHolder> ->
-                   
-                   (adapter as PracticeTypeAdapter)
-                   .updatePracticeTypeListItems(practiceTypes)
-                 }
-               }
+             {
+             
              })
     
     val stressLevelSeekBar : AppCompatSeekBar =
@@ -186,42 +173,42 @@ DayFragment : Fragment()
   }
   
   private fun
-  showAddPracticeTypeDialog()
+  showAddPracticeDialog()
   {
-    addPracticeTypeDialog =
-      addPracticeTypeDialog
-      ?: AddPracticeTypeDialog()
+    addPracticeDialog =
+      addPracticeDialog
+      ?: AddPracticeDialog()
     
-    addPracticeTypeDialog
-    ?.let {addPracticeTypeDialog : AddPracticeTypeDialog ->
+    addPracticeDialog
+    ?.let {addPracticeDialog : AddPracticeDialog ->
       
-      addPracticeTypeDialog.isCancelable = true
+      addPracticeDialog.isCancelable = true
       
-      addPracticeTypeDialog.onCancelListener =
+      addPracticeDialog.onCancelListener =
         object : OnCancelListener
         {
           override fun
           onCancel()
           {
-            log("DayFragment.showAddPracticeTypeDialog(): " +
+            log("DayFragment.showAddPracticeDialog(): " +
                 "canceled")
           }
         }
       
-      addPracticeTypeDialog.onPracticeTypeAddedListener =
-        object : OnPracticeTypeAddedListener
+      addPracticeDialog.onPracticeAddedListener =
+        object : OnPracticeAddedListener
         {
           override fun
-          onPracticeTypeAdded(practiceType : String)
+          onPracticeAdded(practice : Practice)
           {
-            log("DayFragment.showAddPracticeTypeDialog(): " +
-                "practiceType = $practiceType")
-            dayViewModel.addPracticeType(practiceType)
+            log("DayFragment.showAddPracticeDialog(): " +
+                "practice = $practice")
+            dayViewModel.addPractice(practice)
           }
         }
       
-      addPracticeTypeDialog.show(childFragmentManager,
-                                 ADD_PRACTICE_DIALOG)
+      addPracticeDialog.show(childFragmentManager,
+                             ADD_PRACTICE_DIALOG)
     }
   }
   
@@ -232,8 +219,15 @@ DayFragment : Fragment()
     .onActivityCreated(savedInstanceState)
   }
   
+  private fun
+  utilizeDisposable(disposableToUtilize : Disposable)
+  {
+    compositeDisposable.add(disposableToUtilize)
+  }
+  
   companion object
   {
     const val ADD_PRACTICE_DIALOG = "add_practice_dialog"
+    const val PRACTICE_TYPES_INITIAL_CAPACITY = 8
   }
 }

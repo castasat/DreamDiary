@@ -22,17 +22,18 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.listener.OnCancelListener
-import com.openyogaland.denis.dreamdiary.listener.OnPracticeTypeAddedListener
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeAddedListener
+import com.openyogaland.denis.dreamdiary.model.Practice
 
 @Suppress("NAME_SHADOWING")
 class
-AddPracticeTypeDialog : AppCompatDialogFragment()
+AddPracticeDialog : AppCompatDialogFragment()
 {
   // view fields
-  private lateinit var addPracticeTypeEditText : AppCompatEditText
-  private lateinit var addPracticeTypeButton : AppCompatTextView
+  private lateinit var addPracticeEditText : AppCompatEditText
+  private lateinit var addPracticeButton : AppCompatTextView
   
-  var onPracticeTypeAddedListener : OnPracticeTypeAddedListener? = null
+  var onPracticeAddedListener : OnPracticeAddedListener? = null
   var onCancelListener : OnCancelListener? = null
   
   override fun
@@ -41,14 +42,14 @@ AddPracticeTypeDialog : AppCompatDialogFragment()
                savedInstanceState : Bundle?) : View
   {
     val view = inflater
-    .inflate(R.layout.add_practice_type_dialog,
+    .inflate(R.layout.add_practice_dialog,
              container,
              false)
     
-    addPracticeTypeEditText = view.findViewById(R.id.addPracticeTypeEditText)
-    addPracticeTypeButton = view.findViewById(R.id.addPracticeTypeButton)
+    addPracticeEditText = view.findViewById(R.id.addPracticeEditText)
+    addPracticeButton = view.findViewById(R.id.addPracticeButton)
     
-    addPracticeTypeEditText
+    addPracticeEditText
     .setOnEditorActionListener {_ : TextView,
                                 actionId : Int,
                                 keyEvent : KeyEvent? ->
@@ -56,7 +57,7 @@ AddPracticeTypeDialog : AppCompatDialogFragment()
          keyEvent?.action == ACTION_DOWN &&
          keyEvent.keyCode == KEYCODE_ENTER)
       {
-        addPracticeType()
+        addPractice()
         dialog?.dismiss()
         true
       }
@@ -66,9 +67,9 @@ AddPracticeTypeDialog : AppCompatDialogFragment()
       }
     }
     
-    addPracticeTypeButton
+    addPracticeButton
     .setOnClickListener {_ : View ->
-      addPracticeType()
+      addPractice()
       dialog?.dismiss()
     }
     
@@ -83,14 +84,14 @@ AddPracticeTypeDialog : AppCompatDialogFragment()
   }
   
   private fun
-  addPracticeType()
+  addPractice()
   {
-    addPracticeTypeEditText
+    addPracticeEditText
     .text
     ?.toString()
     ?.let {practiceType : String ->
-      onPracticeTypeAddedListener
-      ?.onPracticeTypeAdded(practiceType)
+      onPracticeAddedListener
+      ?.onPracticeAdded(Practice(practiceType))
     }
   }
   
