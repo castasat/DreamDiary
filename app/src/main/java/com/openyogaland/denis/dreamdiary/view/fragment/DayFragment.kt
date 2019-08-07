@@ -86,13 +86,21 @@ DayFragment : Fragment()
           {
             practiceRecycleView.visibility = VISIBLE
             addPracticeTypeTextView.visibility = VISIBLE
-            // TODO change compoundDrawable of practiceChooserTextView to arrayUp
+            practiceChooserTextView
+            .setCompoundDrawablesWithIntrinsicBounds(0,
+                                                     0,
+                                                     R.drawable.arrow_up,
+                                                     0)
           }
           VISIBLE ->
           {
             practiceRecycleView.visibility = GONE
             addPracticeTypeTextView.visibility = GONE
-            // TODO change compoundDrawable of practiceChooserTextView to arrayDown
+            practiceChooserTextView
+            .setCompoundDrawablesWithIntrinsicBounds(0,
+                                                     0,
+                                                     R.drawable.arrow_down,
+                                                     0)
           }
         }
       }
