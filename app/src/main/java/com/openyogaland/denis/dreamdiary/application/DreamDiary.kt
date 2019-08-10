@@ -14,7 +14,6 @@ import com.splunk.mint.Mint.setApplicationEnvironment
 import com.splunk.mint.Mint.setLogging
 import io.reactivex.Completable
 import io.reactivex.disposables.Disposable
-import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.annotations.NonNls
 
@@ -42,16 +41,17 @@ DreamDiary : MultiDexApplication()
     mintDisposable =
       Completable
       .fromAction {
-        initAndStartSession(this,"060d5e82")
+        initAndStartSession(this, "060d5e82")
       }
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.io())
-      .subscribeBy(onError =
-                   {throwable : Throwable ->
-                     throwable
-                     .printStackTrace()
-                   },
-                   onComplete = {})
+      .subscribe({
+        log("DreamDiary.onCreate(): completed")
+                 },
+                 {throwable : Throwable ->
+                   throwable
+                   .printStackTrace()
+                 })
   }
   
   override fun
@@ -69,9 +69,10 @@ DreamDiary : MultiDexApplication()
   
   companion object DreamDiary
   {
-    @JvmStatic @NonNls
+    @JvmStatic
+    @NonNls
     val NAME_UNKNOWN = "name and where to find - unknown"
-  
+    
     @JvmStatic
     fun log(@NonNls text : String?)
     {
@@ -101,7 +102,7 @@ DreamDiary : MultiDexApplication()
         }
       }
     }
-  
+    
     @JvmStatic
     fun checkNN(beingChecked : Any?,
                 @NonNls what : String?) : Boolean
