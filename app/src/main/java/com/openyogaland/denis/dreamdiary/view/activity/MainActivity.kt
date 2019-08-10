@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -30,9 +30,8 @@ MainActivity : AppCompatActivity()
     setContentView(layout.activity_main)
     
     activityViewModel =
-    ViewModelProviders
-    .of(this)
-    .get(ActivityViewModel::class.java)
+      ViewModelProvider(this)
+      .get(ActivityViewModel::class.java)
     
     navController =
       findNavController(this,
@@ -61,11 +60,11 @@ MainActivity : AppCompatActivity()
       AppBarConfiguration(navController.graph)
     
     titleTextView
-    .setOnClickListener{_ : View ->
+    .setOnClickListener {_ : View ->
       navigateUp(navController,
                  appBarConfiguration)
     }
-  
+    
     navController
     .addOnDestinationChangedListener(TitleNavigationListener(titleTextView,
                                                              toolbar))

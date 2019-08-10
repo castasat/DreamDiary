@@ -15,7 +15,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.openyogaland.denis.dreamdiary.R
@@ -58,13 +58,11 @@ DayFragment : Fragment()
                false)
     
     activityViewModel =
-      ViewModelProviders
-      .of(requireActivity())
+      ViewModelProvider(requireActivity())
       .get(ActivityViewModel::class.java)
     
     dayViewModel =
-      ViewModelProviders
-      .of(this)
+      ViewModelProvider(this)
       .get(DayViewModel::class.java)
     
     practiceChooserTextView = view.findViewById(R.id.practiceChooserTextView)
@@ -106,8 +104,7 @@ DayFragment : Fragment()
       }
     }
     
-    practiceRecycleView.layoutManager =
-      LinearLayoutManager(context)
+    practiceRecycleView.layoutManager = LinearLayoutManager(context)
     // list is shown, click on list item
     practiceRecycleView.adapter =
       PracticeAdapter(ArrayList<Practice>(PRACTICE_TYPES_INITIAL_CAPACITY),
@@ -141,7 +138,7 @@ DayFragment : Fragment()
              {practices : List<Practice> ->
                (practiceRecyclerView.adapter as PracticeAdapter)
                .let {practiceAdapter : PracticeAdapter ->
-                 
+        
                  practiceAdapter.practices.clear()
                  practiceAdapter.addPractices(practices)
                  practiceAdapter.notifyDataSetChanged()

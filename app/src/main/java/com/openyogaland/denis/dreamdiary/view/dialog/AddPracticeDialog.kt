@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import android.graphics.Color.TRANSPARENT
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Editable
 import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.KeyEvent.ACTION_DOWN
