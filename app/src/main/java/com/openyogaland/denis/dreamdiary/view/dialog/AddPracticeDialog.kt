@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.graphics.Color.TRANSPARENT
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
 import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.KeyEvent.ACTION_DOWN
@@ -48,6 +49,8 @@ AddPracticeDialog : AppCompatDialogFragment()
     
     addPracticeEditText = view.findViewById(R.id.addPracticeEditText)
     addPracticeButton = view.findViewById(R.id.addPracticeButton)
+    
+    clear(addPracticeEditText)
     
     addPracticeEditText
     .setOnEditorActionListener {_ : TextView,
@@ -146,5 +149,11 @@ AddPracticeDialog : AppCompatDialogFragment()
   {
     onCancelListener?.onCancel()
     dialog.dismiss()
+  }
+  
+  private fun
+  clear(editText : AppCompatEditText)
+  {
+    editText.text?.clear()
   }
 }
