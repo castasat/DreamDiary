@@ -137,7 +137,6 @@ dependencies {
     implementation 'androidx.room:room-guava:2.2.0-alpha02'
     implementation 'androidx.room:room-ktx:2.2.0-alpha02'
     implementation 'androidx.room:room-rxjava2:2.2.0-alpha02'
-
     //implementation "android.arch.paging:runtime:1.0.1"
 
     // JSON conversion groovy library
@@ -191,7 +190,7 @@ dependencies {
     // instrumental test libraries
     //androidTestImplementation 'androidx.test:runner:1.3.0-alpha01'
     //androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha01'
-    androidTestImplementation 'androidx.room:room-testing:2.2.0-alpha02'
+    androidTestImplementation "androidx.room:room-testing:2.2.0-alpha02"
 
     // leak detection
     //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'

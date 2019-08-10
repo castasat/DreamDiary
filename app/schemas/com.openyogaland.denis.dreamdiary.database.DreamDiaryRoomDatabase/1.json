@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0b59b9a816da79065fff9f98bb9f8c5a",
+    "identityHash": "d6ee6061f90c5ddc69a5cb9f6f063735",
     "entities": [
       {
         "tableName": "practice_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`practice_id` INTEGER NOT NULL, `practice_type` TEXT NOT NULL, PRIMARY KEY(`practice_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`practice_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `practice_type` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "practiceId",
@@ -25,14 +25,14 @@
           "columnNames": [
             "practice_id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
       },
       {
         "tableName": "day_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`day_id` INTEGER NOT NULL, `date` TEXT NOT NULL, `moon_phase_day` INTEGER NOT NULL, `practice_type` TEXT NOT NULL, `practice_duration_minutes` INTEGER NOT NULL, `nutrition` TEXT NOT NULL, `events` TEXT NOT NULL, `stress_level` INTEGER NOT NULL, PRIMARY KEY(`day_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`day_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT NOT NULL, `moon_phase_day` INTEGER NOT NULL, `practice_type` TEXT NOT NULL, `practice_duration_minutes` INTEGER NOT NULL, `nutrition` TEXT NOT NULL, `events` TEXT NOT NULL, `stress_level` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "dayId",
@@ -87,14 +87,14 @@
           "columnNames": [
             "day_id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
       },
       {
         "tableName": "dream_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dream_id` INTEGER NOT NULL, `date` TEXT NOT NULL, `moon_phase_day` INTEGER NOT NULL, `practice` TEXT NOT NULL, `dream_description` TEXT NOT NULL, `anchor` TEXT NOT NULL, `dream_duration` TEXT NOT NULL, `lucid_dream` INTEGER NOT NULL, `emotiona` TEXT NOT NULL, PRIMARY KEY(`dream_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dream_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT NOT NULL, `moon_phase_day` INTEGER NOT NULL, `practice` TEXT NOT NULL, `dream_description` TEXT NOT NULL, `anchor` TEXT NOT NULL, `dream_duration` TEXT NOT NULL, `lucid_dream` INTEGER NOT NULL, `emotions` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "dreamId",
@@ -146,7 +146,7 @@
           },
           {
             "fieldPath": "emotions",
-            "columnName": "emotiona",
+            "columnName": "emotions",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -155,7 +155,7 @@
           "columnNames": [
             "dream_id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -164,7 +164,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0b59b9a816da79065fff9f98bb9f8c5a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd6ee6061f90c5ddc69a5cb9f6f063735')"
     ]
   }
 }
