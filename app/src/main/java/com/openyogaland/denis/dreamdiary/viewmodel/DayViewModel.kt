@@ -1,15 +1,12 @@
 package com.openyogaland.denis.dreamdiary.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.database.dao.DayDao
 import com.openyogaland.denis.dreamdiary.database.dao.PracticeDao
 import com.openyogaland.denis.dreamdiary.model.Practice
-import io.reactivex.Flowable
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import io.reactivex.processors.PublishProcessor
 import io.reactivex.schedulers.Schedulers
 
 class
@@ -21,15 +18,75 @@ DayViewModel(application : Application)
   private lateinit var dayDao : DayDao
   
   // live data fields
-  private var allPracticesLiveData = MutableLiveData<List<Practice>>()
+  var allPracticesLiveData = MutableLiveData<List<Practice>>()
   
-  // reactive fields
-  private val compositeDisposable = CompositeDisposable()
+  // reactive fields)
+  private val addPracticePublishProcessor = PublishProcessor.create<Practice>()
+  private val downloadAllPracticesPublishProcessor = PublishProcessor.create<Boolean>()
   
   init
   {
     initializeApplicationContext(application)
     initializeRoomDatabase()
+    observeAddPractice()
+    observeDownloadAllPractices()
+  }
+  
+  private fun
+  observeDownloadAllPractices()
+  {
+    utilizeDisposable(downloadAllPracticesPublishProcessor
+                      .subscribeOn(Schedulers.io())
+                      .observeOn(Schedulers.io())
+                      .switchMap {_ : Boolean ->
+                        practiceDao.getAll()
+                      }
+                      .subscribe({practices : List<Practice> ->
+                                   allPracticesLiveData.postValue(practices)
+                                 },
+                                 {throwable : Throwable ->
+                                   log("DayViewModel" +
+                                       ".observeDownloadAllPractices(): " +
+                                       "throwable = $throwable")
+                                   throwable.printStackTrace()
+                                 },
+                                 {
+                                   log("DayViewModel" +
+                                       ".observeDownloadAllPractices(): " +
+                                       "completed")
+                                 }))
+  }
+  
+  private fun
+  observeAddPractice()
+  {
+    log("DayViewModel.observeAddPractice")
+    
+    utilizeDisposable(addPracticePublishProcessor
+                      .subscribeOn(Schedulers.io())
+                      .observeOn(Schedulers.io())
+                      .switchMap {practice : Practice ->
+                        log("DayViewModel.observeAddPractice():" +
+                            "practice = $practice")
+                        practiceDao.insert(practice)
+                        practiceDao.getAll()
+                      }
+                      .subscribe({practices : List<Practice> ->
+                                   allPracticesLiveData
+                                   .postValue(practices)
+                                 },
+                                 {throwable : Throwable ->
+                                   log("DayViewModel" +
+                                       ".observeAddPractice(): " +
+                                       "throwable = $throwable")
+                                   throwable.printStackTrace()
+                                 },
+                                 {
+                                   log("DayViewModel" +
+                                       ".observeAddPractice(): " +
+                                       "completed")
+                                 }
+                      ))
   }
   
   override fun
@@ -37,7 +94,6 @@ DayViewModel(application : Application)
   {
     super
     .initializeRoomDatabase()
-    
     practiceDao = dreamDiaryRoomDatabase.practiceDao()
     dayDao = dreamDiaryRoomDatabase.dayDao()
   }
@@ -45,57 +101,14 @@ DayViewModel(application : Application)
   fun
   addPractice(practice : Practice)
   {
-    utilizeDisposable(Flowable
-                      .fromCallable {
-                        practiceDao.insert(practice)
-                        practiceDao.getAll()
-                      }
-                      .subscribeOn(Schedulers.io())
-                      .observeOn(Schedulers.io())
-                      .subscribe({practices : List<Practice> ->
-                                   allPracticesLiveData
-                                   .postValue(practices)
-                                 },
-                                 {throwable : Throwable ->
-                                   log("DayViewModel" +
-                                       ".addPractice(): " +
-                                       "throwable = $throwable")
-                                   throwable.printStackTrace()
-                                 },
-                                 {
-                                   log("DayViewModel.addPractice(): " +
-                                       "completed")
-                                 }
-                      ))
+    log("DayViewModel.addPractice(): " +
+        "practice = $practice")
+    addPracticePublishProcessor.onNext(practice)
   }
   
   fun
-  downloadAllPractices() : LiveData<List<Practice>>
+  downloadAllPractices()
   {
-    utilizeDisposable(Flowable
-                      .fromCallable {
-                        practiceDao.getAll()
-                      }
-                      .subscribeOn(Schedulers.io())
-                      .observeOn(Schedulers.io())
-                      .subscribe({practices : List<Practice> ->
-                                   allPracticesLiveData.postValue(practices)
-                                 },
-                                 {throwable : Throwable ->
-                                   log("DayViewModel.downloadAllPractices(): " +
-                                       "throwable = $throwable")
-                                   throwable.printStackTrace()
-                                 },
-                                 {
-                                   log("DayViewModel.downloadAllPractices(): " +
-                                       "completed")
-                                 }))
-    return allPracticesLiveData
-  }
-  
-  private fun
-  utilizeDisposable(disposableToUtilize : Disposable)
-  {
-    compositeDisposable.add(disposableToUtilize)
+    downloadAllPracticesPublishProcessor.onNext(true)
   }
 }

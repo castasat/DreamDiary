@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.openyogaland.denis.dreamdiary.model.Day
 import com.openyogaland.denis.dreamdiary.model.Practice
+import io.reactivex.Flowable
 
 @Dao
 interface
@@ -17,5 +18,5 @@ PracticeDao
   fun deleteAll()
   
   @Query("SELECT * FROM practice_table")
-  fun getAll() : List<Practice>
+  fun getAll() : Flowable<List<Practice>>
 }

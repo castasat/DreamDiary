@@ -132,7 +132,7 @@ DayFragment : Fragment()
     }
     
     dayViewModel
-    .downloadAllPractices()
+    .allPracticesLiveData
     .observe(this,
              Observer<List<Practice>>
              {practices : List<Practice> ->
@@ -176,6 +176,9 @@ DayFragment : Fragment()
     
     stressLevelSeekBar.progressDrawable =
       ContextCompat.getDrawable(activity as Context, R.drawable.stress_seekbar)
+    
+    dayViewModel
+    .downloadAllPractices()
     
     return view
   }
