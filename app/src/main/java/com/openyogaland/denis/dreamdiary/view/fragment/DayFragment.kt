@@ -10,6 +10,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
@@ -24,6 +25,7 @@ import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.listener.OnCancelListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeAddedListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemClickListener
+import com.openyogaland.denis.dreamdiary.model.Day
 import com.openyogaland.denis.dreamdiary.model.Practice
 import com.openyogaland.denis.dreamdiary.view.dialog.AddPracticeDialog
 import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
@@ -38,6 +40,7 @@ DayFragment : Fragment()
   private lateinit var practiceChooserTextView : AppCompatTextView
   private lateinit var practiceRecycleView : RecyclerView
   private lateinit var addPracticeTypeTextView : AppCompatTextView
+  private lateinit var saveDayButton : AppCompatButton
   
   // dialog fields
   private var addPracticeDialog : AddPracticeDialog? = null
@@ -68,6 +71,7 @@ DayFragment : Fragment()
     practiceChooserTextView = view.findViewById(R.id.practiceChooserTextView)
     practiceRecycleView = view.findViewById(R.id.practiceRecyclerView)
     addPracticeTypeTextView = view.findViewById(R.id.addPracticeTypeTextView)
+    saveDayButton = view.findViewById(R.id.saveDayButton)
     
     practiceChooserTextView
     .setOnClickListener {view : View ->
@@ -172,10 +176,29 @@ DayFragment : Fragment()
         }
       }
     
-    stressLevelSeekBar.setOnSeekBarChangeListener(onSeekBarChangeListener)
+    stressLevelSeekBar
+    .setOnSeekBarChangeListener(onSeekBarChangeListener)
     
     stressLevelSeekBar.progressDrawable =
       ContextCompat.getDrawable(activity as Context, R.drawable.stress_seekbar)
+    
+    saveDayButton
+    .setOnClickListener {_ : View ->
+      val day = Day()
+      
+      // TODO set day fields
+      
+      dayViewModel
+      .saveDay(day)
+    }
+    
+    dayViewModel
+    .currentDayLiveData
+    .observe(this,
+             Observer<Day>
+             {day : Day ->
+               // TODO restore day fields
+             })
     
     dayViewModel
     .downloadAllPractices()

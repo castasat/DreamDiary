@@ -127,6 +127,7 @@ AddPracticeDialog : AppCompatDialogFragment()
       {
         dialog.show()
       }
+      clear(addPracticeEditText)
     }
   }
   
