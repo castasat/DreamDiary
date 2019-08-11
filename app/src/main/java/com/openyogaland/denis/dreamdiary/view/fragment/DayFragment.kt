@@ -9,8 +9,8 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.SeekBar
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
@@ -37,9 +37,16 @@ public class
 DayFragment : Fragment()
 {
   // view fields
+  private lateinit var dateTextView : AppCompatTextView
+  private lateinit var cycleDayCountEditText : AppCompatEditText
   private lateinit var practiceChooserTextView : AppCompatTextView
   private lateinit var practiceRecycleView : RecyclerView
   private lateinit var addPracticeTypeTextView : AppCompatTextView
+  private lateinit var practiceMinutesEditText : AppCompatEditText
+  private lateinit var nutritionEditText : AppCompatEditText
+  private lateinit var eventsEditText : AppCompatEditText
+  private lateinit var stressLevelSeekBar : AppCompatSeekBar
+  private lateinit var stressLevelTextView : AppCompatTextView
   private lateinit var saveDayButton : AppCompatButton
   
   // dialog fields
@@ -68,9 +75,16 @@ DayFragment : Fragment()
       ViewModelProvider(this)
       .get(DayViewModel::class.java)
     
+    dateTextView = view.findViewById(R.id.dateTextView)
+    cycleDayCountEditText = view.findViewById(R.id.cycleDayCountEditText)
     practiceChooserTextView = view.findViewById(R.id.practiceChooserTextView)
     practiceRecycleView = view.findViewById(R.id.practiceRecyclerView)
+    practiceMinutesEditText = view.findViewById(R.id.practiceMinutesEditText)
     addPracticeTypeTextView = view.findViewById(R.id.addPracticeTypeTextView)
+    nutritionEditText = view.findViewById(R.id.nutritionEditText)
+    eventsEditText = view.findViewById(R.id.eventsEditText)
+    stressLevelSeekBar = view.findViewById(R.id.stressLevelSeekBar)
+    stressLevelTextView = view.findViewById(R.id.stressLevelTextView)
     saveDayButton = view.findViewById(R.id.saveDayButton)
     
     practiceChooserTextView
@@ -149,12 +163,6 @@ DayFragment : Fragment()
                }
              })
     
-    val stressLevelSeekBar : AppCompatSeekBar =
-      view.findViewById(R.id.stressLevelSeekBar)
-    
-    val stressLevelTextView : TextView =
-      view.findViewById(R.id.stressLevelTextView)
-    
     val onSeekBarChangeListener =
       object : SeekBar.OnSeekBarChangeListener
       {
@@ -186,7 +194,14 @@ DayFragment : Fragment()
     .setOnClickListener {_ : View ->
       val day = Day()
       
-      // TODO set day fields
+      day.date = dateTextView.text.toString()
+      // TODO set moon phase day
+      day.cycleDay = cycleDayCountEditText.text.toString()
+      day.practiceType = practiceChooserTextView.text.toString()
+      day.practiceDurationMinutes = practiceMinutesEditText.text.toString()
+      day.nutrition = nutritionEditText.text.toString()
+      day.events = eventsEditText.text.toString()
+      day.stressLevel = stressLevelTextView.text.toString()
       
       dayViewModel
       .saveDay(day)
@@ -198,6 +213,29 @@ DayFragment : Fragment()
              Observer<Day>
              {day : Day ->
                // TODO restore day fields
+               day.cycleDay?.let {cycleDay : String ->
+                 cycleDayCountEditText.setText(cycleDay)
+               }
+      
+               day.practiceType?.let {practiceType : String ->
+                 practiceChooserTextView.text = practiceType
+               }
+      
+               day.practiceDurationMinutes?.let {practiceDurationMinutes : String ->
+                 practiceMinutesEditText.setText(practiceDurationMinutes)
+               }
+      
+               day.nutrition?.let {nutrition : String ->
+                 nutritionEditText.setText(nutrition)
+               }
+      
+               day.events?.let {events : String ->
+                 eventsEditText.setText(events)
+               }
+      
+               day.stressLevel?.let {stressLevel : String ->
+                 stressLevelTextView.text = stressLevel
+               }
              })
     
     dayViewModel

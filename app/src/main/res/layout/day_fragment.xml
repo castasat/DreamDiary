@@ -32,7 +32,7 @@
     <!-- Cycle OR After Loss Count -->
     <!-- Cycle Label -->
     <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/afterLossTextView"
+      android:id="@+id/cycleDayTextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAllCaps="true"
@@ -47,16 +47,16 @@
       android:layout_marginRight="0dp"
       android:textColor="@color/colorPrimary"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toStartOf="@+id/daysAfterLossCountEditText"
+      app:layout_constraintEnd_toStartOf="@+id/cycleDayCountEditText"
       app:layout_constraintTop_toTopOf="@id/dateMoonBarrier"
-      app:layout_constraintBaseline_toBaselineOf="@id/daysAfterLossCountEditText"
+      app:layout_constraintBaseline_toBaselineOf="@id/cycleDayCountEditText"
       app:layout_constraintHorizontal_chainStyle="packed"
       android:text="День цикла: " />
     <!-- / Cycle Label -->
     
     <!-- Cycle count -->
     <androidx.appcompat.widget.AppCompatEditText
-      android:id="@+id/daysAfterLossCountEditText"
+      android:id="@+id/cycleDayCountEditText"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:inputType="number"
@@ -74,7 +74,7 @@
       android:gravity="center_horizontal"
       android:textColorHint="@color/colorPrimary"
       android:textColor="@color/colorPrimary"
-      app:layout_constraintStart_toEndOf="@+id/afterLossTextView"
+      app:layout_constraintStart_toEndOf="@+id/cycleDayTextView"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="@id/dateMoonBarrier"
       android:hint="0" />
@@ -87,7 +87,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:barrierDirection="bottom"
-      app:constraint_referenced_ids="afterLossTextView,daysAfterLossCountEditText" />
+      app:constraint_referenced_ids="cycleDayTextView,cycleDayCountEditText" />
     <!-- / Cycle OR After Loss Barrier -->
     
     <!-- Practice -->

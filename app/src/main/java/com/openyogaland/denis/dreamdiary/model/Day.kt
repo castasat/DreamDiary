@@ -10,17 +10,20 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "day_table")
 @Parcelize
 data class Day(
-  @ColumnInfo(name = "date")
+  @ColumnInfo(name = "dateTextView")
   var date : String?,
   
   @ColumnInfo(name = "moon_phase_day")
-  var moonPhaseDay : Int?,
+  var moonPhaseDay : String?,
+
+  @ColumnInfo(name = "cycle_day")
+  var cycleDay : String?,
   
   @ColumnInfo(name = "practice_type")
   var practiceType : String?,
   
   @ColumnInfo(name = "practice_duration_minutes")
-  var practiceDurationMinutes : Int?,
+  var practiceDurationMinutes : String?,
   
   @ColumnInfo(name = "nutrition")
   var nutrition : String?,
@@ -29,7 +32,7 @@ data class Day(
   var events : String?,
   
   @ColumnInfo(name = "stress_level")
-  var stressLevel : Int?
+  var stressLevel : String?
 ) : Parcelable
 {
   @IgnoredOnParcel
@@ -38,6 +41,7 @@ data class Day(
   var dayId : Long = 0
   
   constructor(): this(null,
+                      null,
                       null,
                       null,
                       null,

@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Dream(
   
-  @ColumnInfo(name = "date")
+  @ColumnInfo(name = "dateTextView")
   var date : String?,
   
   @ColumnInfo(name = "moon_phase_day")
