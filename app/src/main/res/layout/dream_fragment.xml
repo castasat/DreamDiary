@@ -305,7 +305,8 @@
         android:layout_weight="1"
         android:text="Осознание себя во сне" />
       
-      <CheckBox
+      <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/lucidDreamCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|end"
