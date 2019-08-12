@@ -18,9 +18,12 @@ DreamDao
   @Query("DELETE FROM dream_table")
   fun deleteAll()
   
-  @Query("SELECT * FROM dream_table ORDER BY dateTextView ASC")
+  @Query("SELECT * FROM dream_table ORDER BY date ASC")
   fun getAll() : Single<List<Dream>>
   
   @Query("SELECT * FROM dream_table WHERE dream_id = :dreamId")
   fun getDream(dreamId : Long) : Maybe<Dream>
+  
+  @Query("SELECT * FROM dream_table WHERE date LIKE :date")
+  fun getDream(date : String) : Maybe<Dream>
 }

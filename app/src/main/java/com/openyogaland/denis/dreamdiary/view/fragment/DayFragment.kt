@@ -27,9 +27,7 @@ import com.openyogaland.denis.dreamdiary.listener.OnPracticeAddedListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemClickListener
 import com.openyogaland.denis.dreamdiary.model.Day
 import com.openyogaland.denis.dreamdiary.model.Practice
-import com.openyogaland.denis.dreamdiary.view.activity.MainActivity
 import com.openyogaland.denis.dreamdiary.view.dialog.AddPracticeDialog
-import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
 import com.openyogaland.denis.dreamdiary.viewmodel.DayViewModel
 import kotlinx.android.synthetic.main.day_fragment.*
 
@@ -54,7 +52,8 @@ DayFragment : Fragment()
   private var addPracticeDialog : AddPracticeDialog? = null
   
   // architecture fields
-  private lateinit var activityViewModel : ActivityViewModel
+  /* TODO enable if needed
+  private lateinit var activityViewModel : ActivityViewModel*/
   private lateinit var dayViewModel : DayViewModel
   
   override fun
@@ -68,9 +67,10 @@ DayFragment : Fragment()
                container,
                false)
     
+    /* TODO enable if needed
     activityViewModel =
       ViewModelProvider(requireActivity() as MainActivity)
-      .get(ActivityViewModel::class.java)
+      .get(ActivityViewModel::class.java)*/
     
     dayViewModel =
       ViewModelProvider(this)
