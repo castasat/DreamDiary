@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "day_table")
 @Parcelize
 data class Day(
-  @ColumnInfo(name = "dateTextView")
+  @ColumnInfo(name = "date")
   var date : String?,
   
   @ColumnInfo(name = "moon_phase_day")

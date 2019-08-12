@@ -18,9 +18,12 @@ DayDao
   @Query("DELETE FROM day_table")
   fun deleteAll()
   
-  @Query("SELECT * FROM day_table ORDER BY dateTextView ASC")
+  @Query("SELECT * FROM day_table ORDER BY date ASC")
   fun getAll() : Single<List<Day>>
   
   @Query("SELECT * FROM day_table WHERE day_id = :dayId")
   fun getDay(dayId : Long) : Maybe<Day>
+  
+  @Query("SELECT * FROM day_table WHERE date LIKE :date")
+  fun getDay(date : String) : Maybe<Day>
 }

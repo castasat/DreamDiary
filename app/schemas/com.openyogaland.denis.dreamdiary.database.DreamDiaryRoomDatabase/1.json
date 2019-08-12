@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "032dcd22653c9ee2b38c32144f19acf6",
+    "identityHash": "eadd3cd7bdddf9cca907236df802b456",
     "entities": [
       {
         "tableName": "practice_table",
@@ -32,7 +32,7 @@
       },
       {
         "tableName": "day_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`day_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `dateTextView` TEXT, `moon_phase_day` TEXT, `cycle_day` TEXT, `practice_type` TEXT, `practice_duration_minutes` TEXT, `nutrition` TEXT, `events` TEXT, `stress_level` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`day_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT, `moon_phase_day` TEXT, `cycle_day` TEXT, `practice_type` TEXT, `practice_duration_minutes` TEXT, `nutrition` TEXT, `events` TEXT, `stress_level` TEXT)",
         "fields": [
           {
             "fieldPath": "dayId",
@@ -42,7 +42,7 @@
           },
           {
             "fieldPath": "date",
-            "columnName": "dateTextView",
+            "columnName": "date",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -170,7 +170,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '032dcd22653c9ee2b38c32144f19acf6')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'eadd3cd7bdddf9cca907236df802b456')"
     ]
   }
 }

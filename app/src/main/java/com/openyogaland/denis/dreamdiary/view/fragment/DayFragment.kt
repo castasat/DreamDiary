@@ -27,6 +27,7 @@ import com.openyogaland.denis.dreamdiary.listener.OnPracticeAddedListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemClickListener
 import com.openyogaland.denis.dreamdiary.model.Day
 import com.openyogaland.denis.dreamdiary.model.Practice
+import com.openyogaland.denis.dreamdiary.view.activity.MainActivity
 import com.openyogaland.denis.dreamdiary.view.dialog.AddPracticeDialog
 import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
 import com.openyogaland.denis.dreamdiary.viewmodel.DayViewModel
@@ -68,7 +69,7 @@ DayFragment : Fragment()
                false)
     
     activityViewModel =
-      ViewModelProvider(requireActivity())
+      ViewModelProvider(requireActivity() as MainActivity)
       .get(ActivityViewModel::class.java)
     
     dayViewModel =
@@ -192,6 +193,8 @@ DayFragment : Fragment()
     
     saveDayButton
     .setOnClickListener {_ : View ->
+      log("DayFragment.saveDayButton.setOnClickListener()")
+      
       val day = Day()
       
       day.date = dateTextView.text.toString()
@@ -212,7 +215,10 @@ DayFragment : Fragment()
     .observe(this,
              Observer<Day>
              {day : Day ->
-               // TODO restore day fields
+               day.date?.let {date : String ->
+                 dateTextView.text = date
+               }
+               // TODO restore moon phase day
                day.cycleDay?.let {cycleDay : String ->
                  cycleDayCountEditText.setText(cycleDay)
                }
@@ -239,7 +245,10 @@ DayFragment : Fragment()
              })
     
     dayViewModel
-    .downloadAllPractices()
+    .loadAllPractices()
+    
+    dayViewModel
+    .loadDay(dateTextView.text.toString())
     
     return view
   }

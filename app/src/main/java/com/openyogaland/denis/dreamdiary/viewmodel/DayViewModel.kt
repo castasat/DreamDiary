@@ -24,16 +24,48 @@ DayViewModel(application : Application)
   
   // reactive fields)
   private val addPracticePublishProcessor = PublishProcessor.create<Practice>()
-  private val downloadAllPracticesPublishProcessor = PublishProcessor.create<Boolean>()
+  private val loadAllPracticesPublishProcessor = PublishProcessor.create<Boolean>()
   private val saveDayPublishProcessor = PublishProcessor.create<Day>()
+  private val loadDayPublishProcessor = PublishProcessor.create<String>()
   
   init
   {
     initializeApplicationContext(application)
     initializeRoomDatabase()
     observeAddPractice()
-    observeDownloadAllPractices()
+    observeLoadAllPractices()
+    observeLoadDay()
     observeSaveDay()
+  }
+  
+  private fun
+  observeLoadDay()
+  {
+    utilizeDisposable(loadDayPublishProcessor
+                      .subscribeOn(Schedulers.io())
+                      .observeOn(Schedulers.io())
+                      .filter {date : String ->
+                        date.isNotEmpty() &&
+                        date.isNotBlank()
+                      }
+                      .switchMap {date : String ->
+                        dayDao.getDay(date).toFlowable()
+                      }
+                      .subscribe({day : Day ->
+                                   currentDayLiveData
+                                   .postValue(day)
+                                 },
+                                 {throwable : Throwable ->
+                                   log("DayViewModel" +
+                                       ".observeLoadDay(): " +
+                                       "throwable = $throwable")
+                                   throwable.printStackTrace()
+                                 },
+                                 {
+                                   log("DayViewModel" +
+                                       ".observeLoadDay(): " +
+                                       "completed")
+                                 }))
   }
   
   private fun
@@ -43,10 +75,13 @@ DayViewModel(application : Application)
                       .subscribeOn(Schedulers.io())
                       .observeOn(Schedulers.io())
                       .switchMap {day : Day ->
+                        log("DayViewModel.observeSaveDay():" +
+                            "day = $day")
+      
                         val dayId = dayDao.insert(day)
                         dayDao.getDay(dayId).toFlowable()
                       }
-                      .subscribe({day:Day ->
+                      .subscribe({day : Day ->
                                    currentDayLiveData
                                    .postValue(day)
                                  },
@@ -64,26 +99,26 @@ DayViewModel(application : Application)
   }
   
   private fun
-  observeDownloadAllPractices()
+  observeLoadAllPractices()
   {
-    utilizeDisposable(downloadAllPracticesPublishProcessor
+    utilizeDisposable(loadAllPracticesPublishProcessor
                       .subscribeOn(Schedulers.io())
                       .observeOn(Schedulers.io())
                       .switchMap {_ : Boolean ->
-                          practiceDao.getAll().toFlowable()
+                        practiceDao.getAll().toFlowable()
                       }
                       .subscribe({practices : List<Practice> ->
                                    allPracticesLiveData.postValue(practices)
                                  },
                                  {throwable : Throwable ->
                                    log("DayViewModel" +
-                                       ".observeDownloadAllPractices(): " +
+                                       ".observeLoadAllPractices(): " +
                                        "throwable = $throwable")
                                    throwable.printStackTrace()
                                  },
                                  {
                                    log("DayViewModel" +
-                                       ".observeDownloadAllPractices(): " +
+                                       ".observeLoadAllPractices(): " +
                                        "completed")
                                  }))
   }
@@ -134,14 +169,21 @@ DayViewModel(application : Application)
   }
   
   fun
-  downloadAllPractices()
+  loadAllPractices()
   {
-    downloadAllPracticesPublishProcessor.onNext(true)
+    loadAllPracticesPublishProcessor.onNext(true)
+  }
+  
+  fun
+  loadDay(date : String)
+  {
+    loadDayPublishProcessor.onNext(date)
   }
   
   fun
   saveDay(day : Day)
   {
+    log("DayViewModel.saveDay()")
     saveDayPublishProcessor.onNext(day)
   }
 }
