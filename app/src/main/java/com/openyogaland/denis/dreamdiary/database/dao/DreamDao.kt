@@ -2,20 +2,28 @@ package com.openyogaland.denis.dreamdiary.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.openyogaland.denis.dreamdiary.model.Day
 import com.openyogaland.denis.dreamdiary.model.Dream
+import io.reactivex.Maybe
+import io.reactivex.Single
 
 @Dao
 interface
 DreamDao
 {
-  @Insert
+  @Insert(onConflict = REPLACE)
   fun insert(dream : Dream)
   
   @Query("DELETE FROM dream_table")
   fun deleteAll()
   
   @Query("SELECT * FROM dream_table ORDER BY date ASC")
-  fun getAll() : List<Dream>
+  fun getAll() : Single<List<Dream>>
+  
+  @Query("SELECT * FROM dream_table WHERE dream_id = :dreamId")
+  fun getDream(dreamId : Long) : Maybe<Dream>
+  
+  @Query("SELECT * FROM dream_table WHERE date LIKE :date")
+  fun getDream(date : String) : Maybe<Dream>
 }

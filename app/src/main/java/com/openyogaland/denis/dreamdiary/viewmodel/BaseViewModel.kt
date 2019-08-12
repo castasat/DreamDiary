@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import com.openyogaland.denis.dreamdiary.database.DreamDiaryRoomDatabase
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import java.lang.ref.WeakReference
 
 open class
@@ -17,6 +19,9 @@ BaseViewModel(application : Application)
   
   // room database fields
   protected lateinit var dreamDiaryRoomDatabase : DreamDiaryRoomDatabase
+  
+  // reactive fields
+  private val compositeDisposable = CompositeDisposable()
   
   protected fun
   initializeApplicationContext(application : Application) : Context
@@ -35,5 +40,11 @@ BaseViewModel(application : Application)
         this.dreamDiaryRoomDatabase = dreamDiaryRoomDatabase
       }
     }
+  }
+  
+  open fun
+  utilizeDisposable(disposableToUtilize : Disposable)
+  {
+    compositeDisposable.add(disposableToUtilize)
   }
 }

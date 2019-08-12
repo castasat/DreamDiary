@@ -20,7 +20,6 @@ class DreamViewModel(application : Application)
   {
     super
     .initializeRoomDatabase()
-    
     dreamDao = dreamDiaryRoomDatabase.dreamDao()
   }
 }

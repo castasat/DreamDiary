@@ -16,8 +16,8 @@
     app:layout_constraintBottom_toTopOf="@id/dateMoonBarrier">
     
     <!-- Date -->
-    <TextView
-      android:id="@+id/date"
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/dateTextView"
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:layout_weight="0"
@@ -34,8 +34,8 @@
     <!-- / Date -->
     
     <!-- Weekday -->
-    <TextView
-      android:id="@+id/weekDay"
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/weekDayTextView"
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:gravity="center_vertical|start"
@@ -53,7 +53,7 @@
     
     <!-- Moon Phase -->
     <androidx.appcompat.widget.AppCompatImageView
-      android:id="@+id/moonPhase"
+      android:id="@+id/moonPhaseImageView"
       android:layout_width="22dp"
       android:layout_height="22dp"
       android:layout_weight="0"

@@ -11,29 +11,41 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Day(
   @ColumnInfo(name = "date")
-  var date : String,
+  var date : String?,
   
   @ColumnInfo(name = "moon_phase_day")
-  var moonPhaseDay : Int,
+  var moonPhaseDay : String?,
+
+  @ColumnInfo(name = "cycle_day")
+  var cycleDay : String?,
   
   @ColumnInfo(name = "practice_type")
-  var practiceType : String,
+  var practiceType : String?,
   
   @ColumnInfo(name = "practice_duration_minutes")
-  var practiceDurationMinutes : Int,
+  var practiceDurationMinutes : String?,
   
   @ColumnInfo(name = "nutrition")
-  var nutrition : String,
+  var nutrition : String?,
   
   @ColumnInfo(name = "events")
-  var events : String,
+  var events : String?,
   
   @ColumnInfo(name = "stress_level")
-  var stressLevel : Int
+  var stressLevel : String?
 ) : Parcelable
 {
   @IgnoredOnParcel
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "day_id")
   var dayId : Long = 0
+  
+  constructor(): this(null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null)
 }

@@ -1,15 +1,13 @@
 package com.openyogaland.denis.dreamdiary.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.database.dao.DayDao
 import com.openyogaland.denis.dreamdiary.database.dao.PracticeDao
+import com.openyogaland.denis.dreamdiary.model.Day
 import com.openyogaland.denis.dreamdiary.model.Practice
-import io.reactivex.Flowable
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import io.reactivex.processors.PublishProcessor
 import io.reactivex.schedulers.Schedulers
 
 class
@@ -21,15 +19,136 @@ DayViewModel(application : Application)
   private lateinit var dayDao : DayDao
   
   // live data fields
-  private var allPracticesLiveData = MutableLiveData<List<Practice>>()
+  var allPracticesLiveData = MutableLiveData<List<Practice>>()
+  var currentDayLiveData = MutableLiveData<Day>()
   
-  // reactive fields
-  private val compositeDisposable = CompositeDisposable()
+  // reactive fields)
+  private val addPracticePublishProcessor = PublishProcessor.create<Practice>()
+  private val loadAllPracticesPublishProcessor = PublishProcessor.create<Boolean>()
+  private val saveDayPublishProcessor = PublishProcessor.create<Day>()
+  private val loadDayPublishProcessor = PublishProcessor.create<String>()
   
   init
   {
     initializeApplicationContext(application)
     initializeRoomDatabase()
+    observeAddPractice()
+    observeLoadAllPractices()
+    observeLoadDay()
+    observeSaveDay()
+  }
+  
+  private fun
+  observeLoadDay()
+  {
+    utilizeDisposable(loadDayPublishProcessor
+                      .subscribeOn(Schedulers.io())
+                      .observeOn(Schedulers.io())
+                      .filter {date : String ->
+                        date.isNotEmpty() &&
+                        date.isNotBlank()
+                      }
+                      .switchMap {date : String ->
+                        dayDao.getDay(date).toFlowable()
+                      }
+                      .subscribe({day : Day ->
+                                   currentDayLiveData
+                                   .postValue(day)
+                                 },
+                                 {throwable : Throwable ->
+                                   log("DayViewModel" +
+                                       ".observeLoadDay(): " +
+                                       "throwable = $throwable")
+                                   throwable.printStackTrace()
+                                 },
+                                 {
+                                   log("DayViewModel" +
+                                       ".observeLoadDay(): " +
+                                       "completed")
+                                 }))
+  }
+  
+  private fun
+  observeSaveDay()
+  {
+    utilizeDisposable(saveDayPublishProcessor
+                      .subscribeOn(Schedulers.io())
+                      .observeOn(Schedulers.io())
+                      .switchMap {day : Day ->
+                        log("DayViewModel.observeSaveDay():" +
+                            "day = $day")
+      
+                        val dayId = dayDao.insert(day)
+                        dayDao.getDay(dayId).toFlowable()
+                      }
+                      .subscribe({day : Day ->
+                                   currentDayLiveData
+                                   .postValue(day)
+                                 },
+                                 {throwable : Throwable ->
+                                   log("DayViewModel" +
+                                       ".observeSaveDay(): " +
+                                       "throwable = $throwable")
+                                   throwable.printStackTrace()
+                                 },
+                                 {
+                                   log("DayViewModel" +
+                                       ".observeSaveDay(): " +
+                                       "completed")
+                                 }))
+  }
+  
+  private fun
+  observeLoadAllPractices()
+  {
+    utilizeDisposable(loadAllPracticesPublishProcessor
+                      .subscribeOn(Schedulers.io())
+                      .observeOn(Schedulers.io())
+                      .switchMap {_ : Boolean ->
+                        practiceDao.getAll().toFlowable()
+                      }
+                      .subscribe({practices : List<Practice> ->
+                                   allPracticesLiveData.postValue(practices)
+                                 },
+                                 {throwable : Throwable ->
+                                   log("DayViewModel" +
+                                       ".observeLoadAllPractices(): " +
+                                       "throwable = $throwable")
+                                   throwable.printStackTrace()
+                                 },
+                                 {
+                                   log("DayViewModel" +
+                                       ".observeLoadAllPractices(): " +
+                                       "completed")
+                                 }))
+  }
+  
+  private fun
+  observeAddPractice()
+  {
+    utilizeDisposable(addPracticePublishProcessor
+                      .subscribeOn(Schedulers.io())
+                      .observeOn(Schedulers.io())
+                      .switchMap {practice : Practice ->
+                        practiceDao.insert(practice)
+                        practiceDao.getAll().toFlowable()
+                      }
+                      .subscribe({practices : List<Practice> ->
+                                   allPracticesLiveData
+                                   .postValue(practices)
+                                 },
+                                 {throwable : Throwable ->
+                                   log("DayViewModel" +
+                                       ".observeAddPractice(): " +
+                                       "throwable = $throwable")
+                                   throwable.printStackTrace()
+                                 },
+                                 {
+                                   log("DayViewModel" +
+                                       ".observeAddPractice(): " +
+                                       "completed")
+                                 }
+                      ))
   }
   
   override fun
@@ -37,7 +156,6 @@ DayViewModel(application : Application)
   {
     super
     .initializeRoomDatabase()
-    
     practiceDao = dreamDiaryRoomDatabase.practiceDao()
     dayDao = dreamDiaryRoomDatabase.dayDao()
   }
@@ -45,57 +163,27 @@ DayViewModel(application : Application)
   fun
   addPractice(practice : Practice)
   {
-    utilizeDisposable(Flowable
-                      .fromCallable {
-                        practiceDao.insert(practice)
-                        practiceDao.getAll()
-                      }
-                      .subscribeOn(Schedulers.io())
-                      .observeOn(Schedulers.io())
-                      .subscribe({practices : List<Practice> ->
-                                   allPracticesLiveData
-                                   .postValue(practices)
-                                 },
-                                 {throwable : Throwable ->
-                                   log("DayViewModel" +
-                                       ".addPractice(): " +
-                                       "throwable = $throwable")
-                                   throwable.printStackTrace()
-                                 },
-                                 {
-                                   log("DayViewModel.addPractice(): " +
-                                       "completed")
-                                 }
-                      ))
+    log("DayViewModel.addPractice(): " +
+        "practice = $practice")
+    addPracticePublishProcessor.onNext(practice)
   }
   
   fun
-  downloadAllPractices() : LiveData<List<Practice>>
+  loadAllPractices()
   {
-    utilizeDisposable(Flowable
-                      .fromCallable {
-                        practiceDao.getAll()
-                      }
-                      .subscribeOn(Schedulers.io())
-                      .observeOn(Schedulers.io())
-                      .subscribe({practices : List<Practice> ->
-                                   allPracticesLiveData.postValue(practices)
-                                 },
-                                 {throwable : Throwable ->
-                                   log("DayViewModel.downloadAllPractices(): " +
-                                       "throwable = $throwable")
-                                   throwable.printStackTrace()
-                                 },
-                                 {
-                                   log("DayViewModel.downloadAllPractices(): " +
-                                       "completed")
-                                 }))
-    return allPracticesLiveData
+    loadAllPracticesPublishProcessor.onNext(true)
   }
   
-  private fun
-  utilizeDisposable(disposableToUtilize : Disposable)
+  fun
+  loadDay(date : String)
   {
-    compositeDisposable.add(disposableToUtilize)
+    loadDayPublishProcessor.onNext(date)
+  }
+  
+  fun
+  saveDay(day : Day)
+  {
+    log("DayViewModel.saveDay()")
+    saveDayPublishProcessor.onNext(day)
   }
 }

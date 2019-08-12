@@ -1,6 +1,5 @@
 package com.openyogaland.denis.dreamdiary.application
 
-import android.provider.UserDictionary.Words.APP_ID
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDexApplication
@@ -71,7 +70,7 @@ DreamDiary : MultiDexApplication()
   {
     @JvmStatic
     @NonNls
-    val NAME_UNKNOWN = "name and where to find - unknown"
+    val APP_ID = "DreamDiary"
     
     @JvmStatic
     fun log(@NonNls text : String?)
@@ -101,50 +100,6 @@ DreamDiary : MultiDexApplication()
           else           -> Log.d(APP_ID, text)
         }
       }
-    }
-    
-    @JvmStatic
-    fun checkNN(beingChecked : Any?,
-                @NonNls what : String?) : Boolean
-    {
-      val result : Boolean
-      val message : String =
-        when
-        {
-          what == null   ->
-          {
-            log("NULL POINTER: in Cargo.check")
-            NAME_UNKNOWN
-          }
-          what.isEmpty() ->
-          {
-            log("IS EMPTY: what in Cargo.check")
-            NAME_UNKNOWN
-          }
-          else           -> what
-        }
-      
-      // check nullability of Object beingChecked and log it
-      if(beingChecked == null)
-      {
-        log("NULL POINTER: $message")
-        result = false
-      }
-      else
-      {
-        result =
-          if(beingChecked is String &&
-             beingChecked.isEmpty())
-          {
-            log("IS EMPTY: $message")
-            false
-          }
-          else
-          {
-            true
-          }
-      }
-      return result
     }
   }
 }
