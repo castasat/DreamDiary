@@ -104,8 +104,7 @@ DayFragment : Fragment()
             practiceRecycleView.visibility = VISIBLE
             addPracticeTypeTextView.visibility = VISIBLE
             practiceChooserTextView
-            .setCompoundDrawablesWithIntrinsicBounds(0,
-                                                     0,
+            .setCompoundDrawablesWithIntrinsicBounds(0, 0,
                                                      R.drawable.arrow_up,
                                                      0)
           }
@@ -114,8 +113,7 @@ DayFragment : Fragment()
             practiceRecycleView.visibility = GONE
             addPracticeTypeTextView.visibility = GONE
             practiceChooserTextView
-            .setCompoundDrawablesWithIntrinsicBounds(0,
-                                                     0,
+            .setCompoundDrawablesWithIntrinsicBounds(0, 0,
                                                      R.drawable.arrow_down,
                                                      0)
           }
@@ -157,7 +155,6 @@ DayFragment : Fragment()
              {practices : List<Practice> ->
                (practiceRecyclerView.adapter as PracticeAdapter)
                .let {practiceAdapter : PracticeAdapter ->
-        
                  practiceAdapter.practices.clear()
                  practiceAdapter.addPractices(practices)
                  practiceAdapter.notifyDataSetChanged()
@@ -224,6 +221,10 @@ DayFragment : Fragment()
                }
       
                day.practiceType?.let {practiceType : String ->
+                 practiceChooserTextView
+                 .setTextColor(ContextCompat
+                               .getColor(requireActivity(),
+                                         R.color.colorPrimary))
                  practiceChooserTextView.text = practiceType
                }
       

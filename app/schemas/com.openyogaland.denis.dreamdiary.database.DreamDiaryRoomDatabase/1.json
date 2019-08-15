@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "eadd3cd7bdddf9cca907236df802b456",
+    "identityHash": "91b7dac9cf0041a723f33ade22ce60ea",
     "entities": [
       {
         "tableName": "practice_table",
@@ -100,7 +100,7 @@
       },
       {
         "tableName": "dream_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dream_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `dateTextView` TEXT, `moon_phase_day` INTEGER, `practice` TEXT, `dream_description` TEXT, `anchor` TEXT, `dream_duration` TEXT, `lucid_dream` INTEGER, `emotions` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dream_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT, `moon_phase_day` INTEGER, `practice` TEXT, `dream_description` TEXT, `anchor` TEXT, `dream_duration` TEXT, `lucid_dream` INTEGER, `emotions` TEXT)",
         "fields": [
           {
             "fieldPath": "dreamId",
@@ -110,7 +110,7 @@
           },
           {
             "fieldPath": "date",
-            "columnName": "dateTextView",
+            "columnName": "date",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -170,7 +170,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'eadd3cd7bdddf9cca907236df802b456')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '91b7dac9cf0041a723f33ade22ce60ea')"
     ]
   }
 }

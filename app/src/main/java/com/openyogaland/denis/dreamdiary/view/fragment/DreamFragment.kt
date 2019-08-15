@@ -62,8 +62,6 @@ DreamFragment : Fragment()
     lucidDreamCheckBox = view.findViewById(R.id.lucidDreamCheckBox)
     feelingsEditText = view.findViewById(R.id.feelingsEditText)
     saveDreamButton = view.findViewById(R.id.saveDreamButton)
-  
-    
     
     return view
   }
