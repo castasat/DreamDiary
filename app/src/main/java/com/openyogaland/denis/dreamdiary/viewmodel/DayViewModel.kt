@@ -19,10 +19,10 @@ DayViewModel(application : Application)
   private lateinit var dayDao : DayDao
   
   // live data fields
-  var allPracticesLiveData = MutableLiveData<List<Practice>>()
-  var currentDayLiveData = MutableLiveData<Day>()
+  val allPracticesLiveData = MutableLiveData<List<Practice>>()
+  val currentDayLiveData = MutableLiveData<Day>()
   
-  // reactive fields)
+  // reactive fields
   private val addPracticePublishProcessor = PublishProcessor.create<Practice>()
   private val loadAllPracticesPublishProcessor = PublishProcessor.create<Boolean>()
   private val saveDayPublishProcessor = PublishProcessor.create<Day>()
@@ -75,7 +75,8 @@ DayViewModel(application : Application)
                       .subscribeOn(Schedulers.io())
                       .observeOn(Schedulers.io())
                       .switchMap {day : Day ->
-                        log("DayViewModel.observeSaveDay():" +
+                        log("DayViewModel" +
+                            ".observeSaveDay(): " +
                             "day = $day")
       
                         val dayId = dayDao.insert(day)
@@ -183,7 +184,6 @@ DayViewModel(application : Application)
   fun
   saveDay(day : Day)
   {
-    log("DayViewModel.saveDay()")
     saveDayPublishProcessor.onNext(day)
   }
 }

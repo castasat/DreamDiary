@@ -13,7 +13,7 @@ interface
 DreamDao
 {
   @Insert(onConflict = REPLACE)
-  fun insert(dream : Dream)
+  fun insert(dream : Dream) : Long
   
   @Query("DELETE FROM dream_table")
   fun deleteAll()
