@@ -290,15 +290,8 @@ DayFragment : Fragment()
         }
       
       addPracticeDialog.show(childFragmentManager,
-                             ADD_PRACTICE_DIALOG)
+                              ADD_PRACTICE_DIALOG)
     }
-  }
-  
-  override fun
-  onActivityCreated(savedInstanceState : Bundle?)
-  {
-    super
-    .onActivityCreated(savedInstanceState)
   }
   
   companion object
