@@ -24,6 +24,7 @@ DayViewModel(application : Application)
   
   // reactive fields
   private val addPracticePublishProcessor = PublishProcessor.create<Practice>()
+  private val editPracticePublishProcessor = PublishProcessor.create<Practice>()
   private val loadAllPracticesPublishProcessor = PublishProcessor.create<Boolean>()
   private val saveDayPublishProcessor = PublishProcessor.create<Day>()
   private val loadDayPublishProcessor = PublishProcessor.create<String>()
@@ -33,9 +34,37 @@ DayViewModel(application : Application)
     initializeApplicationContext(application)
     initializeRoomDatabase()
     observeAddPractice()
+    observeEditPractice()
     observeLoadAllPractices()
     observeLoadDay()
     observeSaveDay()
+  }
+  
+  private fun
+  observeEditPractice()
+  {
+    utilizeDisposable(editPracticePublishProcessor
+                      .subscribeOn(Schedulers.io())
+                      .observeOn(Schedulers.io())
+                      .switchMap {practice : Practice ->
+                        practiceDao.update(practice)
+                        practiceDao.getAll().toFlowable()
+                      }
+                      .subscribe({practices : List<Practice> ->
+                                   allPracticesLiveData
+                                   .postValue(practices)
+                                 },
+                                 {throwable : Throwable ->
+                                   log("DayViewModel" +
+                                       ".observeEditPractice(): " +
+                                       "throwable = $throwable")
+                                   throwable.printStackTrace()
+                                 },
+                                 {
+                                   log("DayViewModel" +
+                                       ".observeEditPractice(): " +
+                                       "completed")
+                                 }))
   }
   
   private fun
@@ -148,8 +177,7 @@ DayViewModel(application : Application)
                                    log("DayViewModel" +
                                        ".observeAddPractice(): " +
                                        "completed")
-                                 }
-                      ))
+                                 }))
   }
   
   override fun
@@ -185,5 +213,13 @@ DayViewModel(application : Application)
   saveDay(day : Day)
   {
     saveDayPublishProcessor.onNext(day)
+  }
+  
+  fun
+  editPractice(practice : Practice)
+  {
+    log("DayViewModel.editPractice(): " +
+        "practice = $practice")
+    editPracticePublishProcessor.onNext(practice)
   }
 }

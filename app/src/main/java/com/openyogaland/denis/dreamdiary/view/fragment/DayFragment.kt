@@ -24,10 +24,13 @@ import com.openyogaland.denis.dreamdiary.adapter.PracticeAdapter
 import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.listener.OnCancelListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeAddedListener
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeEditedListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemClickListener
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemLongClickListener
 import com.openyogaland.denis.dreamdiary.model.Day
 import com.openyogaland.denis.dreamdiary.model.Practice
 import com.openyogaland.denis.dreamdiary.view.dialog.AddPracticeDialog
+import com.openyogaland.denis.dreamdiary.view.dialog.EditPracticeDialog
 import com.openyogaland.denis.dreamdiary.viewmodel.DayViewModel
 import kotlinx.android.synthetic.main.day_fragment.*
 
@@ -50,6 +53,7 @@ DayFragment : Fragment()
   
   // dialog fields
   private var addPracticeDialog : AddPracticeDialog? = null
+  private var editPracticeDialog : EditPracticeDialog? = null
   
   // architecture fields
   /* TODO enable if needed
@@ -138,6 +142,15 @@ DayFragment : Fragment()
                           practiceRecycleView.visibility = GONE
                           addPracticeTypeTextView.visibility = GONE
                         }
+                      },
+                      object : OnPracticeItemLongClickListener
+                      {
+                        override fun
+                        onPracticeItemLongClick(practice : Practice)
+                        {
+                          showEditPracticeDialog(practice)
+                        }
+  
                       })
     
     addPracticeTypeTextView
@@ -255,6 +268,46 @@ DayFragment : Fragment()
   }
   
   private fun
+  showEditPracticeDialog(practice : Practice)
+  {
+    editPracticeDialog =
+      editPracticeDialog
+      ?: EditPracticeDialog()
+    
+    editPracticeDialog
+    ?.let{editPracticeDialog : EditPracticeDialog ->
+      
+      editPracticeDialog.isCancelable = true
+      
+      editPracticeDialog.onCancelListener =
+        object : OnCancelListener
+        {
+          override fun
+          onCancel()
+          {
+            log("DayFragment.showEditPracticeDialog(): " +
+                "canceled")
+          }
+        }
+      
+      editPracticeDialog.onPracticeEditedListener =
+        object : OnPracticeEditedListener
+        {
+          override fun
+          onPracticeEdited(practice : Practice)
+          {
+            log("DayFragment.showEditPracticeDialog(): " +
+                "practice = $practice")
+            dayViewModel.editPractice(practice)
+          }
+        }
+      
+      editPracticeDialog.show(childFragmentManager,
+                              EDIT_PRACTICE_DIALOG)
+    }
+  }
+  
+  private fun
   showAddPracticeDialog()
   {
     addPracticeDialog =
@@ -297,6 +350,7 @@ DayFragment : Fragment()
   companion object
   {
     const val ADD_PRACTICE_DIALOG = "add_practice_dialog"
+    const val EDIT_PRACTICE_DIALOG = "edit_practice_dialog"
     const val PRACTICE_TYPES_INITIAL_CAPACITY = 8
   }
 }

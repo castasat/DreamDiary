@@ -5,13 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemClickListener
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemLongClickListener
 import com.openyogaland.denis.dreamdiary.model.Practice
 import com.openyogaland.denis.dreamdiary.view.viewholder.PracticeViewHolder
 
 class
 PracticeAdapter(var practices : ArrayList<Practice>,
                 private var onPracticeItemClickListener
-                : OnPracticeItemClickListener)
+                : OnPracticeItemClickListener,
+                private var onPracticeItemLongClickListener
+                : OnPracticeItemLongClickListener)
   : Adapter<PracticeViewHolder>()
 {
   // fields
@@ -59,7 +62,8 @@ PracticeAdapter(var practices : ArrayList<Practice>,
                parent,
                false)
     return PracticeViewHolder(practiceTypeItemView,
-                              onPracticeItemClickListener)
+                              onPracticeItemClickListener,
+                              onPracticeItemLongClickListener)
   }
   
   override fun

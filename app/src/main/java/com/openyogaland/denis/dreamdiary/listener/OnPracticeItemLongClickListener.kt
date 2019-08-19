@@ -3,8 +3,8 @@ package com.openyogaland.denis.dreamdiary.listener
 import com.openyogaland.denis.dreamdiary.model.Practice
 
 interface
-OnPracticeItemClickListener
+OnPracticeItemLongClickListener
 {
   fun
-  onPracticeItemClick(practice : Practice)
+  onPracticeItemLongClick(practice : Practice)
 }
