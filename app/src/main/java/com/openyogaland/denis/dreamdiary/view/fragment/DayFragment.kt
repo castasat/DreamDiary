@@ -150,7 +150,7 @@ DayFragment : Fragment()
                         {
                           showEditPracticeDialog(practice)
                         }
-  
+        
                       })
     
     addPracticeTypeTextView
@@ -275,7 +275,7 @@ DayFragment : Fragment()
       ?: EditPracticeDialog()
     
     editPracticeDialog
-    ?.let{editPracticeDialog : EditPracticeDialog ->
+    ?.let {editPracticeDialog : EditPracticeDialog ->
       
       editPracticeDialog.isCancelable = true
       
@@ -289,6 +289,12 @@ DayFragment : Fragment()
                 "canceled")
           }
         }
+      
+      if(practice.practiceType.isNotBlank() &&
+         practice.practiceType.isNotEmpty())
+      {
+        editPracticeDialog.practiceToEdit = practice
+      }
       
       editPracticeDialog.onPracticeEditedListener =
         object : OnPracticeEditedListener
@@ -343,7 +349,7 @@ DayFragment : Fragment()
         }
       
       addPracticeDialog.show(childFragmentManager,
-                              ADD_PRACTICE_DIALOG)
+                             ADD_PRACTICE_DIALOG)
     }
   }
   
