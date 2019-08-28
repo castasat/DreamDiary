@@ -133,7 +133,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha03'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0-alpha03'
     implementation 'androidx.lifecycle:lifecycle-reactivestreams:2.2.0-alpha03'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0-alpha03'
     implementation 'androidx.room:room-runtime:2.2.0-beta01'
     implementation 'androidx.room:room-guava:2.2.0-beta01'
     implementation 'androidx.room:room-ktx:2.2.0-beta01'
