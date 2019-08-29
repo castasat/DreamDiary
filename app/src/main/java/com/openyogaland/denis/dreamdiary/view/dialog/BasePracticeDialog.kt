@@ -31,7 +31,7 @@ open class
 BasePracticeDialog : AppCompatDialogFragment()
 {
   // view fields
-  lateinit var practiceEditText : AppCompatEditText
+  var practiceEditText : AppCompatEditText? = null
   lateinit var buttonTextView : AppCompatTextView
   
   var onCancelListener : OnCancelListener? = null

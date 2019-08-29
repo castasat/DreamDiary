@@ -20,28 +20,32 @@ AddPracticeDialog : BasePracticeDialog()
                 savedInstanceState : Bundle?)
   {
     super.onViewCreated(view, savedInstanceState)
-  
-    clear(practiceEditText)
-  
-    practiceEditText
-    .setOnEditorActionListener {_ : TextView,
-                                actionId : Int,
-                                keyEvent : KeyEvent? ->
     
-      if(actionId == EditorInfo.IME_ACTION_DONE ||
-         keyEvent?.action == KeyEvent.ACTION_DOWN &&
-         keyEvent.keyCode == KeyEvent.KEYCODE_ENTER)
-      {
-        addPractice()
-        dialog?.dismiss()
-        true
-      }
-      else
-      {
-        false
+    practiceEditText
+    ?.let {practiceEditText : AppCompatEditText ->
+      
+      clear(practiceEditText)
+      
+      practiceEditText
+      .setOnEditorActionListener {_ : TextView,
+                                  actionId : Int,
+                                  keyEvent : KeyEvent? ->
+        
+        if(actionId == EditorInfo.IME_ACTION_DONE ||
+           keyEvent?.action == KeyEvent.ACTION_DOWN &&
+           keyEvent.keyCode == KeyEvent.KEYCODE_ENTER)
+        {
+          addPractice()
+          dialog?.dismiss()
+          true
+        }
+        else
+        {
+          false
+        }
       }
     }
-  
+    
     buttonTextView
     .setOnClickListener {_ : View ->
       addPractice()
@@ -53,15 +57,18 @@ AddPracticeDialog : BasePracticeDialog()
   onResume()
   {
     super.onResume()
-  
-    clear(practiceEditText)
+    
+    practiceEditText
+    ?.let {practiceEditText : AppCompatEditText ->
+      clear(practiceEditText)
+    }
   }
   
   private fun
   addPractice()
   {
     practiceEditText
-    .text
+    ?.text
     ?.toString()
     ?.let {practiceType : String ->
       if(practiceType.isNotBlank() &&

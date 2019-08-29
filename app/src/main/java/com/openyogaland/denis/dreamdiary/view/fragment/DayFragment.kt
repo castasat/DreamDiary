@@ -154,11 +154,8 @@ DayFragment : Fragment()
                       })
     
     addPracticeTypeTextView
-    .setOnClickListener {view : View ->
-      (view as AppCompatTextView)
-      .let {_ : AppCompatTextView ->
-        showAddPracticeDialog()
-      }
+    .setOnClickListener {_ : View ->
+      showAddPracticeDialog()
     }
     
     dayViewModel
@@ -270,9 +267,7 @@ DayFragment : Fragment()
   private fun
   showEditPracticeDialog(practice : Practice)
   {
-    editPracticeDialog =
-      editPracticeDialog
-      ?: EditPracticeDialog()
+    editPracticeDialog = EditPracticeDialog()
     
     editPracticeDialog
     ?.let {editPracticeDialog : EditPracticeDialog ->
@@ -290,10 +285,13 @@ DayFragment : Fragment()
           }
         }
       
-      if(practice.practiceType.isNotBlank() &&
-         practice.practiceType.isNotEmpty())
+      if(practice.practiceType.isNotBlank() && practice.practiceType.isNotEmpty())
       {
-        editPracticeDialog.practiceToEdit = practice
+        editPracticeDialog.updateEditTextWithPractice(practice)
+        
+        // TODO remove if works
+        /*editPracticeDialog.practiceToEdit = practice
+        editPracticeDialog.practiceEditText?.setText(practice.practiceType)*/
       }
       
       editPracticeDialog.onPracticeEditedListener =
@@ -308,8 +306,7 @@ DayFragment : Fragment()
           }
         }
       
-      editPracticeDialog.show(childFragmentManager,
-                              EDIT_PRACTICE_DIALOG)
+      editPracticeDialog.show(childFragmentManager, EDIT_PRACTICE_DIALOG)
     }
   }
   

@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatEditText
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeEditedListener
 import com.openyogaland.denis.dreamdiary.model.Practice
 
@@ -26,16 +27,16 @@ EditPracticeDialog : BasePracticeDialog()
       if(practiceType.isNotEmpty() &&
          practiceType.isNotBlank())
       {
-        practiceEditText.setText(practiceType)
+        practiceEditText?.setText(practiceType)
       }
     }
     
-    practiceEditText.hint = "Редактировать практику"
+    practiceEditText?.hint = "Редактировать практику"
     
     practiceEditText
-    .setOnEditorActionListener {_ : TextView,
-                                actionId : Int,
-                                keyEvent : KeyEvent? ->
+    ?.setOnEditorActionListener {_ : TextView,
+                                 actionId : Int,
+                                 keyEvent : KeyEvent? ->
       
       if(actionId == EditorInfo.IME_ACTION_DONE ||
          keyEvent?.action == KeyEvent.ACTION_DOWN &&
@@ -50,7 +51,7 @@ EditPracticeDialog : BasePracticeDialog()
         false
       }
     }
-
+    
     buttonTextView.text = "Редактировать"
     
     buttonTextView
@@ -64,7 +65,7 @@ EditPracticeDialog : BasePracticeDialog()
   editPractice()
   {
     practiceEditText
-    .text
+    ?.text
     ?.toString()
     ?.let {practiceType : String ->
       if(practiceType.isNotBlank() &&
@@ -76,6 +77,25 @@ EditPracticeDialog : BasePracticeDialog()
           
           onPracticeEditedListener
           ?.onPracticeEdited(practiceToEdit)
+        }
+      }
+    }
+  }
+  
+  fun
+  updateEditTextWithPractice(practice : Practice)
+  {
+    if(practice.practiceType.isNotBlank() &&
+       practice.practiceType.isNotEmpty())
+    {
+      practiceToEdit = practice
+      
+      practiceToEdit
+      ?.let {practiceToEdit : Practice ->
+        
+        practiceEditText
+        ?.let {practiceEditText : AppCompatEditText ->
+          practiceEditText.setText(practiceToEdit.practiceType)
         }
       }
     }
