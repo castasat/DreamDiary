@@ -134,10 +134,19 @@ DayFragment : Fragment()
                         override fun
                         onPracticeItemClick(practice : Practice)
                         {
+                          log("DayFragment.onCreateView()" +
+                              ".onPracticeItemClickListener" +
+                              ".onPracticeItemClick(): " +
+                              "practice = ${practice.practiceType}")
+                          
                           practiceChooserTextView
                           .setTextColor(ContextCompat
                                         .getColor(requireActivity(),
                                                   R.color.colorPrimary))
+                          practiceChooserTextView
+                          .setCompoundDrawablesWithIntrinsicBounds(0, 0,
+                                                                   R.drawable.arrow_down,
+                                                                   0)
                           practiceChooserTextView.text = practice.practiceType
                           practiceRecycleView.visibility = GONE
                           addPracticeTypeTextView.visibility = GONE
@@ -148,14 +157,29 @@ DayFragment : Fragment()
                         override fun
                         onPracticeItemLongClick(practice : Practice)
                         {
+                          log("DayFragment.onCreateView()" +
+                              ".onPracticeItemLongClickListener" +
+                              ".onPracticeItemLongClick(): " +
+                              "practice = ${practice.practiceType}")
+  
                           showEditPracticeDialog(practice)
+  
+                          practiceChooserTextView
+                          .setCompoundDrawablesWithIntrinsicBounds(0, 0,
+                                                                   R.drawable.arrow_up,
+                                                                   0)
                         }
-        
                       })
     
     addPracticeTypeTextView
     .setOnClickListener {_ : View ->
+      
       showAddPracticeDialog()
+      
+      practiceChooserTextView
+      .setCompoundDrawablesWithIntrinsicBounds(0, 0,
+                                               R.drawable.arrow_up,
+                                               0)
     }
     
     dayViewModel
