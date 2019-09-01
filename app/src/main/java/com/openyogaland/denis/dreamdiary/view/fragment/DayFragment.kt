@@ -138,7 +138,7 @@ DayFragment : Fragment()
                               ".onPracticeItemClickListener" +
                               ".onPracticeItemClick(): " +
                               "practice = ${practice.practiceType}")
-                          
+          
                           practiceChooserTextView
                           .setTextColor(ContextCompat
                                         .getColor(requireActivity(),
@@ -161,9 +161,9 @@ DayFragment : Fragment()
                               ".onPracticeItemLongClickListener" +
                               ".onPracticeItemLongClick(): " +
                               "practice = ${practice.practiceType}")
-  
+          
                           showEditPracticeDialog(practice)
-  
+          
                           practiceChooserTextView
                           .setCompoundDrawablesWithIntrinsicBounds(0, 0,
                                                                    R.drawable.arrow_up,
@@ -224,21 +224,23 @@ DayFragment : Fragment()
     
     saveDayButton
     .setOnClickListener {_ : View ->
-      log("DayFragment.saveDayButton.setOnClickListener()")
-      
       val day = Day()
-      
       day.date = dateTextView.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.date = ${day.date}")
       // TODO set moon phase day
       day.cycleDay = cycleDayCountEditText.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.cycleDay = ${day.cycleDay}")
       day.practiceType = practiceChooserTextView.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.practiceType = ${day.practiceType}")
       day.practiceDurationMinutes = practiceMinutesEditText.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.practiceDurationMinutes = ${day.practiceDurationMinutes}")
       day.nutrition = nutritionEditText.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.nutrition = ${day.nutrition}")
       day.events = eventsEditText.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.events = ${day.events}")
       day.stressLevel = stressLevelTextView.text.toString()
-      
-      dayViewModel
-      .saveDay(day)
+      log("DayFragment.saveDayButton.setOnClickListener(): day.stressLevel = ${day.stressLevel}")
+      dayViewModel.saveDay(day)
     }
     
     dayViewModel
@@ -246,37 +248,16 @@ DayFragment : Fragment()
     .observe(this,
              Observer<Day>
              {day : Day ->
-               day.date?.let {date : String ->
-                 dateTextView.text = date
-               }
+               dateTextView.text = day.date
                // TODO restore moon phase day
-               day.cycleDay?.let {cycleDay : String ->
-                 cycleDayCountEditText.setText(cycleDay)
-               }
-      
-               day.practiceType?.let {practiceType : String ->
-                 practiceChooserTextView
-                 .setTextColor(ContextCompat
-                               .getColor(requireActivity(),
-                                         R.color.colorPrimary))
-                 practiceChooserTextView.text = practiceType
-               }
-      
-               day.practiceDurationMinutes?.let {practiceDurationMinutes : String ->
-                 practiceMinutesEditText.setText(practiceDurationMinutes)
-               }
-      
-               day.nutrition?.let {nutrition : String ->
-                 nutritionEditText.setText(nutrition)
-               }
-      
-               day.events?.let {events : String ->
-                 eventsEditText.setText(events)
-               }
-      
-               day.stressLevel?.let {stressLevel : String ->
-                 stressLevelTextView.text = stressLevel
-               }
+               cycleDayCountEditText.setText(day.cycleDay)
+               practiceChooserTextView
+               .setTextColor(ContextCompat.getColor(requireActivity(), R.color.colorPrimary))
+               practiceChooserTextView.text = day.practiceType
+               practiceMinutesEditText.setText(day.practiceDurationMinutes)
+               nutritionEditText.setText(day.nutrition)
+               eventsEditText.setText(day.events)
+               stressLevelTextView.text = day.stressLevel
              })
     
     dayViewModel

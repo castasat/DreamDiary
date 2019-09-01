@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "91b7dac9cf0041a723f33ade22ce60ea",
+    "identityHash": "b5a11fbf60b69b1003f4f07d178c6cc6",
     "entities": [
       {
         "tableName": "practice_table",
@@ -32,68 +32,62 @@
       },
       {
         "tableName": "day_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`day_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT, `moon_phase_day` TEXT, `cycle_day` TEXT, `practice_type` TEXT, `practice_duration_minutes` TEXT, `nutrition` TEXT, `events` TEXT, `stress_level` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` TEXT NOT NULL, `moon_phase_day` TEXT NOT NULL, `cycle_day` TEXT NOT NULL, `practice_type` TEXT NOT NULL, `practice_duration_minutes` TEXT NOT NULL, `nutrition` TEXT NOT NULL, `events` TEXT NOT NULL, `stress_level` TEXT NOT NULL, PRIMARY KEY(`date`))",
         "fields": [
-          {
-            "fieldPath": "dayId",
-            "columnName": "day_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
           {
             "fieldPath": "date",
             "columnName": "date",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "moonPhaseDay",
             "columnName": "moon_phase_day",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "cycleDay",
             "columnName": "cycle_day",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "practiceType",
             "columnName": "practice_type",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "practiceDurationMinutes",
             "columnName": "practice_duration_minutes",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "nutrition",
             "columnName": "nutrition",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "events",
             "columnName": "events",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "stressLevel",
             "columnName": "stress_level",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "day_id"
+            "date"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -170,7 +164,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '91b7dac9cf0041a723f33ade22ce60ea')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b5a11fbf60b69b1003f4f07d178c6cc6')"
     ]
   }
 }
