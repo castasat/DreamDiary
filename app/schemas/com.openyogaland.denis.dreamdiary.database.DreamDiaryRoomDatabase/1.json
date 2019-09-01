@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b5a11fbf60b69b1003f4f07d178c6cc6",
+    "identityHash": "2a205f4016b180b169112b51ad497a3d",
     "entities": [
       {
         "tableName": "practice_table",
@@ -94,68 +94,62 @@
       },
       {
         "tableName": "dream_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dream_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT, `moon_phase_day` INTEGER, `practice` TEXT, `dream_description` TEXT, `anchor` TEXT, `dream_duration` TEXT, `lucid_dream` INTEGER, `emotions` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` TEXT NOT NULL, `moon_phase_day` TEXT NOT NULL, `practice` TEXT NOT NULL, `dream_description` TEXT NOT NULL, `anchor` TEXT NOT NULL, `dream_duration` TEXT NOT NULL, `lucid_dream` INTEGER NOT NULL, `emotions` TEXT NOT NULL, PRIMARY KEY(`date`))",
         "fields": [
-          {
-            "fieldPath": "dreamId",
-            "columnName": "dream_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
           {
             "fieldPath": "date",
             "columnName": "date",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "moonPhaseDay",
             "columnName": "moon_phase_day",
-            "affinity": "INTEGER",
-            "notNull": false
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "practice",
             "columnName": "practice",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "dreamDescription",
             "columnName": "dream_description",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "anchor",
             "columnName": "anchor",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "dreamDuration",
             "columnName": "dream_duration",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "lucidDream",
             "columnName": "lucid_dream",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "emotions",
             "columnName": "emotions",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "dream_id"
+            "date"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -164,7 +158,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b5a11fbf60b69b1003f4f07d178c6cc6')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2a205f4016b180b169112b51ad497a3d')"
     ]
   }
 }

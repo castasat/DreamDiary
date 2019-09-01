@@ -35,28 +35,36 @@ class DreamViewModel(application : Application)
     utilizeDisposable(saveDreamPublishProcessor
                       .subscribeOn(Schedulers.io())
                       .observeOn(Schedulers.io())
-                      .switchMap {dream : Dream ->
-                        log("DreamViewModel" +
-                            ".observeSaveDream(): " +
+                      .doOnNext {dream : Dream ->
+                        log("DreamViewModel.observeSaveDream(): " +
                             "dream = $dream")
-      
-                        val dreamId = dreamDao.insert(dream)
-                        dreamDao.getDream(dreamId).toFlowable()
+                      }
+                      .switchMap {dream : Dream ->
+                        
+                        if(dreamDao.getDream(dream.date) == null)
+                        {
+                          log("DreamViewModel.observeSaveDream(): insert dream")
+                          dreamDao.insertDream(dream)
+                        }
+                        else
+                        {
+                          log("DreamViewModel.observeSaveDream(): update dream")
+                          dreamDao.updateDream(dream)
+                        }
+                        
+                        dreamDao.getDreamMaybe(dream.date).toFlowable()
                       }
                       .subscribe({dream : Dream ->
                                    currentDreamLiveData
                                    .postValue(dream)
                                  },
                                  {throwable : Throwable ->
-                                   log("DreamViewModel" +
-                                       ".observeSaveDream(): " +
+                                   log("DreamViewModel.observeSaveDream(): " +
                                        "throwable = $throwable")
                                    throwable.printStackTrace()
                                  },
                                  {
-                                   log("DreamViewModel" +
-                                       ".observeSaveDream(): " +
-                                       "completed")
+                                   log("DreamViewModel.observeSaveDream(): completed")
                                  }))
   }
   
@@ -66,27 +74,27 @@ class DreamViewModel(application : Application)
     utilizeDisposable(loadDreamPublishProcessor
                       .subscribeOn(Schedulers.io())
                       .observeOn(Schedulers.io())
+                      .doOnNext {date:String ->
+                        log("DayViewModel.observeLoadDream(): date = $date")
+                      }
                       .filter {date : String ->
                         date.isNotEmpty() &&
                         date.isNotBlank()
                       }
                       .switchMap {date : String ->
-                        dreamDao.getDream(date).toFlowable()
+                        dreamDao.getDreamMaybe(date).toFlowable()
                       }
                       .subscribe({dream : Dream ->
-                                   currentDreamLiveData
-                                   .postValue(dream)
+                                   log("DayViewModel.observeLoadDream(): dream = $dream")
+                                   currentDreamLiveData.postValue(dream)
                                  },
                                  {throwable : Throwable ->
-                                   log("DreamViewModel" +
-                                       ".observeLoadDream(): " +
+                                   log("DreamViewModel.observeLoadDream(): " +
                                        "throwable = $throwable")
                                    throwable.printStackTrace()
                                  },
                                  {
-                                   log("DreamViewModel" +
-                                       ".observeLoadDream(): " +
-                                       "completed")
+                                   log("DreamViewModel.observeLoadDream(): completed")
                                  }))
   }
   

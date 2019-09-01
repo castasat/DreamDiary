@@ -10,8 +10,11 @@ import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.openyogaland.denis.dreamdiary.R
+import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
+import com.openyogaland.denis.dreamdiary.model.Dream
 import com.openyogaland.denis.dreamdiary.viewmodel.DreamViewModel
 import com.redmadrobot.inputmask.MaskedTextChangedListener
 
@@ -22,11 +25,11 @@ DreamFragment : Fragment()
   // view fields
   private lateinit var dateTextView : AppCompatTextView
   private lateinit var practiceEditText : AppCompatEditText
-  private lateinit var dreamEditText : AppCompatEditText
+  private lateinit var dreamDescriptionEditText : AppCompatEditText
   private lateinit var anchorEditText : AppCompatEditText
   private lateinit var dreamDurationTimeEditText : AppCompatEditText
   private lateinit var lucidDreamCheckBox : AppCompatCheckBox
-  private lateinit var feelingsEditText : AppCompatEditText
+  private lateinit var emotionsEditText : AppCompatEditText
   private lateinit var saveDreamButton : AppCompatButton
   
   // architecture fields
@@ -44,24 +47,63 @@ DreamFragment : Fragment()
       .inflate(R.layout.dream_fragment,
                container,
                false)
-  
+    
     /* TODO enable if needed
     activityViewModel =
       ViewModelProvider(requireActivity() as MainActivity)
       .get(ActivityViewModel::class.java)*/
-  
+    
     dreamViewModel =
       ViewModelProvider(this)
       .get(DreamViewModel::class.java)
-  
+    
     dateTextView = view.findViewById(R.id.dateTextView)
     practiceEditText = view.findViewById(R.id.practiceEditText)
-    dreamEditText = view.findViewById(R.id.dreamEditText)
+    dreamDescriptionEditText = view.findViewById(R.id.dreamEditText)
     anchorEditText = view.findViewById(R.id.anchorEditText)
     dreamDurationTimeEditText = view.findViewById(R.id.dreamDurationTimeEditText)
     lucidDreamCheckBox = view.findViewById(R.id.lucidDreamCheckBox)
-    feelingsEditText = view.findViewById(R.id.feelingsEditText)
+    emotionsEditText = view.findViewById(R.id.feelingsEditText)
     saveDreamButton = view.findViewById(R.id.saveDreamButton)
+    
+    saveDreamButton
+    .setOnClickListener {_ : View ->
+      val dream = Dream()
+      dream.date = dateTextView.text.toString()
+      log("DreamFragment.saveDreamButton.setOnClickListener(): dream.date = ${dream.date}")
+      // TODO set moon phase day
+      dream.practice = practiceEditText.text.toString()
+      log("DreamFragment.saveDreamButton.setOnClickListener(): dream.practice = ${dream.practice}")
+      dream.dreamDescription = dreamDescriptionEditText.text.toString()
+      log("DreamFragment.saveDreamButton.setOnClickListener(): dream.dreamDescription = ${dream.dreamDescription}")
+      dream.anchor = anchorEditText.text.toString()
+      log("DreamFragment.saveDreamButton.setOnClickListener(): dream.anchor = ${dream.anchor}")
+      dream.dreamDuration = dreamDurationTimeEditText.text.toString()
+      log("DreamFragment.saveDreamButton.setOnClickListener(): dream.dreamDuration = ${dream.dreamDuration}")
+      dream.lucidDream = lucidDreamCheckBox.isChecked
+      log("DreamFragment.saveDreamButton.setOnClickListener(): dream.lucidDream = ${dream.lucidDream}")
+      dream.emotions = emotionsEditText.text.toString()
+      log("DreamFragment.saveDreamButton.setOnClickListener(): dream.emotions = ${dream.emotions}")
+      dreamViewModel.saveDream(dream)
+    }
+    
+    dreamViewModel
+    .currentDreamLiveData
+    .observe(this,
+             Observer<Dream>
+             {dream : Dream ->
+               dateTextView.text = dream.date
+               // TODO restore moon phase day
+               practiceEditText.setText(dream.practice)
+               dreamDescriptionEditText.setText(dream.dreamDescription)
+               anchorEditText.setText(dream.anchor)
+               dreamDurationTimeEditText.setText(dream.dreamDuration)
+               lucidDreamCheckBox.isChecked = dream.lucidDream
+               emotionsEditText.setText(dream.emotions)
+             })
+    
+    dreamViewModel
+    .loadDream(dateTextView.text.toString())
     
     return view
   }
