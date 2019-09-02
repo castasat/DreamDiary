@@ -60,6 +60,7 @@ DayFragment : Fragment()
   private lateinit var activityViewModel : ActivityViewModel*/
   private lateinit var dayViewModel : DayViewModel
   
+  @SuppressLint("SetTextI18n")
   override fun
   onCreateView(inflater : LayoutInflater,
                container : ViewGroup?,
@@ -238,7 +239,7 @@ DayFragment : Fragment()
       log("DayFragment.saveDayButton.setOnClickListener(): day.nutrition = ${day.nutrition}")
       day.events = eventsEditText.text.toString()
       log("DayFragment.saveDayButton.setOnClickListener(): day.events = ${day.events}")
-      day.stressLevel = stressLevelTextView.text.toString()
+      day.stressLevel = stressLevelSeekBar.progress.toString()
       log("DayFragment.saveDayButton.setOnClickListener(): day.stressLevel = ${day.stressLevel}")
       dayViewModel.saveDay(day)
     }
@@ -257,7 +258,8 @@ DayFragment : Fragment()
                practiceMinutesEditText.setText(day.practiceDurationMinutes)
                nutritionEditText.setText(day.nutrition)
                eventsEditText.setText(day.events)
-               stressLevelTextView.text = day.stressLevel
+               stressLevelTextView.text = "Уровень стресса: ${day.stressLevel}%"
+               stressLevelSeekBar.progress = day.stressLevel.toInt()
              })
     
     dayViewModel
