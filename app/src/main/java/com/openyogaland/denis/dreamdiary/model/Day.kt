@@ -4,48 +4,34 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "day_table")
 @Parcelize
-data class Day(
+data class
+Day(
+  @PrimaryKey
   @ColumnInfo(name = "date")
-  var date : String?,
+  var date : String = "",
   
   @ColumnInfo(name = "moon_phase_day")
-  var moonPhaseDay : String?,
-
+  var moonPhaseDay : String = "",
+  
   @ColumnInfo(name = "cycle_day")
-  var cycleDay : String?,
+  var cycleDay : String = "",
   
   @ColumnInfo(name = "practice_type")
-  var practiceType : String?,
+  var practiceType : String = "",
   
   @ColumnInfo(name = "practice_duration_minutes")
-  var practiceDurationMinutes : String?,
+  var practiceDurationMinutes : String = "",
   
   @ColumnInfo(name = "nutrition")
-  var nutrition : String?,
+  var nutrition : String = "",
   
   @ColumnInfo(name = "events")
-  var events : String?,
+  var events : String = "",
   
   @ColumnInfo(name = "stress_level")
-  var stressLevel : String?
+  var stressLevel : String = ""
 ) : Parcelable
-{
-  @IgnoredOnParcel
-  @PrimaryKey(autoGenerate = true)
-  @ColumnInfo(name = "day_id")
-  var dayId : Long = 0
-  
-  constructor(): this(null,
-                      null,
-                      null,
-                      null,
-                      null,
-                      null,
-                      null,
-                      null)
-}

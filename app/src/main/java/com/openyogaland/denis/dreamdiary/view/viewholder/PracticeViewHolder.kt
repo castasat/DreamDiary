@@ -5,11 +5,13 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemClickListener
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemLongClickListener
 import com.openyogaland.denis.dreamdiary.model.Practice
 
 class
 PracticeViewHolder(practiceView : View,
-                   onItemClickListener : OnPracticeItemClickListener) : ViewHolder(practiceView)
+                   onItemClickListener : OnPracticeItemClickListener,
+                   onItemLongClickListener : OnPracticeItemLongClickListener) : ViewHolder(practiceView)
 {
   // fields
   lateinit var practice : Practice
@@ -22,6 +24,12 @@ PracticeViewHolder(practiceView : View,
     practiceView
     .setOnClickListener {_ : View ->
       onItemClickListener.onPracticeItemClick(practice)
+    }
+    
+    practiceView
+    .setOnLongClickListener {_ : View ->
+      onItemLongClickListener.onPracticeItemLongClick(practice)
+      true
     }
   }
   

@@ -24,10 +24,13 @@ import com.openyogaland.denis.dreamdiary.adapter.PracticeAdapter
 import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.listener.OnCancelListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeAddedListener
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeEditedListener
 import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemClickListener
+import com.openyogaland.denis.dreamdiary.listener.OnPracticeItemLongClickListener
 import com.openyogaland.denis.dreamdiary.model.Day
 import com.openyogaland.denis.dreamdiary.model.Practice
 import com.openyogaland.denis.dreamdiary.view.dialog.AddPracticeDialog
+import com.openyogaland.denis.dreamdiary.view.dialog.EditPracticeDialog
 import com.openyogaland.denis.dreamdiary.viewmodel.DayViewModel
 import kotlinx.android.synthetic.main.day_fragment.*
 
@@ -50,12 +53,14 @@ DayFragment : Fragment()
   
   // dialog fields
   private var addPracticeDialog : AddPracticeDialog? = null
+  private var editPracticeDialog : EditPracticeDialog? = null
   
   // architecture fields
   /* TODO enable if needed
   private lateinit var activityViewModel : ActivityViewModel*/
   private lateinit var dayViewModel : DayViewModel
   
+  @SuppressLint("SetTextI18n")
   override fun
   onCreateView(inflater : LayoutInflater,
                container : ViewGroup?,
@@ -104,8 +109,7 @@ DayFragment : Fragment()
             practiceRecycleView.visibility = VISIBLE
             addPracticeTypeTextView.visibility = VISIBLE
             practiceChooserTextView
-            .setCompoundDrawablesWithIntrinsicBounds(0,
-                                                     0,
+            .setCompoundDrawablesWithIntrinsicBounds(0, 0,
                                                      R.drawable.arrow_up,
                                                      0)
           }
@@ -114,8 +118,7 @@ DayFragment : Fragment()
             practiceRecycleView.visibility = GONE
             addPracticeTypeTextView.visibility = GONE
             practiceChooserTextView
-            .setCompoundDrawablesWithIntrinsicBounds(0,
-                                                     0,
+            .setCompoundDrawablesWithIntrinsicBounds(0, 0,
                                                      R.drawable.arrow_down,
                                                      0)
           }
@@ -132,22 +135,52 @@ DayFragment : Fragment()
                         override fun
                         onPracticeItemClick(practice : Practice)
                         {
+                          log("DayFragment.onCreateView()" +
+                              ".onPracticeItemClickListener" +
+                              ".onPracticeItemClick(): " +
+                              "practice = ${practice.practiceType}")
+          
                           practiceChooserTextView
                           .setTextColor(ContextCompat
                                         .getColor(requireActivity(),
                                                   R.color.colorPrimary))
+                          practiceChooserTextView
+                          .setCompoundDrawablesWithIntrinsicBounds(0, 0,
+                                                                   R.drawable.arrow_down,
+                                                                   0)
                           practiceChooserTextView.text = practice.practiceType
                           practiceRecycleView.visibility = GONE
                           addPracticeTypeTextView.visibility = GONE
                         }
+                      },
+                      object : OnPracticeItemLongClickListener
+                      {
+                        override fun
+                        onPracticeItemLongClick(practice : Practice)
+                        {
+                          log("DayFragment.onCreateView()" +
+                              ".onPracticeItemLongClickListener" +
+                              ".onPracticeItemLongClick(): " +
+                              "practice = ${practice.practiceType}")
+          
+                          showEditPracticeDialog(practice)
+          
+                          practiceChooserTextView
+                          .setCompoundDrawablesWithIntrinsicBounds(0, 0,
+                                                                   R.drawable.arrow_up,
+                                                                   0)
+                        }
                       })
     
     addPracticeTypeTextView
-    .setOnClickListener {view : View ->
-      (view as AppCompatTextView)
-      .let {_ : AppCompatTextView ->
-        showAddPracticeDialog()
-      }
+    .setOnClickListener {_ : View ->
+      
+      showAddPracticeDialog()
+      
+      practiceChooserTextView
+      .setCompoundDrawablesWithIntrinsicBounds(0, 0,
+                                               R.drawable.arrow_up,
+                                               0)
     }
     
     dayViewModel
@@ -157,7 +190,6 @@ DayFragment : Fragment()
              {practices : List<Practice> ->
                (practiceRecyclerView.adapter as PracticeAdapter)
                .let {practiceAdapter : PracticeAdapter ->
-        
                  practiceAdapter.practices.clear()
                  practiceAdapter.addPractices(practices)
                  practiceAdapter.notifyDataSetChanged()
@@ -193,21 +225,23 @@ DayFragment : Fragment()
     
     saveDayButton
     .setOnClickListener {_ : View ->
-      log("DayFragment.saveDayButton.setOnClickListener()")
-      
       val day = Day()
-      
       day.date = dateTextView.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.date = ${day.date}")
       // TODO set moon phase day
       day.cycleDay = cycleDayCountEditText.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.cycleDay = ${day.cycleDay}")
       day.practiceType = practiceChooserTextView.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.practiceType = ${day.practiceType}")
       day.practiceDurationMinutes = practiceMinutesEditText.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.practiceDurationMinutes = ${day.practiceDurationMinutes}")
       day.nutrition = nutritionEditText.text.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.nutrition = ${day.nutrition}")
       day.events = eventsEditText.text.toString()
-      day.stressLevel = stressLevelTextView.text.toString()
-      
-      dayViewModel
-      .saveDay(day)
+      log("DayFragment.saveDayButton.setOnClickListener(): day.events = ${day.events}")
+      day.stressLevel = stressLevelSeekBar.progress.toString()
+      log("DayFragment.saveDayButton.setOnClickListener(): day.stressLevel = ${day.stressLevel}")
+      dayViewModel.saveDay(day)
     }
     
     dayViewModel
@@ -215,33 +249,17 @@ DayFragment : Fragment()
     .observe(this,
              Observer<Day>
              {day : Day ->
-               day.date?.let {date : String ->
-                 dateTextView.text = date
-               }
+               dateTextView.text = day.date
                // TODO restore moon phase day
-               day.cycleDay?.let {cycleDay : String ->
-                 cycleDayCountEditText.setText(cycleDay)
-               }
-      
-               day.practiceType?.let {practiceType : String ->
-                 practiceChooserTextView.text = practiceType
-               }
-      
-               day.practiceDurationMinutes?.let {practiceDurationMinutes : String ->
-                 practiceMinutesEditText.setText(practiceDurationMinutes)
-               }
-      
-               day.nutrition?.let {nutrition : String ->
-                 nutritionEditText.setText(nutrition)
-               }
-      
-               day.events?.let {events : String ->
-                 eventsEditText.setText(events)
-               }
-      
-               day.stressLevel?.let {stressLevel : String ->
-                 stressLevelTextView.text = stressLevel
-               }
+               cycleDayCountEditText.setText(day.cycleDay)
+               practiceChooserTextView
+               .setTextColor(ContextCompat.getColor(requireActivity(), R.color.colorPrimary))
+               practiceChooserTextView.text = day.practiceType
+               practiceMinutesEditText.setText(day.practiceDurationMinutes)
+               nutritionEditText.setText(day.nutrition)
+               eventsEditText.setText(day.events)
+               stressLevelTextView.text = "Уровень стресса: ${day.stressLevel}%"
+               stressLevelSeekBar.progress = day.stressLevel.toInt()
              })
     
     dayViewModel
@@ -251,6 +269,52 @@ DayFragment : Fragment()
     .loadDay(dateTextView.text.toString())
     
     return view
+  }
+  
+  private fun
+  showEditPracticeDialog(practice : Practice)
+  {
+    editPracticeDialog = EditPracticeDialog()
+    
+    editPracticeDialog
+    ?.let {editPracticeDialog : EditPracticeDialog ->
+      
+      editPracticeDialog.isCancelable = true
+      
+      editPracticeDialog.onCancelListener =
+        object : OnCancelListener
+        {
+          override fun
+          onCancel()
+          {
+            log("DayFragment.showEditPracticeDialog(): " +
+                "canceled")
+          }
+        }
+      
+      if(practice.practiceType.isNotBlank() && practice.practiceType.isNotEmpty())
+      {
+        editPracticeDialog.updateEditTextWithPractice(practice)
+        
+        // TODO remove if works
+        /*editPracticeDialog.practiceToEdit = practice
+        editPracticeDialog.practiceEditText?.setText(practice.practiceType)*/
+      }
+      
+      editPracticeDialog.onPracticeEditedListener =
+        object : OnPracticeEditedListener
+        {
+          override fun
+          onPracticeEdited(practice : Practice)
+          {
+            log("DayFragment.showEditPracticeDialog(): " +
+                "practice = $practice")
+            dayViewModel.editPractice(practice)
+          }
+        }
+      
+      editPracticeDialog.show(childFragmentManager, EDIT_PRACTICE_DIALOG)
+    }
   }
   
   private fun
@@ -293,16 +357,10 @@ DayFragment : Fragment()
     }
   }
   
-  override fun
-  onActivityCreated(savedInstanceState : Bundle?)
-  {
-    super
-    .onActivityCreated(savedInstanceState)
-  }
-  
   companion object
   {
     const val ADD_PRACTICE_DIALOG = "add_practice_dialog"
+    const val EDIT_PRACTICE_DIALOG = "edit_practice_dialog"
     const val PRACTICE_TYPES_INITIAL_CAPACITY = 8
   }
 }
