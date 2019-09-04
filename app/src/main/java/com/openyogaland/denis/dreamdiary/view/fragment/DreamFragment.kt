@@ -19,7 +19,7 @@ import com.openyogaland.denis.dreamdiary.viewmodel.DreamViewModel
 import com.redmadrobot.inputmask.MaskedTextChangedListener
 
 @Suppress("NAME_SHADOWING")
-public class
+class
 DreamFragment : Fragment()
 {
   // view fields

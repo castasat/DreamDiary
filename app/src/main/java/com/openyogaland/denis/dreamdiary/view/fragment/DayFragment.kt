@@ -35,7 +35,7 @@ import com.openyogaland.denis.dreamdiary.viewmodel.DayViewModel
 import kotlinx.android.synthetic.main.day_fragment.*
 
 @Suppress("NAME_SHADOWING")
-public class
+class
 DayFragment : Fragment()
 {
   // view fields
