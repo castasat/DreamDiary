@@ -46,12 +46,12 @@ CalendarFragment : Fragment()
       
       activity.window
       ?.let {window : Window ->
-  
+        
         // from API 19
         if(VERSION.SDK_INT >= VERSION_CODES.KITKAT)
         {
           window.clearFlags(FLAG_TRANSLUCENT_STATUS)
-  
+          
           // from API 21
           if(VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP)
           {

@@ -3,6 +3,8 @@ package com.openyogaland.denis.dreamdiary.view.activity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -38,20 +40,22 @@ MainActivity : AppCompatActivity()
                         id.navigationHostFragment)
     
     navController
-    .addOnDestinationChangedListener {_,
-                                      destination,
-                                      _ ->
+    .addOnDestinationChangedListener {_, destination, _ ->
       when(destination.id)
       {
+        id.calendarFragment ->
+        {
+          appBarLayout.visibility = GONE
+        }
         id.dayFragment   ->
         {
-          titleTextView
-          .text = getString(string.day_title)
+          appBarLayout.visibility = VISIBLE
+          titleTextView.text = getString(string.day_title)
         }
         id.dreamFragment ->
         {
-          titleTextView
-          .text = getString(string.dream_title)
+          appBarLayout.visibility = VISIBLE
+          titleTextView.text = getString(string.dream_title)
         }
       }
     }
@@ -65,12 +69,9 @@ MainActivity : AppCompatActivity()
                  appBarConfiguration)
     }
     
-    navController
-    .addOnDestinationChangedListener(TitleNavigationListener(titleTextView,
-                                                             toolbar))
-    NavigationUI
-    .setupWithNavController(bottomNavigationView,
-                            navController)
+    navController.addOnDestinationChangedListener(TitleNavigationListener(titleTextView, toolbar))
+    
+    NavigationUI.setupWithNavController(bottomNavigationView, navController)
   }
   
   override fun
