@@ -4,7 +4,13 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/navigation"
-  app:startDestination="@+id/dayFragment">
+  app:startDestination="@+id/calendarFragment">
+  
+  <fragment
+    android:id="@+id/calendarFragment"
+    android:name="com.openyogaland.denis.dreamdiary.view.fragment.CalendarFragment"
+    tools:layout="@layout/calendar_fragment"
+    android:label="@string/calendar_title"/>
   
   <fragment
     android:id="@+id/dayFragment"

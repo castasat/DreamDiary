@@ -1,15 +1,21 @@
 package com.openyogaland.denis.dreamdiary.view.fragment
 
+import android.os.Build.VERSION
+import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager.LayoutParams
 import android.widget.EditText
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.openyogaland.denis.dreamdiary.R
@@ -125,5 +131,26 @@ DreamFragment : Fragment()
     
     setInputMaskToEditText("[00]{:}[00]{ - }[00]{:}[00]",
                            dreamDurationTimeEditText)
+  
+    activity
+    ?.let {activity : FragmentActivity ->
+    
+      activity.window
+      ?.let {window : Window ->
+      
+        // from API 19
+        if(VERSION.SDK_INT >= VERSION_CODES.KITKAT)
+        {
+          window.clearFlags(LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        
+          // from API 21
+          if(VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP)
+          {
+            window.addFlags(LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = ContextCompat.getColor(activity, R.color.colorPrimaryDark)
+          }
+        }
+      }
+    }
   }
 }
