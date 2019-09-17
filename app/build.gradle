@@ -104,7 +104,7 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // support material design
-    implementation 'com.google.android.material:material:1.1.0-alpha09'
+    implementation 'com.google.android.material:material:1.1.0-alpha10'
 
     // androidx support library
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -112,12 +112,12 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
-    implementation 'androidx.core:core-ktx:1.2.0-alpha03'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0-alpha04'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
     implementation 'androidx.constraintlayout:constraintlayout-solver:2.0.0-beta1'
-    implementation 'androidx.vectordrawable:vectordrawable:1.1.0-rc01'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-beta03'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-beta04'
     implementation 'androidx.recyclerview:recyclerview-selection:1.1.0-alpha06'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0-beta01'
     implementation 'androidx.multidex:multidex:2.0.1'
@@ -126,18 +126,18 @@ dependencies {
     implementation 'androidx.exifinterface:exifinterface:1.1.0-beta01'
 
     // navigation library
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.0-alpha01'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.2.0-alpha01'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.0-alpha02'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.2.0-alpha02'
 
     // google architecture components
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha03'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0-alpha03'
-    implementation 'androidx.lifecycle:lifecycle-reactivestreams:2.2.0-alpha03'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0-alpha03'
-    implementation 'androidx.room:room-runtime:2.2.0-beta01'
-    implementation 'androidx.room:room-guava:2.2.0-beta01'
-    implementation 'androidx.room:room-ktx:2.2.0-beta01'
-    implementation 'androidx.room:room-rxjava2:2.2.0-beta01'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha04'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0-alpha04'
+    implementation 'androidx.lifecycle:lifecycle-reactivestreams:2.2.0-alpha04'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0-alpha04'
+    implementation 'androidx.room:room-runtime:2.2.0-rc01'
+    implementation 'androidx.room:room-guava:2.2.0-rc01'
+    implementation 'androidx.room:room-ktx:2.2.0-rc01'
+    implementation 'androidx.room:room-rxjava2:2.2.0-rc01'
     //implementation "android.arch.paging:runtime:1.0.1"
 
     // JSON conversion groovy library
@@ -176,7 +176,7 @@ dependencies {
     //implementation 'com.google.dagger:dagger-android-support:2.22.1'
 
     // additional annotation processors
-    kapt 'androidx.room:room-compiler:2.2.0-beta01'
+    kapt 'androidx.room:room-compiler:2.2.0-rc01'
     //kapt 'com.google.dagger:dagger-compiler:2.22.1'
     //kapt 'com.google.dagger:dagger-android-processor:2.22.1'
 
@@ -191,7 +191,7 @@ dependencies {
     // instrumental test libraries
     //androidTestImplementation 'androidx.test:runner:1.3.0-alpha01'
     //androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha01'
-    androidTestImplementation "androidx.room:room-testing:2.2.0-beta01"
+    androidTestImplementation "androidx.room:room-testing:2.2.0-rc01"
 
     // leak detection
     //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
