@@ -45,7 +45,7 @@ DreamDiary : MultiDexApplication()
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.io())
       .subscribe({
-        log("DreamDiary.onCreate(): completed")
+                   log("DreamDiary.onCreate(): completed")
                  },
                  {throwable : Throwable ->
                    throwable
@@ -66,7 +66,8 @@ DreamDiary : MultiDexApplication()
     .closeSession(this)
   }
   
-  companion object DreamDiary
+  companion object
+  DreamDiary
   {
     @JvmStatic
     @NonNls

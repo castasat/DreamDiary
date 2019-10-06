@@ -33,7 +33,7 @@ MainActivity : AppCompatActivity()
   onCreate(savedInstanceState : Bundle?)
   {
     super.onCreate(savedInstanceState)
-    setContentView(layout.activity_main)
+    setContentView(R.layout.activity_main)
     
     activityViewModel =
       ViewModelProvider(this)
