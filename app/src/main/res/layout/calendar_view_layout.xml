@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:foregroundGravity="center_horizontal"
+  android:paddingTop="30dp">
+  
+  <!-- Month slider -->
+  <androidx.appcompat.widget.AppCompatImageView
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:id="@+id/previousMonthImageView"
+    app:srcCompat="@drawable/arrow_left"
+    android:layout_margin="2dp"
+    app:tint="@color/black"
+    android:tint="@color/black"
+    app:layout_constraintEnd_toStartOf="@id/monthLabelTextView"
+    app:layout_constraintTop_toTopOf="@id/monthLabelTextView"
+    app:layout_constraintBottom_toBottomOf="@id/monthLabelTextView"/>
+  
+  <!-- spacing from API 21 -->
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/monthLabelTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    android:paddingStart="30dp"
+    android:paddingLeft="30dp"
+    android:paddingEnd="30dp"
+    android:paddingRight="30dp"
+    android:layout_weight="1"
+    android:gravity="center_horizontal"
+    android:textColor="@color/colorPrimary"
+    android:textSize="16sp"
+    android:textStyle="normal"
+    android:letterSpacing="0.5"
+    app:fontFamily="sans-serif"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:text="НОЯБРЬ" />
+  
+  <androidx.appcompat.widget.AppCompatImageView
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:id="@+id/nextMonthImageView"
+    app:srcCompat="@drawable/arrow_right"
+    android:layout_margin="2dp"
+    app:tint="@color/black"
+    android:tint="@color/black"
+    app:layout_constraintStart_toEndOf="@id/monthLabelTextView"
+    app:layout_constraintTop_toTopOf="@id/monthLabelTextView"
+    app:layout_constraintBottom_toBottomOf="@id/monthLabelTextView"/>
+  <!-- / Month slider -->
+  
+  <!-- Divider -->
+  <View
+    android:id="@+id/afterMonthSliderDivider"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginStart="22dp"
+    android:layout_marginEnd="22dp"
+    android:background="@color/divider_gray"
+    android:layout_marginTop="15dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/monthLabelTextView"/>
+  <!-- / Divider -->
+  
+  <!-- Week days -->
+  <!-- / Week days -->
+  
+  <!-- Month days -->
+  <!-- / Month days -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
