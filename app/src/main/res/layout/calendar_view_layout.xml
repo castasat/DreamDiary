@@ -34,7 +34,7 @@
     android:paddingLeft="30dp"
     android:paddingEnd="30dp"
     android:paddingRight="30dp"
-    tools:text="НОЯБРЬ"
+    android:text="@string/december"
     android:textColor="@color/colorPrimary"
     android:textSize="16sp"
     android:textStyle="normal"
@@ -94,8 +94,7 @@
       app:fontFamily="sans-serif-medium"
       android:gravity="center_horizontal"
       android:textColor="@color/gray"
-      tools:text="П"
-      android:text="M" />
+      android:text="@string/monday" />
     <!-- / Monday -->
     
     <!-- Tuesday -->
@@ -109,8 +108,7 @@
       app:fontFamily="sans-serif-medium"
       android:gravity="center_horizontal"
       android:textColor="@color/gray"
-      tools:text="В"
-      android:text="T" />
+      android:text="@string/tuesday" />
     <!-- / Tuesday -->
     
     <!-- Wednesday -->
@@ -124,8 +122,7 @@
       app:fontFamily="sans-serif-medium"
       android:gravity="center_horizontal"
       android:textColor="@color/gray"
-      tools:text="С"
-      android:text="W" />
+      android:text="@string/wednesday" />
     <!-- / Wednesday -->
     
     <!-- Thursday -->
@@ -139,8 +136,7 @@
       app:fontFamily="sans-serif-medium"
       android:gravity="center_horizontal"
       android:textColor="@color/gray"
-      tools:text="Ч"
-      android:text="T" />
+      android:text="@string/thursday" />
     <!-- / Thursday -->
     
     <!-- Friday -->
@@ -154,8 +150,7 @@
       app:fontFamily="sans-serif-medium"
       android:gravity="center_horizontal"
       android:textColor="@color/gray"
-      tools:text="П"
-      android:text="F" />
+      android:text="@string/friday" />
     <!-- / Friday -->
     
     <!-- Saturday -->
@@ -169,8 +164,7 @@
       app:fontFamily="sans-serif-medium"
       android:gravity="center_horizontal"
       android:textColor="@color/gray"
-      tools:text="С"
-      android:text="S" />
+      android:text="@string/saturday" />
     <!-- / Saturday -->
     
     <!-- Sunday -->
@@ -184,14 +178,21 @@
       app:fontFamily="sans-serif-medium"
       android:gravity="center_horizontal"
       android:textColor="@color/gray"
-      tools:text="В"
-      android:text="S" />
+      android:text="@string/sunday" />
     <!-- / Sunday -->
   
   </androidx.appcompat.widget.LinearLayoutCompat>
   <!-- / Week days -->
   
   <!-- Month days -->
+  <GridView
+    android:id="@+id/monthDaysGridView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:numColumns="7"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/weekDaysLinearLayout"/>
   <!-- / Month days -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

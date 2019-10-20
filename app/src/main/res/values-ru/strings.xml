@@ -5,4 +5,23 @@
   <string name="dream_title">Запись сна</string>
   <string name="ok">ОК</string>
   <string name="calendar_title">Календарь</string>
+  <string name="monday">П</string>
+  <string name="tuesday">В</string>
+  <string name="wednesday">С</string>
+  <string name="thursday">Ч</string>
+  <string name="friday">П</string>
+  <string name="saturday">С</string>
+  <string name="sunday">В</string>
+  <string name="january">ЯНВАРЬ</string>
+  <string name="february">ФЕВРАЛЬ</string>
+  <string name="march">МАРТ</string>
+  <string name="april">АПРЕЛЬ</string>
+  <string name="may">МАЙ</string>
+  <string name="june">ИЮНЬ</string>
+  <string name="july">ИЮЛЬ</string>
+  <string name="august">АВГУСТ</string>
+  <string name="september">СЕНТЯБРЬ</string>
+  <string name="october">ОКТЯБРЬ</string>
+  <string name="november">НОЯБРЬ</string>
+  <string name="december">ДЕКАБРЬ</string>
 </resources>
