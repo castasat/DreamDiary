@@ -4,21 +4,22 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  xmlns:tools="http://schemas.android.com/tools"
   android:foregroundGravity="center_horizontal"
   android:paddingTop="30dp">
   
   <!-- Month slider -->
   <androidx.appcompat.widget.AppCompatImageView
+    android:id="@+id/previousMonthImageView"
     android:layout_width="wrap_content"
     android:layout_height="0dp"
-    android:id="@+id/previousMonthImageView"
-    app:srcCompat="@drawable/arrow_left"
     android:layout_margin="2dp"
-    app:tint="@color/black"
     android:tint="@color/black"
+    app:layout_constraintBottom_toBottomOf="@id/monthLabelTextView"
     app:layout_constraintEnd_toStartOf="@id/monthLabelTextView"
     app:layout_constraintTop_toTopOf="@id/monthLabelTextView"
-    app:layout_constraintBottom_toBottomOf="@id/monthLabelTextView"/>
+    app:srcCompat="@drawable/arrow_left"
+    app:tint="@color/black" />
   
   <!-- spacing from API 21 -->
   <androidx.appcompat.widget.AppCompatTextView
@@ -26,33 +27,33 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="0dp"
+    android:layout_weight="1"
+    android:gravity="center_horizontal"
+    android:letterSpacing="0.5"
     android:paddingStart="30dp"
     android:paddingLeft="30dp"
     android:paddingEnd="30dp"
     android:paddingRight="30dp"
-    android:layout_weight="1"
-    android:gravity="center_horizontal"
+    tools:text="НОЯБРЬ"
     android:textColor="@color/colorPrimary"
     android:textSize="16sp"
     android:textStyle="normal"
-    android:letterSpacing="0.5"
     app:fontFamily="sans-serif"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:text="НОЯБРЬ" />
+    app:layout_constraintTop_toTopOf="parent" />
   
   <androidx.appcompat.widget.AppCompatImageView
+    android:id="@+id/nextMonthImageView"
     android:layout_width="wrap_content"
     android:layout_height="0dp"
-    android:id="@+id/nextMonthImageView"
-    app:srcCompat="@drawable/arrow_right"
     android:layout_margin="2dp"
-    app:tint="@color/black"
     android:tint="@color/black"
+    app:layout_constraintBottom_toBottomOf="@id/monthLabelTextView"
     app:layout_constraintStart_toEndOf="@id/monthLabelTextView"
     app:layout_constraintTop_toTopOf="@id/monthLabelTextView"
-    app:layout_constraintBottom_toBottomOf="@id/monthLabelTextView"/>
+    app:srcCompat="@drawable/arrow_right"
+    app:tint="@color/black" />
   <!-- / Month slider -->
   
   <!-- Divider -->
@@ -61,15 +62,133 @@
     android:layout_width="match_parent"
     android:layout_height="1dp"
     android:layout_marginStart="22dp"
+    android:layout_marginTop="15dp"
     android:layout_marginEnd="22dp"
     android:background="@color/divider_gray"
-    android:layout_marginTop="15dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/monthLabelTextView"/>
+    app:layout_constraintTop_toBottomOf="@+id/monthLabelTextView" />
   <!-- / Divider -->
   
   <!-- Week days -->
+  <androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/weekDaysLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="20dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/afterMonthSliderDivider">
+    
+    <!-- Monday -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/monday"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:textSize="16sp"
+      android:textStyle="normal"
+      app:fontFamily="sans-serif-medium"
+      android:gravity="center_horizontal"
+      android:textColor="@color/gray"
+      tools:text="П"
+      android:text="M" />
+    <!-- / Monday -->
+    
+    <!-- Tuesday -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/tuesday"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:textSize="16sp"
+      android:textStyle="normal"
+      app:fontFamily="sans-serif-medium"
+      android:gravity="center_horizontal"
+      android:textColor="@color/gray"
+      tools:text="В"
+      android:text="T" />
+    <!-- / Tuesday -->
+    
+    <!-- Wednesday -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/wednesday"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:textSize="16sp"
+      android:textStyle="normal"
+      app:fontFamily="sans-serif-medium"
+      android:gravity="center_horizontal"
+      android:textColor="@color/gray"
+      tools:text="С"
+      android:text="W" />
+    <!-- / Wednesday -->
+    
+    <!-- Thursday -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/thursday"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:textSize="16sp"
+      android:textStyle="normal"
+      app:fontFamily="sans-serif-medium"
+      android:gravity="center_horizontal"
+      android:textColor="@color/gray"
+      tools:text="Ч"
+      android:text="T" />
+    <!-- / Thursday -->
+    
+    <!-- Friday -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/friday"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:textSize="16sp"
+      android:textStyle="normal"
+      app:fontFamily="sans-serif-medium"
+      android:gravity="center_horizontal"
+      android:textColor="@color/gray"
+      tools:text="П"
+      android:text="F" />
+    <!-- / Friday -->
+    
+    <!-- Saturday -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/saturday"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:textSize="16sp"
+      android:textStyle="normal"
+      app:fontFamily="sans-serif-medium"
+      android:gravity="center_horizontal"
+      android:textColor="@color/gray"
+      tools:text="С"
+      android:text="S" />
+    <!-- / Saturday -->
+    
+    <!-- Sunday -->
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/sunday"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:textSize="16sp"
+      android:textStyle="normal"
+      app:fontFamily="sans-serif-medium"
+      android:gravity="center_horizontal"
+      android:textColor="@color/gray"
+      tools:text="В"
+      android:text="S" />
+    <!-- / Sunday -->
+  
+  </androidx.appcompat.widget.LinearLayoutCompat>
   <!-- / Week days -->
   
   <!-- Month days -->
