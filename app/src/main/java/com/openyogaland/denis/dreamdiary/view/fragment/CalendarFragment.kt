@@ -18,10 +18,6 @@ import com.openyogaland.denis.dreamdiary.R
 class
 CalendarFragment : Fragment()
 {
-  // view fields
-  
-  // architecture fields
-  
   override fun
   onCreateView(inflater : LayoutInflater,
                container : ViewGroup?,
