@@ -184,8 +184,8 @@
   <!-- / Week days -->
   
   <!-- Month days -->
-  <GridView
-    android:id="@+id/monthDaysGridView"
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/monthDaysRecyclerView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:numColumns="7"

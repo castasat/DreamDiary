@@ -58,7 +58,7 @@ PracticeAdapter(var practices : ArrayList<Practice>,
     val practiceTypeItemView =
       LayoutInflater
       .from(parent.context)
-      .inflate(R.layout.practice_item,
+      .inflate(R.layout.item_practice_layout,
                parent,
                false)
     return PracticeViewHolder(practiceTypeItemView,
