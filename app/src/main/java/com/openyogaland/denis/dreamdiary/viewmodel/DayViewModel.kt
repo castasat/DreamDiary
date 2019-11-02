@@ -7,8 +7,8 @@ import com.openyogaland.denis.dreamdiary.database.dao.DayDao
 import com.openyogaland.denis.dreamdiary.database.dao.PracticeDao
 import com.openyogaland.denis.dreamdiary.model.Day
 import com.openyogaland.denis.dreamdiary.model.Practice
-import io.reactivex.processors.PublishProcessor
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.processors.PublishProcessor
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class
 DayViewModel(application : Application)

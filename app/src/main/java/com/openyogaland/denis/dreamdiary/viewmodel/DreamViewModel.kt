@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.database.dao.DreamDao
 import com.openyogaland.denis.dreamdiary.model.Dream
-import io.reactivex.processors.PublishProcessor
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.processors.PublishProcessor
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class DreamViewModel(application : Application)
   : BaseViewModel(application)

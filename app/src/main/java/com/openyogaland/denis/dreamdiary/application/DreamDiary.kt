@@ -11,9 +11,9 @@ import com.splunk.mint.Mint.enableLogging
 import com.splunk.mint.Mint.initAndStartSession
 import com.splunk.mint.Mint.setApplicationEnvironment
 import com.splunk.mint.Mint.setLogging
-import io.reactivex.Completable
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.jetbrains.annotations.NonNls
 
 class

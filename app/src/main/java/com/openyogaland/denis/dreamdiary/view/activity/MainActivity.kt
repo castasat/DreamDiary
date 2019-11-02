@@ -17,7 +17,6 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.navigateUp
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.R.id
-import com.openyogaland.denis.dreamdiary.R.layout
 import com.openyogaland.denis.dreamdiary.R.string
 import com.openyogaland.denis.dreamdiary.listener.TitleNavigationListener
 import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
