@@ -11,9 +11,9 @@ import com.openyogaland.denis.dreamdiary.model.Practice
 class
 PracticeViewHolder(practiceView : View,
                    onItemClickListener : OnPracticeItemClickListener,
-                   onItemLongClickListener : OnPracticeItemLongClickListener) : ViewHolder(practiceView)
+                   onItemLongClickListener : OnPracticeItemLongClickListener)
+  : ViewHolder(practiceView)
 {
-  // fields
   lateinit var practice : Practice
   
   val practiceTextView : AppCompatTextView =
