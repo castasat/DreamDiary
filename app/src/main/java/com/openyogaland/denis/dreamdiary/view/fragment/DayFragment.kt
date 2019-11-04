@@ -195,9 +195,12 @@ DayFragment : Fragment()
              {practices : List<Practice> ->
                (practiceRecyclerView.adapter as PracticeAdapter)
                .let {practiceAdapter : PracticeAdapter ->
-                 practiceAdapter.practices.clear()
-                 practiceAdapter.addPractices(practices)
-                 practiceAdapter.notifyDataSetChanged()
+                 practiceAdapter
+                 .apply{
+                   this.practices.clear()
+                   addPractices(practices)
+                   notifyDataSetChanged()
+                 }
                }
              })
     

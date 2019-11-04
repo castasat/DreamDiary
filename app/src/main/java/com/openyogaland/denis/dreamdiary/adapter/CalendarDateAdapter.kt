@@ -12,9 +12,9 @@ import com.openyogaland.denis.dreamdiary.view.viewholder.CalendarDateViewHolder
 
 class CalendarDateAdapter(var calendarDates : ArrayList<CalendarDate>,
                           private var onCalendarDateItemClickListener
-                          : OnCalendarDateItemClickListener,
+                          : OnCalendarDateItemClickListener?,
                           private var onCalendarDateItemLongClickListener
-                          : OnCalendarDateItemLongClickListener)
+                          : OnCalendarDateItemLongClickListener?)
   : Adapter<CalendarDateViewHolder>()
 {
   override fun onCreateViewHolder(parent : ViewGroup,

@@ -9,47 +9,69 @@ import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
 import android.view.WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.openyogaland.denis.dreamdiary.R
+import com.openyogaland.denis.dreamdiary.adapter.CalendarDateAdapter
+import com.openyogaland.denis.dreamdiary.listener.OnCalendarDateItemClickListener
+import com.openyogaland.denis.dreamdiary.listener.OnCalendarDateItemLongClickListener
+import com.openyogaland.denis.dreamdiary.model.CalendarDate
+import com.openyogaland.denis.dreamdiary.viewmodel.CalendarViewModel
 
 @Suppress("NAME_SHADOWING")
 class
 CalendarFragment : Fragment()
 {
-  companion object{
-    const val DAYS_IN_A_WEEK = 7
-    const val ROWS = 5
-  }
+  // view fields
+  private lateinit var monthDaysRecyclerView : RecyclerView
+  
+  // architecture fields
+  private lateinit var calendarViewModel : CalendarViewModel
   
   override fun
   onCreateView(inflater : LayoutInflater,
                container : ViewGroup?,
                savedInstanceState : Bundle?) : View?
   {
-    val view : View = inflater.inflate(R.layout.calendar_fragment,
-                                       container, false)
+    val view : View = inflater.inflate(R.layout.calendar_fragment, container, false)
     
-    val monthDaysRecyclerView = view.findViewById<RecyclerView>(R.id.monthDaysRecyclerView)
-    monthDaysRecyclerView.layoutManager = GridLayoutManager(requireContext(), DAYS_IN_A_WEEK)
-    monthDaysRecyclerView.adapter =
-      object : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-        override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : ViewHolder
-        {
-          val view = AppCompatTextView(parent.context).apply {
-            text = "10"
-          }
-          return  object : ViewHolder(view){}
-        }
-        override fun getItemCount() : Int = DAYS_IN_A_WEEK * ROWS
-        override fun onBindViewHolder(holder : ViewHolder, position : Int) {}
-      }
-    monthDaysRecyclerView.recycledViewPool.setMaxRecycledViews(0, DAYS_IN_A_WEEK * ROWS)
+    monthDaysRecyclerView = view.findViewById<RecyclerView>(R.id.monthDaysRecyclerView)
+  
+    monthDaysRecyclerView
+    .apply{
+      layoutManager  = GridLayoutManager(context, DAYS_IN_A_WEEK)
+      adapter =
+        CalendarDateAdapter(
+          ArrayList<CalendarDate>(MAX_DAYS_IN_A_MONTH),
+          object : OnCalendarDateItemClickListener
+          {
+            override fun
+            onCalendsrDateItemClick(calendarDate : CalendarDate)
+            {
+              // TODO
+            }
+          },
+          object : OnCalendarDateItemLongClickListener
+          {
+            override fun
+            onCalendarDateItemLongClick(calendarDate : CalendarDate)
+            {
+              // TODO
+            }
+          })
+    
+      recycledViewPool.setMaxRecycledViews(0, MAX_DAYS_IN_A_MONTH)
+    }
+  
+    calendarViewModel =
+      ViewModelProvider(this)
+      .get(CalendarViewModel::class.java)
+  
+    calendarViewModel.fillCurrentMonthWithDates()
     
     return view
   }
@@ -58,18 +80,14 @@ CalendarFragment : Fragment()
   onActivityCreated(savedInstanceState : Bundle?)
   {
     super.onActivityCreated(savedInstanceState)
-    
     activity
     ?.let {activity : FragmentActivity ->
-      
       activity.window
       ?.let {window : Window ->
-        
         // from API 19
         if(VERSION.SDK_INT >= VERSION_CODES.KITKAT)
         {
           window.clearFlags(FLAG_TRANSLUCENT_STATUS)
-          
           // from API 21
           if(VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP)
           {
@@ -79,5 +97,12 @@ CalendarFragment : Fragment()
         }
       }
     }
+  }
+  
+  companion object
+  {
+    private const val WEEK_ROWS = 5
+    const val DAYS_IN_A_WEEK = 7
+    const val MAX_DAYS_IN_A_MONTH = DAYS_IN_A_WEEK * WEEK_ROWS
   }
 }

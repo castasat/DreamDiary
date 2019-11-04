@@ -10,8 +10,8 @@ import com.openyogaland.denis.dreamdiary.model.CalendarDate
 
 class
 CalendarDateViewHolder(calendarDateView : View,
-                       onItemClickListener : OnCalendarDateItemClickListener,
-                       onItemLongClickListener : OnCalendarDateItemLongClickListener)
+                       onItemClickListener : OnCalendarDateItemClickListener?,
+                       onItemLongClickListener : OnCalendarDateItemLongClickListener?)
   : ViewHolder(calendarDateView)
 {
   lateinit var calendarDate : CalendarDate
@@ -23,12 +23,12 @@ CalendarDateViewHolder(calendarDateView : View,
   {
     calendarDateView
     .setOnClickListener {_ : View ->
-      onItemClickListener.onCalendsrDateItemClick(calendarDate)
+      onItemClickListener?.onCalendsrDateItemClick(calendarDate)
     }
     
     calendarDateView
     .setOnLongClickListener {_ : View ->
-      onItemLongClickListener.onCalendarDateItemLongClick(calendarDate)
+      onItemLongClickListener?.onCalendarDateItemLongClick(calendarDate)
       true
     }
   }
