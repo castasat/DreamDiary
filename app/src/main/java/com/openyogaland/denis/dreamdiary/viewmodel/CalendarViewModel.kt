@@ -1,6 +1,7 @@
 package com.openyogaland.denis.dreamdiary.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.MutableLiveData
 import com.openyogaland.denis.dreamdiary.application.DreamDiary.DreamDiary.log
 import com.openyogaland.denis.dreamdiary.view.fragment.CalendarFragment.Companion.MAX_DAYS_IN_A_MONTH
 import java.lang.IllegalStateException
@@ -13,7 +14,10 @@ class
 CalendarViewModel(application : Application)
   : BaseViewModel(application)
 {
-  // fields
+  // live data fields
+  val calendarDatesLiveData = MutableLiveData<List<String>>()
+  
+  // reactive fields
   
   init
   {
@@ -30,8 +34,8 @@ CalendarViewModel(application : Application)
   fun
   fillMonthWithDates(selectedMonthCalendar : Calendar)
   {
-    val firstDayIndex : Int
     val calendarDates = ArrayList<String>(MAX_DAYS_IN_A_MONTH)
+    val firstDayIndex : Int
     
     val maxDaysInSelectedMonth = determineSelectedMonthLengthInDays(selectedMonthCalendar)
     log("CalendarViewModel.fillMonthWithDates: maxDaysInSelectedMonth = $maxDaysInSelectedMonth")
@@ -81,6 +85,7 @@ CalendarViewModel(application : Application)
       log("CalendarViewModel.fillMonthWithDates: nextMonthDay = $nextMonthDay")
       nextMonthDay++
     }
+    calendarDatesLiveData.postValue(calendarDates)
   }
   
   private fun

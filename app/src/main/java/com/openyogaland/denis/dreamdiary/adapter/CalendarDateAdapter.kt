@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.listener.OnCalendarDateItemClickListener
 import com.openyogaland.denis.dreamdiary.listener.OnCalendarDateItemLongClickListener
-import com.openyogaland.denis.dreamdiary.model.CalendarDate
 import com.openyogaland.denis.dreamdiary.view.viewholder.CalendarDateViewHolder
 
-class CalendarDateAdapter(var calendarDates : ArrayList<CalendarDate>,
+class CalendarDateAdapter(var calendarDates : ArrayList<String>,
                           private var onCalendarDateItemClickListener
                           : OnCalendarDateItemClickListener?,
                           private var onCalendarDateItemLongClickListener
@@ -48,6 +47,12 @@ class CalendarDateAdapter(var calendarDates : ArrayList<CalendarDate>,
       calendarDateViewHolder.calendarDateTextView
     
     calendarDateViewHolder.bindCalendarDate(calendarDate)
-    calendarDateTextView.text = calendarDate.dayOfMonth
+    calendarDateTextView.text = calendarDate
+  }
+  
+  fun addCalendarDates(calendarDates : List<String>)
+  {
+    this.calendarDates
+    .addAll(calendarDates)
   }
 }

@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.listener.OnCalendarDateItemClickListener
 import com.openyogaland.denis.dreamdiary.listener.OnCalendarDateItemLongClickListener
-import com.openyogaland.denis.dreamdiary.model.CalendarDate
 
 class
 CalendarDateViewHolder(calendarDateView : View,
@@ -14,7 +13,7 @@ CalendarDateViewHolder(calendarDateView : View,
                        onItemLongClickListener : OnCalendarDateItemLongClickListener?)
   : ViewHolder(calendarDateView)
 {
-  lateinit var calendarDate : CalendarDate
+  private lateinit var calendarDate : String
   
   val calendarDateTextView : AppCompatTextView =
     calendarDateView.findViewById(R.id.calendarDateTextView)
@@ -23,7 +22,7 @@ CalendarDateViewHolder(calendarDateView : View,
   {
     calendarDateView
     .setOnClickListener {_ : View ->
-      onItemClickListener?.onCalendsrDateItemClick(calendarDate)
+      onItemClickListener?.onCalendarDateItemClick(calendarDate)
     }
     
     calendarDateView
@@ -34,7 +33,7 @@ CalendarDateViewHolder(calendarDateView : View,
   }
   
   fun
-  bindCalendarDate(calendarDate : CalendarDate)
+  bindCalendarDate(calendarDate : String)
   {
     this.calendarDate = calendarDate
   }

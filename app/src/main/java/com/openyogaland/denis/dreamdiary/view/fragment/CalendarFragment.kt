@@ -12,6 +12,7 @@ import android.view.WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +20,6 @@ import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.adapter.CalendarDateAdapter
 import com.openyogaland.denis.dreamdiary.listener.OnCalendarDateItemClickListener
 import com.openyogaland.denis.dreamdiary.listener.OnCalendarDateItemLongClickListener
-import com.openyogaland.denis.dreamdiary.model.CalendarDate
 import com.openyogaland.denis.dreamdiary.viewmodel.CalendarViewModel
 
 @Suppress("NAME_SHADOWING")
@@ -37,7 +37,8 @@ CalendarFragment : Fragment()
                container : ViewGroup?,
                savedInstanceState : Bundle?) : View?
   {
-    val view : View = inflater.inflate(R.layout.calendar_fragment, container, false)
+    val view : View = inflater.inflate(R.layout.calendar_fragment,
+                                       container, false)
     
     monthDaysRecyclerView = view.findViewById<RecyclerView>(R.id.monthDaysRecyclerView)
   
@@ -46,11 +47,11 @@ CalendarFragment : Fragment()
       layoutManager  = GridLayoutManager(context, DAYS_IN_A_WEEK)
       adapter =
         CalendarDateAdapter(
-          ArrayList<CalendarDate>(MAX_DAYS_IN_A_MONTH),
+          ArrayList<String>(MAX_DAYS_IN_A_MONTH),
           object : OnCalendarDateItemClickListener
           {
             override fun
-            onCalendsrDateItemClick(calendarDate : CalendarDate)
+            onCalendarDateItemClick(calendarDate : String)
             {
               // TODO
             }
@@ -58,7 +59,7 @@ CalendarFragment : Fragment()
           object : OnCalendarDateItemLongClickListener
           {
             override fun
-            onCalendarDateItemLongClick(calendarDate : CalendarDate)
+            onCalendarDateItemLongClick(calendarDate : String)
             {
               // TODO
             }
@@ -71,6 +72,22 @@ CalendarFragment : Fragment()
       ViewModelProvider(this)
       .get(CalendarViewModel::class.java)
   
+    calendarViewModel
+    .calendarDatesLiveData
+    .observe(this,
+             Observer<List<String>>
+             {calendarDates : List<String> ->
+               (monthDaysRecyclerView.adapter as CalendarDateAdapter)
+               .let {calendarDateAdapter : CalendarDateAdapter ->
+                 calendarDateAdapter
+                 .apply {
+                   this.calendarDates.clear()
+                   addCalendarDates(calendarDates)
+                   notifyDataSetChanged()
+                 }
+               }
+             })
+    
     calendarViewModel.fillCurrentMonthWithDates()
     
     return view
