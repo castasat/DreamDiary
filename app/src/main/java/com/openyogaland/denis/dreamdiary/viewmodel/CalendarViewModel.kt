@@ -15,7 +15,7 @@ CalendarViewModel(application : Application)
   : BaseViewModel(application)
 {
   // live data fields
-  val calendarDatesLiveData = MutableLiveData<List<String>>()
+  val calendarDatesLiveData = MutableLiveData<Array<String>>()
   
   // reactive fields
   
@@ -28,15 +28,13 @@ CalendarViewModel(application : Application)
   fillCurrentMonthWithDates()
   {
     val currentTimeCalendar = Calendar.getInstance()
+    
     fillMonthWithDates(currentTimeCalendar)
   }
   
   fun
   fillMonthWithDates(selectedMonthCalendar : Calendar)
   {
-    val calendarDates = ArrayList<String>(MAX_DAYS_IN_A_MONTH)
-    val firstDayIndex : Int
-    
     val maxDaysInSelectedMonth = determineSelectedMonthLengthInDays(selectedMonthCalendar)
     log("CalendarViewModel.fillMonthWithDates: maxDaysInSelectedMonth = $maxDaysInSelectedMonth")
     
@@ -45,7 +43,7 @@ CalendarViewModel(application : Application)
     val dayOfWeekForFirstDayOfMonth = determineWeekDay(selectedMonthCalendar)
     log("CalendarViewModel.fillMonthWithDates: dayOfWeekForFirstDayOfMonth = $dayOfWeekForFirstDayOfMonth")
     
-    firstDayIndex =
+    val firstDayIndex =
       when(dayOfWeekForFirstDayOfMonth)
       {
         SUNDAY    -> SUNDAY_INDEX
@@ -61,30 +59,34 @@ CalendarViewModel(application : Application)
     val maxDaysInPreviousMonth = determinePreviousMonthLengthInDays(selectedMonthCalendar)
     log("CalendarViewModel.fillMonthWithDates: maxDaysInPreviousMonth = $maxDaysInPreviousMonth")
     
-    // fill previous month
-    var previousMonthDay = maxDaysInPreviousMonth - (firstDayIndex - 1)
-    for(calendarDate in 0 until firstDayIndex)
-    {
-      calendarDates.add(calendarDate, calendarDate.toString())
-      log("CalendarViewModel.fillMonthWithDates: previousMonthDay = $previousMonthDay")
-      previousMonthDay++
+    val calendarDates = Array<String>(MAX_DAYS_IN_A_MONTH) {index : Int ->
+      when(index)
+      {
+        in 0 until firstDayIndex                                               -> // fill previous month
+        {
+          val previousMonthDay = maxDaysInPreviousMonth - (firstDayIndex - 1) + index
+          log("CalendarViewModel.fillMonthWithDates: previousMonthDay = $previousMonthDay")
+          previousMonthDay.toString()
+        }
+        in 1..(maxDaysInSelectedMonth + (firstDayIndex - 1))                   -> // fill current month
+        {
+          val currentMonthDay = index - (firstDayIndex - 1)
+          log("CalendarViewModel.fillMonthWithDates: currentMonthDay = $currentMonthDay")
+          currentMonthDay.toString()
+        }
+        in ((maxDaysInSelectedMonth + firstDayIndex)..MAX_DAYS_IN_A_MONTH) -> // fill next month
+        {
+          val nextMonthDay = (index + 1) - (maxDaysInSelectedMonth + firstDayIndex)
+          log("CalendarViewModel.fillMonthWithDates: nextMonthDay = $nextMonthDay")
+          nextMonthDay.toString()
+        }
+        else                                                                   -> // nothing
+        {
+          ""
+        }
+      }
     }
     
-    // fill current month
-    for(calendarDate in 1..maxDaysInSelectedMonth)
-    {
-      calendarDates.add((firstDayIndex - 1) + calendarDate, calendarDate.toString())
-      log("CalendarViewModel.fillMonthWithDates: currentMonthDay = $calendarDate")
-    }
-    
-    // fill next month
-    var nextMonthDay = 1
-    for(calendarDate in 1..(MAX_DAYS_IN_A_MONTH - (maxDaysInSelectedMonth + firstDayIndex)))
-    {
-      calendarDates.add(calendarDate, nextMonthDay.toString())
-      log("CalendarViewModel.fillMonthWithDates: nextMonthDay = $nextMonthDay")
-      nextMonthDay++
-    }
     calendarDatesLiveData.postValue(calendarDates)
   }
   

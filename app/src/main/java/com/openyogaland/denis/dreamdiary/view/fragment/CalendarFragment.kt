@@ -41,10 +41,10 @@ CalendarFragment : Fragment()
                                        container, false)
     
     monthDaysRecyclerView = view.findViewById<RecyclerView>(R.id.monthDaysRecyclerView)
-  
+    
     monthDaysRecyclerView
-    .apply{
-      layoutManager  = GridLayoutManager(context, DAYS_IN_A_WEEK)
+    .apply {
+      layoutManager = GridLayoutManager(context, DAYS_IN_A_WEEK)
       adapter =
         CalendarDateAdapter(
           ArrayList<String>(MAX_DAYS_IN_A_MONTH),
@@ -64,25 +64,25 @@ CalendarFragment : Fragment()
               // TODO
             }
           })
-    
+      
       recycledViewPool.setMaxRecycledViews(0, MAX_DAYS_IN_A_MONTH)
     }
-  
+    
     calendarViewModel =
       ViewModelProvider(this)
       .get(CalendarViewModel::class.java)
-  
+    
     calendarViewModel
     .calendarDatesLiveData
     .observe(this,
-             Observer<List<String>>
-             {calendarDates : List<String> ->
+             Observer<Array<String>>
+             {calendarDates : Array<String> ->
                (monthDaysRecyclerView.adapter as CalendarDateAdapter)
                .let {calendarDateAdapter : CalendarDateAdapter ->
                  calendarDateAdapter
                  .apply {
                    this.calendarDates.clear()
-                   addCalendarDates(calendarDates)
+                   addCalendarDates(calendarDates.toList())
                    notifyDataSetChanged()
                  }
                }
