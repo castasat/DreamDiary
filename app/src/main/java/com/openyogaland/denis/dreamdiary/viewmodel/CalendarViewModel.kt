@@ -28,11 +28,10 @@ CalendarViewModel(application : Application)
   fillCurrentMonthWithDates()
   {
     val currentTimeCalendar = Calendar.getInstance()
-    
     fillMonthWithDates(currentTimeCalendar)
   }
   
-  fun
+  private fun
   fillMonthWithDates(selectedMonthCalendar : Calendar)
   {
     val maxDaysInSelectedMonth = determineSelectedMonthLengthInDays(selectedMonthCalendar)
@@ -62,13 +61,13 @@ CalendarViewModel(application : Application)
     val calendarDates = Array<String>(MAX_DAYS_IN_A_MONTH) {index : Int ->
       when(index)
       {
-        in 0 until firstDayIndex                                               -> // fill previous month
+        in 0 until firstDayIndex -> // fill previous month
         {
           val previousMonthDay = maxDaysInPreviousMonth - (firstDayIndex - 1) + index
           log("CalendarViewModel.fillMonthWithDates: previousMonthDay = $previousMonthDay")
           previousMonthDay.toString()
         }
-        in 1..(maxDaysInSelectedMonth + (firstDayIndex - 1))                   -> // fill current month
+        in 1..(maxDaysInSelectedMonth + (firstDayIndex - 1)) -> // fill current month
         {
           val currentMonthDay = index - (firstDayIndex - 1)
           log("CalendarViewModel.fillMonthWithDates: currentMonthDay = $currentMonthDay")
@@ -80,13 +79,9 @@ CalendarViewModel(application : Application)
           log("CalendarViewModel.fillMonthWithDates: nextMonthDay = $nextMonthDay")
           nextMonthDay.toString()
         }
-        else                                                                   -> // nothing
-        {
-          ""
-        }
+        else -> { "" }
       }
     }
-    
     calendarDatesLiveData.postValue(calendarDates)
   }
   

@@ -27,7 +27,7 @@ class
 CalendarFragment : Fragment()
 {
   // view fields
-  private lateinit var monthDaysRecyclerView : RecyclerView
+  private var monthDaysRecyclerView : RecyclerView? = null
   
   // architecture fields
   private lateinit var calendarViewModel : CalendarViewModel
@@ -37,34 +37,30 @@ CalendarFragment : Fragment()
                container : ViewGroup?,
                savedInstanceState : Bundle?) : View?
   {
-    val view : View = inflater.inflate(R.layout.calendar_fragment,
-                                       container, false)
+    val view : View = inflater.inflate(R.layout.calendar_fragment, container, false)
     
     monthDaysRecyclerView = view.findViewById<RecyclerView>(R.id.monthDaysRecyclerView)
     
     monthDaysRecyclerView
-    .apply {
+    ?.apply {
       layoutManager = GridLayoutManager(context, DAYS_IN_A_WEEK)
-      adapter =
-        CalendarDateAdapter(
-          ArrayList<String>(MAX_DAYS_IN_A_MONTH),
-          object : OnCalendarDateItemClickListener
-          {
-            override fun
-            onCalendarDateItemClick(calendarDate : String)
-            {
-              // TODO
-            }
-          },
-          object : OnCalendarDateItemLongClickListener
-          {
-            override fun
-            onCalendarDateItemLongClick(calendarDate : String)
-            {
-              // TODO
-            }
-          })
-      
+      adapter = CalendarDateAdapter(ArrayList<String>(MAX_DAYS_IN_A_MONTH),
+                                    object : OnCalendarDateItemClickListener
+                                    {
+                                      override fun
+                                      onCalendarDateItemClick(calendarDate : String)
+                                      {
+                                        // TODO
+                                      }
+                                    },
+                                    object : OnCalendarDateItemLongClickListener
+                                    {
+                                      override fun
+                                      onCalendarDateItemLongClick(calendarDate : String)
+                                      {
+                                        // TODO
+                                      }
+                                    })
       recycledViewPool.setMaxRecycledViews(0, MAX_DAYS_IN_A_MONTH)
     }
     
@@ -77,7 +73,7 @@ CalendarFragment : Fragment()
     .observe(this,
              Observer<Array<String>>
              {calendarDates : Array<String> ->
-               (monthDaysRecyclerView.adapter as CalendarDateAdapter)
+               (monthDaysRecyclerView?.adapter as CalendarDateAdapter)
                .let {calendarDateAdapter : CalendarDateAdapter ->
                  calendarDateAdapter
                  .apply {
@@ -89,8 +85,15 @@ CalendarFragment : Fragment()
              })
     
     calendarViewModel.fillCurrentMonthWithDates()
-    
     return view
+  }
+  
+  override fun onDestroyView()
+  {
+    super.onDestroyView()
+    // prevent memory leak
+    monthDaysRecyclerView?.adapter = null
+    monthDaysRecyclerView = null
   }
   
   override fun

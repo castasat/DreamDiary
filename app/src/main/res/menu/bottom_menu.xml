@@ -3,23 +3,26 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
   
   <item
-    android:id="@+id/dayFragment"
+    android:id="@+id/dreamFragment"
     android:icon="@drawable/ic_calendar"
-    android:title="@string/day_title" />
+    android:title="@string/calendar_title" />
   
+  <!-- TODO фрагмента сонника пока не делаем
   <item
     android:id="@+id/dreamFragment"
     android:icon="@drawable/ic_moon"
-    android:title="@string/dream_title" />
-  
+    android:title="@string/dream_title" />-->
+ 
+  <!-- TODO фрагмента отчетов пока нет
   <item
     android:id="@+id/reportsFragment"
     android:icon="@drawable/ic_reports"
-    android:title="" />
+    android:title="" />-->
   
+  <!-- TODO фрагмента настроек пока нет
   <item
     android:id="@+id/settingsFragment"
     android:icon="@drawable/ic_settings"
-    android:title="" />
+    android:title="" />-->
   
 </menu>

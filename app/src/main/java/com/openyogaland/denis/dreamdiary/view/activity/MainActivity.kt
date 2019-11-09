@@ -4,17 +4,15 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.navigateUp
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.R.id
 import com.openyogaland.denis.dreamdiary.R.string
@@ -34,13 +32,8 @@ MainActivity : AppCompatActivity()
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
     
-    activityViewModel =
-      ViewModelProvider(this)
-      .get(ActivityViewModel::class.java)
-    
-    navController =
-      findNavController(this,
-                        id.navigationHostFragment)
+    activityViewModel = ViewModelProvider(this).get(ActivityViewModel::class.java)
+    navController = findNavController(this, R.id.navigationHostFragment)
     
     navController
     .addOnDestinationChangedListener {_, destination, _ ->
@@ -48,39 +41,42 @@ MainActivity : AppCompatActivity()
       {
         id.calendarFragment ->
         {
-          appBarLayout.visibility = GONE
+          appBarLayout.layoutParams.height =
+            (280 * resources.displayMetrics.density).toInt()
           
+          // TODO set image background of coordinator layout
+          
+          // from API 16
           if(VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN)
           {
-            coordinatorLayout.background = ContextCompat.getDrawable(this, R.color.colorPrimaryDark)
+            appBarLayout.background = getDrawable(this, R.color.translucent)
+            appBarLayout.statusBarForeground = getDrawable(this, R.color.translucent)
+            coordinatorLayout.background = getDrawable(this, R.color.translucent)
           }
         }
-        id.dayFragment   ->
+        id.dayFragment ->
         {
-          appBarLayout.visibility = VISIBLE
+          appBarLayout.layoutParams.height =
+            (64 * resources.displayMetrics.density).toInt()
           titleTextView.text = getString(string.day_title)
         }
         id.dreamFragment ->
         {
-          appBarLayout.visibility = VISIBLE
+          appBarLayout.layoutParams.height =
+            (64 * resources.displayMetrics.density).toInt()
           titleTextView.text = getString(string.dream_title)
         }
       }
     }
+    appBarLayout.visibility = VISIBLE
     
-    val appBarConfiguration =
-      AppBarConfiguration(navController.graph)
-    
-    titleTextView
-    .setOnClickListener {_ : View ->
-      navigateUp(navController,
-                 appBarConfiguration)
-    }
-    
+    val appBarConfiguration = AppBarConfiguration(navController.graph)
+    titleTextView.setOnClickListener { navigateUp(navController, appBarConfiguration)}
     navController.addOnDestinationChangedListener(TitleNavigationListener(titleTextView, toolbar))
-    
-    NavigationUI.setupWithNavController(bottomNavigationView, navController)
+    setupWithNavController(bottomNavigationView, navController)
   }
+  
+  
   
   override fun
   onOptionsItemSelected(item : MenuItem) : Boolean
