@@ -51,19 +51,33 @@ MainActivity : AppCompatActivity()
           {
             appBarLayout.background = getDrawable(this, R.color.translucent)
             appBarLayout.statusBarForeground = getDrawable(this, R.color.translucent)
-            //coordinatorLayout.background = getDrawable(this, R.color.translucent)
+            coordinatorLayout.background = getDrawable(this, R.drawable.sky)
           }
         }
         id.dayFragment ->
         {
           appBarLayout.layoutParams.height =
             (64 * resources.displayMetrics.density).toInt()
+          // from API 16
+          if(VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN)
+          {
+            appBarLayout.background = getDrawable(this, R.color.colorPrimary)
+            appBarLayout.statusBarForeground = getDrawable(this, R.color.colorPrimary)
+            coordinatorLayout.background = getDrawable(this, R.color.colorPrimary)
+          }
           titleTextView.text = getString(string.day_title)
         }
         id.dreamFragment ->
         {
           appBarLayout.layoutParams.height =
             (64 * resources.displayMetrics.density).toInt()
+          // from API 16
+          if(VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN)
+          {
+            appBarLayout.background = getDrawable(this, R.color.colorPrimary)
+            appBarLayout.statusBarForeground = getDrawable(this, R.color.colorPrimary)
+            coordinatorLayout.background = getDrawable(this, R.color.colorPrimary)
+          }
           titleTextView.text = getString(string.dream_title)
         }
       }
