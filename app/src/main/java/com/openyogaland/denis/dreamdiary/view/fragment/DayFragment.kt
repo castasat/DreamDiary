@@ -47,7 +47,7 @@ DayFragment : Fragment()
   private lateinit var dateTextView : AppCompatTextView
   private lateinit var cycleDayCountEditText : AppCompatEditText
   private lateinit var practiceChooserTextView : AppCompatTextView
-  private lateinit var practiceRecycleView : RecyclerView
+  private var practiceRecycleView : RecyclerView? = null
   private lateinit var addPracticeTypeTextView : AppCompatTextView
   private lateinit var practiceMinutesEditText : AppCompatEditText
   private lateinit var nutritionEditText : AppCompatEditText
@@ -107,11 +107,11 @@ DayFragment : Fragment()
                       .getColor(requireActivity(),
                                 R.color.transparent))
         practiceChooserTextView.text = "Не выбрано"
-        when(practiceRecycleView.visibility)
+        when(practiceRecycleView?.visibility)
         {
           GONE    ->
           {
-            practiceRecycleView.visibility = VISIBLE
+            practiceRecycleView?.visibility = VISIBLE
             addPracticeTypeTextView.visibility = VISIBLE
             practiceChooserTextView
             .setCompoundDrawablesWithIntrinsicBounds(0, 0,
@@ -120,7 +120,7 @@ DayFragment : Fragment()
           }
           VISIBLE ->
           {
-            practiceRecycleView.visibility = GONE
+            practiceRecycleView?.visibility = GONE
             addPracticeTypeTextView.visibility = GONE
             practiceChooserTextView
             .setCompoundDrawablesWithIntrinsicBounds(0, 0,
@@ -131,9 +131,9 @@ DayFragment : Fragment()
       }
     }
     
-    practiceRecycleView.layoutManager = LinearLayoutManager(context)
+    practiceRecycleView?.layoutManager = LinearLayoutManager(context)
     // list is shown, click on list item
-    practiceRecycleView.adapter =
+    practiceRecycleView?.adapter =
       PracticeAdapter(ArrayList<Practice>(PRACTICE_TYPES_INITIAL_CAPACITY),
                       object : OnPracticeItemClickListener
                       {
@@ -154,7 +154,7 @@ DayFragment : Fragment()
                                                                    R.drawable.arrow_down,
                                                                    0)
                           practiceChooserTextView.text = practice.practiceType
-                          practiceRecycleView.visibility = GONE
+                          practiceRecycleView?.visibility = GONE
                           addPracticeTypeTextView.visibility = GONE
                         }
                       },
@@ -277,6 +277,13 @@ DayFragment : Fragment()
     .loadDay(dateTextView.text.toString())
     
     return view
+  }
+  
+  override fun onDestroyView()
+  {
+    super.onDestroyView()
+    practiceRecycleView?.adapter = null
+    practiceRecycleView = null
   }
   
   private fun

@@ -51,7 +51,7 @@ MainActivity : AppCompatActivity()
           {
             appBarLayout.background = getDrawable(this, R.color.translucent)
             appBarLayout.statusBarForeground = getDrawable(this, R.color.translucent)
-            coordinatorLayout.background = getDrawable(this, R.color.translucent)
+            //coordinatorLayout.background = getDrawable(this, R.color.translucent)
           }
         }
         id.dayFragment ->
