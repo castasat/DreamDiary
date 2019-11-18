@@ -95,7 +95,7 @@ DreamFragment : Fragment()
     
     dreamViewModel
     .currentDreamLiveData
-    .observe(this,
+    .observe(viewLifecycleOwner,
              Observer<Dream>
              {dream : Dream ->
                dateTextView.text = dream.date
