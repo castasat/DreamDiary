@@ -19,6 +19,7 @@ import com.openyogaland.denis.dreamdiary.R.string
 import com.openyogaland.denis.dreamdiary.listener.TitleNavigationListener
 import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.include_toolbar_layout.*
 
 public class
 MainActivity : AppCompatActivity()

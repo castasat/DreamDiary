@@ -190,7 +190,7 @@ DayFragment : Fragment()
     
     dayViewModel
     .allPracticesLiveData
-    .observe(this,
+    .observe(viewLifecycleOwner,
              Observer<List<Practice>>
              {practices : List<Practice> ->
                (practiceRecyclerView.adapter as PracticeAdapter)
@@ -254,7 +254,7 @@ DayFragment : Fragment()
     
     dayViewModel
     .currentDayLiveData
-    .observe(this,
+    .observe(viewLifecycleOwner,
              Observer<Day>
              {day : Day ->
                dateTextView.text = day.date

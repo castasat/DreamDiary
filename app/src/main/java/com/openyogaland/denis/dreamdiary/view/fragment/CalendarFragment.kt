@@ -43,6 +43,7 @@ CalendarFragment : Fragment()
     
     monthDaysRecyclerView
     ?.apply {
+      setHasFixedSize(true)
       layoutManager = GridLayoutManager(context, DAYS_IN_A_WEEK)
       adapter = CalendarDateAdapter(ArrayList<String>(MAX_DAYS_IN_A_MONTH),
                                     object : OnCalendarDateItemClickListener
@@ -70,7 +71,7 @@ CalendarFragment : Fragment()
     
     calendarViewModel
     .calendarDatesLiveData
-    .observe(this,
+    .observe(viewLifecycleOwner,
              Observer<Array<String>>
              {calendarDates : Array<String> ->
                (monthDaysRecyclerView?.adapter as CalendarDateAdapter)

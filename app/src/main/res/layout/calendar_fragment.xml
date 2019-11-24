@@ -3,58 +3,11 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:layout_margin="16dp"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:background="@drawable/calendar_grid_background"
+  app:backgroundTint="@color/translucent"
   android:foregroundGravity="center_horizontal"
   android:paddingTop="30dp">
-  
-  <!-- Month slider -->
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/previousMonthImageView"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_margin="2dp"
-    android:tint="@color/black"
-    app:layout_constraintBottom_toBottomOf="@id/monthLabelTextView"
-    app:layout_constraintEnd_toStartOf="@id/monthLabelTextView"
-    app:layout_constraintTop_toTopOf="@id/monthLabelTextView"
-    app:srcCompat="@drawable/arrow_left"
-    app:tint="@color/black" />
-  
-  <!-- TODO spacing from API 21 -->
-  <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/monthLabelTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="0dp"
-    android:layout_weight="1"
-    android:gravity="center_horizontal"
-    android:letterSpacing="0.5"
-    android:paddingStart="30dp"
-    android:paddingLeft="30dp"
-    android:paddingEnd="30dp"
-    android:paddingRight="30dp"
-    android:text="@string/december"
-    android:textColor="@color/colorPrimary"
-    android:textSize="16sp"
-    android:textStyle="normal"
-    app:fontFamily="sans-serif"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-  
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/nextMonthImageView"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_margin="2dp"
-    android:tint="@color/black"
-    app:layout_constraintBottom_toBottomOf="@id/monthLabelTextView"
-    app:layout_constraintStart_toEndOf="@id/monthLabelTextView"
-    app:layout_constraintTop_toTopOf="@id/monthLabelTextView"
-    app:srcCompat="@drawable/arrow_right"
-    app:tint="@color/black" />
-  <!-- / Month slider -->
   
   <!-- Divider -->
   <View
@@ -67,7 +20,7 @@
     android:background="@color/divider_gray"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/monthLabelTextView" />
+    app:layout_constraintTop_toTopOf="parent" />
   <!-- / Divider -->
   
   <!-- Week days -->
@@ -189,6 +142,7 @@
     android:id="@+id/monthDaysRecyclerView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    
     android:numColumns="7"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
