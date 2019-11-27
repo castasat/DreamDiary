@@ -5,6 +5,8 @@ import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View.VISIBLE
+import android.view.Window
+import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.lifecycle.ViewModelProvider
@@ -14,8 +16,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.openyogaland.denis.dreamdiary.R
-import com.openyogaland.denis.dreamdiary.R.id
-import com.openyogaland.denis.dreamdiary.R.string
 import com.openyogaland.denis.dreamdiary.listener.TitleNavigationListener
 import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +33,13 @@ MainActivity : AppCompatActivity()
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
     
+    // set translucent status bar
+    if(VERSION.SDK_INT >= VERSION_CODES.KITKAT)
+    {
+      val window : Window = window
+      window.setFlags(FLAG_LAYOUT_NO_LIMITS, FLAG_LAYOUT_NO_LIMITS)
+    }
+    
     activityViewModel = ViewModelProvider(this).get(ActivityViewModel::class.java)
     navController = findNavController(this, R.id.navigationHostFragment)
     
@@ -40,7 +47,7 @@ MainActivity : AppCompatActivity()
     .addOnDestinationChangedListener {_, destination, _ ->
       when(destination.id)
       {
-        id.calendarFragment ->
+        R.id.calendarFragment ->
         {
           appBarLayout.layoutParams.height =
             (280 * resources.displayMetrics.density).toInt()
@@ -52,10 +59,10 @@ MainActivity : AppCompatActivity()
           {
             appBarLayout.background = getDrawable(this, R.color.translucent)
             appBarLayout.statusBarForeground = getDrawable(this, R.color.translucent)
-            coordinatorLayout.background = getDrawable(this, R.drawable.sky_background)
+            mainConstraintLayout.background = getDrawable(this, R.drawable.sky_background)
           }
         }
-        id.dayFragment ->
+        R.id.dayFragment ->
         {
           appBarLayout.layoutParams.height =
             (64 * resources.displayMetrics.density).toInt()
@@ -64,11 +71,11 @@ MainActivity : AppCompatActivity()
           {
             appBarLayout.background = getDrawable(this, R.color.colorPrimary)
             appBarLayout.statusBarForeground = getDrawable(this, R.color.colorPrimary)
-            coordinatorLayout.background = getDrawable(this, R.color.colorPrimary)
+            mainConstraintLayout.background = getDrawable(this, R.color.colorPrimary)
           }
-          titleTextView.text = getString(string.day_title)
+          titleTextView.text = getString(R.string.day_title)
         }
-        id.dreamFragment ->
+        R.id.dreamFragment ->
         {
           appBarLayout.layoutParams.height =
             (64 * resources.displayMetrics.density).toInt()
@@ -77,21 +84,23 @@ MainActivity : AppCompatActivity()
           {
             appBarLayout.background = getDrawable(this, R.color.colorPrimary)
             appBarLayout.statusBarForeground = getDrawable(this, R.color.colorPrimary)
-            coordinatorLayout.background = getDrawable(this, R.color.colorPrimary)
+            mainConstraintLayout.background = getDrawable(this, R.color.colorPrimary)
           }
-          titleTextView.text = getString(string.dream_title)
+          titleTextView.text = getString(R.string.dream_title)
         }
       }
     }
     appBarLayout.visibility = VISIBLE
     
-    val appBarConfiguration = AppBarConfiguration(navController.graph)
-    titleTextView.setOnClickListener { navigateUp(navController, appBarConfiguration)}
-    navController.addOnDestinationChangedListener(TitleNavigationListener(titleTextView, toolbar))
-    setupWithNavController(bottomNavigationView, navController)
+    toolbar?.let {toolbar ->
+      titleTextView?.let {titleTextView ->
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        titleTextView.setOnClickListener {navigateUp(navController, appBarConfiguration)}
+        navController.addOnDestinationChangedListener(TitleNavigationListener(titleTextView, toolbar))
+        setupWithNavController(bottomNavigationView, navController)
+      }
+    }
   }
-  
-  
   
   override fun
   onOptionsItemSelected(item : MenuItem) : Boolean
