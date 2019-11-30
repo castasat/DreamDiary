@@ -50,7 +50,7 @@
     app:layout_constraintEnd_toStartOf="@id/dateTextView"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="@id/dateTextView"
-    app:srcCompat="@drawable/arrow_left"
+    app:srcCompat="@drawable/arrow_left_narrow"
     app:tint="@color/white" />
   <!-- / Previous day -->
   
@@ -61,11 +61,12 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:includeFontPadding="false"
+    android:layout_marginTop="40dp"
     android:text="25"
     android:textColor="@color/white"
     android:textSize="120sp"
     android:textStyle="normal"
-    app:fontFamily="sans-serif-narrow"
+    app:fontFamily="sans-serif-light"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -81,7 +82,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@id/dateTextView"
     app:layout_constraintTop_toTopOf="@id/dateTextView"
-    app:srcCompat="@drawable/arrow_right"
+    app:srcCompat="@drawable/arrow_right_narrow"
     app:tint="@color/white" />
   <!-- / Next day -->
   
