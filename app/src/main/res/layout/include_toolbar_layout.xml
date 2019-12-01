@@ -55,13 +55,11 @@
   <!-- / Previous day -->
   
   <!-- Date text -->
-  <androidx.appcompat.widget.AppCompatTextView
+  <com.openyogaland.denis.dreamdiary.view.custom.NoPaddingTextView
     android:id="@+id/dateTextView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:includeFontPadding="false"
-    android:layout_marginTop="40dp"
+    android:layout_marginTop="64dp"
     android:text="25"
     android:textColor="@color/white"
     android:textSize="120sp"
@@ -91,8 +89,6 @@
     android:id="@+id/ofMonthTextView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:antialias="true"
-    android:includeFontPadding="false"
     android:text="ноября, "
     android:textColor="@color/white"
     android:textSize="16sp"
@@ -109,7 +105,6 @@
     android:id="@+id/weekDayTextView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:antialias="true"
     android:text=" четверг"
     android:textColor="@color/white"
     android:textSize="16sp"
@@ -126,7 +121,6 @@
     android:id="@+id/ьщщтЗрфыуЕучеМшуц"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:antialias="true"
     android:text="1-я фаза. Новолуние"
     android:textColor="@color/white"
     android:textSize="12sp"
