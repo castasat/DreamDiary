@@ -6,9 +6,10 @@ import android.graphics.Rect
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
-internal class NoPaddingTextView : AppCompatTextView
+class NoPaddingTextView : AppCompatTextView
 {
   private val boundsRect = Rect()
+  private val textParams = calculateTextParams()
   
   constructor(context : Context?)
   : super(context)
@@ -24,7 +25,7 @@ internal class NoPaddingTextView : AppCompatTextView
     with(boundsRect) {
       paint.isAntiAlias = true
       paint.color = currentTextColor
-      canvas.drawText(calculateTextParams(),
+      canvas.drawText(textParams,
                       -left.toFloat(),
                       (-top - bottom).toFloat(),
                       paint)

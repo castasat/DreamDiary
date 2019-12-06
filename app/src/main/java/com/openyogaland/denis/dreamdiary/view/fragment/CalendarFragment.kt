@@ -122,7 +122,7 @@ CalendarFragment : Fragment()
   
   companion object
   {
-    private const val WEEK_ROWS = 5
+    private const val WEEK_ROWS = 6
     const val DAYS_IN_A_WEEK = 7
     const val MAX_DAYS_IN_A_MONTH = DAYS_IN_A_WEEK * WEEK_ROWS
   }

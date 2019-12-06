@@ -6,19 +6,6 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:foregroundGravity="center_horizontal">
   
-  <!-- Divider -->
-  <View
-    android:id="@+id/afterMonthSliderDivider"
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:layout_marginStart="22dp"
-    android:layout_marginEnd="22dp"
-    android:background="@color/divider_gray"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/weekDaysLinearLayout" />
-  <!-- / Divider -->
-  
   <!-- Week days -->
   <androidx.appcompat.widget.LinearLayoutCompat
     android:id="@+id/weekDaysLinearLayout"
@@ -143,6 +130,5 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>
   <!-- / Month days -->
-    
   
 </androidx.constraintlayout.widget.ConstraintLayout>

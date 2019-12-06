@@ -4,6 +4,7 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.Window
 import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
@@ -59,7 +60,7 @@ MainActivity : AppCompatActivity()
           {
             appBarLayout.background = getDrawable(this, R.color.translucent)
             appBarLayout.statusBarForeground = getDrawable(this, R.color.translucent)
-            mainConstraintLayout.background = getDrawable(this, R.drawable.sky_background)
+            //mainConstraintLayout.background = getDrawable(this, R.drawable.sky_background)
           }
         }
         R.id.dayFragment ->
@@ -71,7 +72,6 @@ MainActivity : AppCompatActivity()
           {
             appBarLayout.background = getDrawable(this, R.color.colorPrimary)
             appBarLayout.statusBarForeground = getDrawable(this, R.color.colorPrimary)
-            mainConstraintLayout.background = getDrawable(this, R.color.colorPrimary)
           }
           titleTextView.text = getString(R.string.day_title)
         }
@@ -84,7 +84,6 @@ MainActivity : AppCompatActivity()
           {
             appBarLayout.background = getDrawable(this, R.color.colorPrimary)
             appBarLayout.statusBarForeground = getDrawable(this, R.color.colorPrimary)
-            mainConstraintLayout.background = getDrawable(this, R.color.colorPrimary)
           }
           titleTextView.text = getString(R.string.dream_title)
         }
