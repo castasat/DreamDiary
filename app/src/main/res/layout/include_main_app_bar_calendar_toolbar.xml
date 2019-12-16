@@ -7,51 +7,17 @@
   android:paddingTop="36dp"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:showIn="@layout/include_app_bar_layout">
+  tools:showIn="@layout/include_main_app_bar_layout">
   
-  <!-- Previous day -->
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/previousDayImageView"
+  <!-- Current date slider -->
+  <include
+    layout="@layout/include_main_app_bar_calendar_toolbar_current_date"
     android:layout_width="0dp"
-    android:layout_height="48dp"
-    android:tint="@color/white"
-    app:layout_constraintBottom_toBottomOf="@id/dateTextView"
-    app:layout_constraintEnd_toStartOf="@id/dateTextView"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@id/dateTextView"
-    app:srcCompat="@drawable/arrow_left_narrow"
-    app:tint="@color/white" />
-  <!-- / Previous day -->
-  
-  <!-- Date text -->
-  <com.openyogaland.denis.dreamdiary.view.custom.NoPaddingTextView
-    android:id="@+id/dateTextView"
-    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="64dp"
-    android:text="31"
-    android:textColor="@color/white"
-    android:textSize="120sp"
-    android:textStyle="normal"
-    app:fontFamily="sans-serif-light"
-    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-  <!-- / Date text -->
+    app:layout_constraintEnd_toEndOf="parent"/>
+  <!-- Current date slider -->
   
-  <!-- Next day -->
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/nextDayImageView"
-    android:layout_width="0dp"
-    android:layout_height="48dp"
-    android:tint="@color/white"
-    app:layout_constraintBottom_toBottomOf="@id/dateTextView"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@id/dateTextView"
-    app:layout_constraintTop_toTopOf="@id/dateTextView"
-    app:srcCompat="@drawable/arrow_right_narrow"
-    app:tint="@color/white" />
-  <!-- / Next day -->
   
   <!-- Of Month text -->
   <androidx.appcompat.widget.AppCompatTextView

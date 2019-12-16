@@ -4,14 +4,14 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/appBarLayout"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
+  android:layout_height="wrap_content"
   android:orientation="vertical"
   tools:showIn="@layout/activity_main">
   
   <!-- Regular toolbar -->
   <include
     android:id="@+id/includeRegularToolbar"
-    layout="@layout/include_regular_toolbar"
+    layout="@layout/include_main_app_bar_regular_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
   <!-- / Regular toolbar -->
@@ -19,7 +19,7 @@
   <!-- Calendar toolbar -->
   <include
     android:id="@+id/includeCalendarToolbar"
-    layout="@layout/include_calendar_toolbar"
+    layout="@layout/include_main_app_bar_calendar_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
   <!-- / Calendar toolbar -->

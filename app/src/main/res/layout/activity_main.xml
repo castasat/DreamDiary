@@ -14,7 +14,7 @@
   
   <!-- AppBarLayout -->
   <include
-    layout="@layout/include_app_bar_layout"
+    layout="@layout/include_main_app_bar_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
   <!-- / AppBarLayout -->
