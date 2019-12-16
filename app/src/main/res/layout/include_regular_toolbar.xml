@@ -1,0 +1,39 @@
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:showIn="@layout/include_app_bar_layout">
+  
+  <androidx.appcompat.widget.Toolbar
+    android:visibility="gone"
+    android:background="@color/colorPrimary"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingStart="0dp"
+    android:paddingLeft="0dp"
+    android:paddingEnd="48dp"
+    android:paddingRight="48dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+    app:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+    
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/titleTextView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:drawablePadding="8dp"
+      android:gravity="center"
+      android:textSize="20sp"
+      app:drawableLeftCompat="@drawable/arrow_left"
+      app:drawableStartCompat="@drawable/arrow_left"
+      app:fontFamily="sans-serif-black"
+      tools:text="@string/day_title"
+      tools:textColor="@color/white" />
+  
+  </androidx.appcompat.widget.Toolbar>
+
+</merge>

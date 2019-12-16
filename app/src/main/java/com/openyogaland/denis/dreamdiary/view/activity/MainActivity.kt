@@ -20,6 +20,7 @@ import com.openyogaland.denis.dreamdiary.listener.TitleNavigationListener
 import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_app_bar_layout.*
+import kotlinx.android.synthetic.main.include_regular_toolbar.*
 
 public class
 MainActivity : AppCompatActivity()

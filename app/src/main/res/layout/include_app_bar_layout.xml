@@ -1,227 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.appbar.AppBarLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/appBarLayout"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:orientation="vertical"
   tools:showIn="@layout/activity_main">
-
-<androidx.constraintlayout.widget.ConstraintLayout
-  android:background="@drawable/sky_background"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent">
   
   <!-- Regular toolbar -->
-  <androidx.appcompat.widget.Toolbar
-    android:id="@+id/toolbar"
+  <include
+    android:id="@+id/includeRegularToolbar"
+    layout="@layout/include_regular_toolbar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:paddingStart="0dp"
-    android:paddingLeft="0dp"
-    android:paddingEnd="48dp"
-    android:paddingRight="48dp"
-    android:visibility="invisible"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-    app:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
-    
-    <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/titleTextView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:drawablePadding="8dp"
-      android:gravity="center"
-      android:textSize="20sp"
-      app:drawableLeftCompat="@drawable/arrow_left"
-      app:drawableStartCompat="@drawable/arrow_left"
-      app:fontFamily="sans-serif-black"
-      tools:text="@string/day_title"
-      tools:textColor="@color/white" />
-  
-  </androidx.appcompat.widget.Toolbar>
+    android:layout_height="wrap_content"/>
   <!-- / Regular toolbar -->
   
-  <!-- Day toolbar -->
-  <!-- Previous day -->
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/previousDayImageView"
-    android:layout_width="0dp"
-    android:layout_height="48dp"
-    android:tint="@color/white"
-    app:layout_constraintBottom_toBottomOf="@id/dateTextView"
-    app:layout_constraintEnd_toStartOf="@id/dateTextView"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@id/dateTextView"
-    app:srcCompat="@drawable/arrow_left_narrow"
-    app:tint="@color/white" />
-  <!-- / Previous day -->
-  
-  <!-- Date text -->
-  <com.openyogaland.denis.dreamdiary.view.custom.NoPaddingTextView
-    android:id="@+id/dateTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="64dp"
-    android:text="31"
-    android:textColor="@color/white"
-    android:textSize="120sp"
-    android:textStyle="normal"
-    app:fontFamily="sans-serif-light"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-  <!-- / Date text -->
-  
-  <!-- Next day -->
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/nextDayImageView"
-    android:layout_width="0dp"
-    android:layout_height="48dp"
-    android:tint="@color/white"
-    app:layout_constraintBottom_toBottomOf="@id/dateTextView"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@id/dateTextView"
-    app:layout_constraintTop_toTopOf="@id/dateTextView"
-    app:srcCompat="@drawable/arrow_right_narrow"
-    app:tint="@color/white" />
-  <!-- / Next day -->
-  
-  <!-- Of Month text -->
-  <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/ofMonthTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text="ноября, "
-    android:textColor="@color/white"
-    android:textSize="16sp"
-    android:textStyle="normal"
-    app:fontFamily="sans-serif"
-    app:layout_constraintEnd_toStartOf="@id/weekDayTextView"
-    app:layout_constraintHorizontal_chainStyle="packed"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
-  <!-- / Of Month text -->
-  
-  <!-- Week day text -->
-  <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/weekDayTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text=" четверг"
-    android:textColor="@color/white"
-    android:textSize="16sp"
-    android:textStyle="normal"
-    app:fontFamily="sans-serif"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_chainStyle="packed"
-    app:layout_constraintStart_toEndOf="@+id/ofMonthTextView"
-    app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
-  <!-- / Week day text -->
-  
-  <!-- Moon phase text -->
-  <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/moonPhaseTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="1-я фаза. Новолуние"
-    android:textColor="@color/white"
-    android:textSize="12sp"
-    android:textStyle="normal"
-    app:fontFamily="sans-serif"
-    app:layout_constraintBottom_toTopOf="@id/monthLabelTextView"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/ofMonthTextView" />
-  <!-- / Moon phase text -->
-  
-  <!-- TODO AddDay button -->
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/addDayButtonImageView"
-    android:layout_width="100dp"
-    android:layout_height="32dp"
-    android:layout_margin="28dp"
-    app:srcCompat="@drawable/white_oval"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toStartOf="@id/addDreamButtonImageView"
-    app:layout_constraintTop_toBottomOf="@id/moonPhaseTextView"/>
-  <!-- TODO / AddDay button -->
-  
-  <!-- TODO Day button -->
-  <!-- TODO / Day button -->
-  
-  <!-- TODO AddDream button -->
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/addDreamButtonImageView"
-    android:layout_width="100dp"
-    android:layout_height="32dp"
-    android:layout_margin="28dp"
-    app:srcCompat="@drawable/white_oval"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@id/addDayButtonImageView"
-    app:layout_constraintTop_toBottomOf="@id/moonPhaseTextView"/>
-  <!-- TODO / AddDream button -->
-  
-  <!-- TODO Dream button -->
-  <!-- TODO / Dream button -->
-  
-  <!-- / Day slider -->
-  
-  <!-- Month slider -->
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/previousMonthImageView"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_margin="2dp"
-    android:tint="@color/black"
-    app:layout_constraintBottom_toBottomOf="@id/monthLabelTextView"
-    app:layout_constraintEnd_toStartOf="@id/monthLabelTextView"
-    app:layout_constraintTop_toTopOf="@id/monthLabelTextView"
-    app:srcCompat="@drawable/arrow_left"
-    app:tint="@color/black" />
-  
-  <!-- TODO spacing from API 21 -->
-  <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/monthLabelTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="0dp"
-    android:layout_weight="1"
-    android:gravity="center_vertical|start"
-    android:letterSpacing="0.5"
-    android:paddingStart="30dp"
-    android:paddingLeft="30dp"
-    android:paddingEnd="30dp"
-    android:paddingRight="30dp"
-    android:text="@string/december"
-    android:textColor="@color/colorPrimary"
-    android:textSize="16sp"
-    android:textStyle="normal"
-    app:fontFamily="sans-serif"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent" />
-  
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/nextMonthImageView"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_margin="2dp"
-    android:tint="@color/black"
-    app:layout_constraintBottom_toBottomOf="@id/monthLabelTextView"
-    app:layout_constraintStart_toEndOf="@id/monthLabelTextView"
-    app:layout_constraintTop_toTopOf="@id/monthLabelTextView"
-    app:srcCompat="@drawable/arrow_right"
-    app:tint="@color/black" />
-  <!-- / Month slider -->
-  <!-- / Day toolbar -->
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+  <!-- Calendar toolbar -->
+  <include
+    android:id="@+id/includeCalendarToolbar"
+    layout="@layout/include_calendar_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+  <!-- / Calendar toolbar -->
 
 </com.google.android.material.appbar.AppBarLayout>

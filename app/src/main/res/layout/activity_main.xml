@@ -16,16 +16,17 @@
   <include
     layout="@layout/include_app_bar_layout"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"/>
+    android:layout_height="wrap_content"/>
   <!-- / AppBarLayout -->
   
   <fragment
     android:id="@+id/navigationHostFragment"
     android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1"
     app:defaultNavHost="true"
+    android:layout_gravity="bottom"
     app:navGraph="@navigation/navigation"
     tools:layout="@layout/calendar_fragment" />
   
