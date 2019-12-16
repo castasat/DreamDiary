@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.google.android.material.appbar.AppBarLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/appBarLayout"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:showIn="@layout/activity_main">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+  android:background="@drawable/sky_background"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
   
@@ -216,3 +223,5 @@
   <!-- / Day toolbar -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.appbar.AppBarLayout>

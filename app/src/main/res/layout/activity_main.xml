@@ -1,60 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.appcompat.widget.LinearLayoutCompat
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/mainConstraintLayout"
+  android:id="@+id/mainLinearLayout"
   style="@style/TranslucentStatusBar"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/white"
   android:fitsSystemWindows="true"
+  android:orientation="vertical"
   tools:context=".view.activity.MainActivity">
   
-  <com.google.android.material.appbar.AppBarLayout
-    android:id="@+id/appBarLayout"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:background="@drawable/sky_background"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
-    
-    <!-- Toolbar -->
-    <include
-      layout="@layout/include_toolbar_layout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
-    <!-- / Toolbar -->
-  
-  </com.google.android.material.appbar.AppBarLayout>
+  <!-- AppBarLayout -->
+  <include
+    layout="@layout/include_app_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"/>
+  <!-- / AppBarLayout -->
   
   <fragment
     android:id="@+id/navigationHostFragment"
     android:name="androidx.navigation.fragment.NavHostFragment"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:defaultNavHost="true"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
     app:navGraph="@navigation/navigation"
     tools:layout="@layout/calendar_fragment" />
   
   <com.google.android.material.bottomnavigation.BottomNavigationView
     android:id="@+id/bottomNavigationView"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
     android:layout_marginBottom="48dp"
     android:background="@color/white"
     app:itemBackground="@color/white"
     app:itemIconTint="@android:color/black"
     app:itemTextColor="@android:color/black"
     app:labelVisibilityMode="auto"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
     app:menu="@menu/bottom_menu" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

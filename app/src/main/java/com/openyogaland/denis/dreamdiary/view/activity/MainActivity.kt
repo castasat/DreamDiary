@@ -4,8 +4,7 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.Window
 import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +19,7 @@ import com.openyogaland.denis.dreamdiary.R
 import com.openyogaland.denis.dreamdiary.listener.TitleNavigationListener
 import com.openyogaland.denis.dreamdiary.viewmodel.ActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.include_toolbar_layout.*
+import kotlinx.android.synthetic.main.include_app_bar_layout.*
 
 public class
 MainActivity : AppCompatActivity()
@@ -60,7 +59,7 @@ MainActivity : AppCompatActivity()
           {
             appBarLayout.background = getDrawable(this, R.color.translucent)
             appBarLayout.statusBarForeground = getDrawable(this, R.color.translucent)
-            //mainConstraintLayout.background = getDrawable(this, R.drawable.sky_background)
+            //mainLinearLayout.background = getDrawable(this, R.drawable.sky_background)
           }
         }
         R.id.dayFragment ->

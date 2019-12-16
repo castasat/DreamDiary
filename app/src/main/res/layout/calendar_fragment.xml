@@ -3,8 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:foregroundGravity="center_horizontal">
+  xmlns:app="http://schemas.android.com/apk/res-auto">
   
   <!-- Week days -->
   <androidx.appcompat.widget.LinearLayoutCompat
@@ -122,10 +121,10 @@
   <!-- Month days -->
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/monthDaysRecyclerView"
-    android:layout_width="match_parent"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
-    
     android:numColumns="7"
+    android:layout_margin="5dp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>
