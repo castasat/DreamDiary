@@ -49,4 +49,11 @@
     app:tint="@color/white" />
   <!-- / Next day -->
   
+  <androidx.constraintlayout.widget.Barrier
+    android:id="@+id/currentDateBarrier"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:barrierDirection="bottom"
+    app:constraint_referenced_ids="dateTextView,previousDayImageView,nextDayImageView" />
+  
 </merge>

@@ -19,39 +19,14 @@
   <!-- Current date slider -->
   
   
-  <!-- Of Month text -->
-  <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/ofMonthTextView"
-    android:layout_width="wrap_content"
+  <!-- Of month text and week day text -->
+  <include
+    layout="@layout/include_main_app_bar_calendar_toolbar_of_month_and_week_day"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text="ноября, "
-    android:textColor="@color/white"
-    android:textSize="16sp"
-    android:textStyle="normal"
-    app:fontFamily="sans-serif"
-    app:layout_constraintEnd_toStartOf="@id/weekDayTextView"
-    app:layout_constraintHorizontal_chainStyle="packed"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
-  <!-- / Of Month text -->
-  
-  <!-- Week day text -->
-  <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/weekDayTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text=" четверг"
-    android:textColor="@color/white"
-    android:textSize="16sp"
-    android:textStyle="normal"
-    app:fontFamily="sans-serif"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_chainStyle="packed"
-    app:layout_constraintStart_toEndOf="@+id/ofMonthTextView"
-    app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
-  <!-- / Week day text -->
+    app:layout_constraintEnd_toEndOf="parent"/>
+  <!-- / Of month text and week day text -->
   
   <!-- Moon phase text -->
   <androidx.appcompat.widget.AppCompatTextView

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:showIn="@layout/include_main_app_bar_calendar_toolbar">
+  
+  <!-- Of Month text -->
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/ofMonthTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:text="ноября, "
+    android:textColor="@color/white"
+    android:textSize="16sp"
+    android:textStyle="normal"
+    app:fontFamily="sans-serif"
+    app:layout_constraintEnd_toStartOf="@id/weekDayTextView"
+    app:layout_constraintHorizontal_chainStyle="packed"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/currentDateBarrier" />
+  <!-- / Of Month text -->
+  
+  <!-- Week day text -->
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/weekDayTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:text=" четверг"
+    android:textColor="@color/white"
+    android:textSize="16sp"
+    android:textStyle="normal"
+    app:fontFamily="sans-serif"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_chainStyle="packed"
+    app:layout_constraintStart_toEndOf="@+id/ofMonthTextView"
+    app:layout_constraintTop_toBottomOf="@+id/currentDateBarrier" />
+  <!-- / Week day text -->
+  
+</merge>
